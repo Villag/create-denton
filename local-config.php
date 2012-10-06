@@ -1,16 +1,10 @@
 <?php
-/*
-This is a sample local-config.php file
-In it, you *must* include the four main database defines
-
-You may include other settings here that you only want enabled on your local development checkouts
-*/
 
 // Connect to the remote database
-define( 'DB_NAME',			'' );
-define( 'DB_USER',			'' );
-define( 'DB_PASSWORD',		'' );
-define( 'DB_HOST',			'' );
+define( 'DB_NAME',			'devdal1_creatives' );
+define( 'DB_USER',			'devdal1_crea8iv' );
+define( 'DB_PASSWORD',		'_J,{glf1_)OF' );
+define( 'DB_HOST',			'184.173.232.56' );
 
 // Override database URLs
 define( 'WP_HOME',			'http://createdenton.local' );
