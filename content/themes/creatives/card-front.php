@@ -6,11 +6,11 @@ foreach ( $users as $user ) {
 	echo '<pre>';
 	//print_r( $all_meta_for_user );
 	echo '</pre>';
-  ?>
+	?>
 
-	<section class="card span3">
+	<section id="card-<?php echo $user->ID ?>" class="span3" data-id="<?php echo get_user_meta( $user->ID, 'Primary Job', true ); ?>">
 		<!--- Photo with Caption --->
-		<figure class="vcard" id="vcard-lastfirst-<?php echo $user->ID ?>"
+		<figure class="vcard card front" id="vcard-lastfirst-<?php echo $user->ID ?>"
 		 itemscope="itemscope" itemtype="http://www.data-vocabulary.org/Person/"
 		 title="Firstname Lastname">
 			<!-- Photo -->
@@ -46,29 +46,32 @@ foreach ( $users as $user ) {
 						<li><a href="<?php echo get_user_meta( $user->ID, 'user_url', true ); ?>" class="url" itemprop="url" rel="me self external"><?php echo get_user_meta( $user->ID, 'user_url', true ); ?></a></li>
 					</ul>
 				</section>
+				<!-- Biography -->
+				<section title="Biography">
+					<header>
+						Biography
+					</header>
+					<p><?php echo $user_info->user_description; ?></p>
+					<section>
+						<?php
+						$skills = get_user_meta( $user->ID, 'Skills' );
+						if( $skills ):
+							echo '<header>Skills</skills>';
+							echo '<ul>';
+							foreach( $skills as $skill ) {
+								echo '<li><a href="#" rel="tag">'. $skill[0] .'</a><li>';
+							}
+							echo '</ul>';
+						endif;
+						?>
+					</section>
+				</section> <!--/ .note -->
 			</figcaption> <!--/ .figcaption -->
 		</figure> <!--/ .figure.vcard -->
-	
-		<!-- Biography -->
-		<section title="Biography">
-			<header>
-				Biography
-			</header>
-			<p><?php echo $user_info->user_description; ?></p>
-			<section>
-				<?php
-				$skills = get_user_meta( $user->ID, 'Skills' );
-				if( $skills ):
-					echo '<header>Skills</skills>';
-					echo '<ul>';
-					foreach( $skills as $skill ) {
-						echo '<li><a href="#" rel="tag">'. $skill[0] .'</a><li>';
-					}
-					echo '</ul>';
-				endif;
-				?>
-			</section>
-		</section> <!--/ .note -->
+		<figure class="card back">
+			back
+		</figure>
 	
 	</section>
+
 <?php } ?>

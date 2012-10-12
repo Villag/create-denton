@@ -12,13 +12,29 @@ get_header(); ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 				
 			<div class="row-fluid">
+				
+				<div class="span2">
 
-			<?php
-		   
-				get_template_part( 'card-front' ); // Loads card-front.php
+					<?php get_sidebar(); ?>
 
-			?>
+<ul id="source">
+	<li data-id="Web Designer">Web Designer</li>
+	<li data-id="android">Android</li>
+	<li data-id="winmo">Windows Mobile</li>
+</ul>
 			
+				</div><!-- .span2 -->
+
+				<div class="span10">
+					
+					<div class="row-fluid">
+
+						<?php get_template_part( 'card-front' ); // Loads card-front.php ?>
+					
+					</div><!-- .row-fluid -->
+			
+				</div><!-- .span2 -->
+							
 			</div>
 						
 			<?php endwhile; // end of the loop. ?>

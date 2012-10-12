@@ -615,7 +615,7 @@ footer[role="contentinfo"] a:hover {
 
 /* =Main content
 -------------------------------------------------------------- */
-section.card {
+figure.card {
 	padding: 0 40px;
 	padding: 0 2.857142857rem;
 	margin-top: 48px;
@@ -1372,10 +1372,6 @@ img#wpstats {
 	body.single-attachment .site-content,
 	body.full-width .site-content {
 		width: 100%;
-	}
-	.widget-area {
-		float: right;
-		width: 26.041666667%;
 	}
 	.site-header h1,
 	.site-header h2 {
