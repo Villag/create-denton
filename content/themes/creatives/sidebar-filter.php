@@ -1,5 +1,5 @@
 <ul id="source">
-	<li data-id="Web Designer">Web Designer</li>
-	<li data-id="android">Android</li>
-	<li data-id="winmo">Windows Mobile</li>
+	<li data-id="illustrator">Illustrator</li>
+	<li data-id="photographer">Photographer</li>
+	<li data-id="programmer">Programmer</li>
 </ul>

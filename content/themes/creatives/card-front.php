@@ -1,8 +1,10 @@
 <?php
 $users = get_users();
 foreach ( $users as $user ) {
+	global $wp_query;
 	$user_info = get_userdata( $user->ID );
 	$all_meta_for_user = get_user_meta( $user->ID );
+	$curauth = $wp_query->get_queried_object();
 	//echo '<pre>';
 	//print_r( $all_meta_for_user );
 	//echo '</pre>';
@@ -14,7 +16,7 @@ foreach ( $users as $user ) {
 		 itemscope="itemscope" itemtype="http://www.data-vocabulary.org/Person/"
 		 title="Firstname Lastname">
 			<!-- Photo -->
-			<?php echo get_avatar( $user->ID, '96', $user->display_name ); ?>
+			<?php echo get_avatar( $user->ID, '250', $user->display_name ); ?>
 			<!-- alt redundant; image labeled by context, leave empty (webaim) -->
 			<!-- Caption -->
 			<figcaption>
@@ -43,10 +45,10 @@ foreach ( $users as $user ) {
 				<!-- Links -->
 				<section class="note">
 					<ul>
-						<li><a href="<?php echo get_user_meta( $user->ID, 'user_url', true ); ?>" class="url" itemprop="url" rel="me self external"><?php echo get_user_meta( $user->ID, 'user_url', true ); ?></a></li>
+						<li><a href="<?php the_author_meta( 'user_url', $user->ID ); ?>" class="url" itemprop="url" rel="me self external"><?php the_author_meta( 'user_url', $user->ID ); ?></a></li>
 					</ul>
 				</section>
-				<!-- Biography -->
+				<!-- Biography
 				<section title="Biography">
 					<header>
 						Biography

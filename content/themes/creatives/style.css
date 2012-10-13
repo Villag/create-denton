@@ -24,6 +24,11 @@ Use it to make something cool, have fun, and share what you've learned with othe
 	margin-top: 50px;
 }
 
+figure.card {
+	margin: 0;
+	padding: 0;
+}
+
 /* =Media queries
 -------------------------------------------------------------- */
 
