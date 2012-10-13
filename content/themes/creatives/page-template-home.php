@@ -15,13 +15,7 @@ get_header(); ?>
 				
 				<div class="span2">
 
-					<?php get_sidebar(); ?>
-
-<ul id="source">
-	<li data-id="Web Designer">Web Designer</li>
-	<li data-id="android">Android</li>
-	<li data-id="winmo">Windows Mobile</li>
-</ul>
+					<?php get_sidebar( 'filter' ); ?>
 			
 				</div><!-- .span2 -->
 

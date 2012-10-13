@@ -3,9 +3,9 @@ $users = get_users();
 foreach ( $users as $user ) {
 	$user_info = get_userdata( $user->ID );
 	$all_meta_for_user = get_user_meta( $user->ID );
-	echo '<pre>';
+	//echo '<pre>';
 	//print_r( $all_meta_for_user );
-	echo '</pre>';
+	//echo '</pre>';
 	?>
 
 	<section id="card-<?php echo $user->ID ?>" class="span3" data-id="<?php echo get_user_meta( $user->ID, 'Primary Job', true ); ?>">
