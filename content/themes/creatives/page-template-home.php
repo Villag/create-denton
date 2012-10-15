@@ -22,7 +22,11 @@ get_header(); ?>
 				<div class="span10">
 					
 					<div class="row-fluid">
-
+						
+						<?php if ( !cd_is_valid_user( $current_user->ID ) ) { ?>
+							<div class="alert alert-warning">Your profile is not public because it is missing <strong><?php echo cd_user_errors( $current_user->ID  ); ?></strong>. Please <a href="#edit-profile" data-toggle="modal">edit your profile</a>.</div>
+						<?php } ?>
+						
 						<?php get_template_part( 'card-front' ); // Loads card-front.php ?>
 					
 					</div><!-- .row-fluid -->

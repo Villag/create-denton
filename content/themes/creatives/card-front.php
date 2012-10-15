@@ -5,12 +5,13 @@ foreach ( $users as $user ) {
 	$user_info = get_userdata( $user->ID );
 	$all_meta_for_user = get_user_meta( $user->ID );
 	$curauth = $wp_query->get_queried_object();
-	//echo '<pre>';
-	//print_r( $all_meta_for_user );
-	//echo '</pre>';
+
 	?>
+	
+	<?php if ( !cd_is_valid_user( $user->ID ) ) continue; ?>
 
 	<section id="card-<?php echo $user->ID ?>" class="span3" data-id="<?php echo get_user_meta( $user->ID, 'Primary Job', true ); ?>">
+
 		<!--- Photo with Caption --->
 		<figure class="vcard card front" id="vcard-lastfirst-<?php echo $user->ID ?>"
 		 itemscope="itemscope" itemtype="http://www.data-vocabulary.org/Person/"

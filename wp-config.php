@@ -7,10 +7,10 @@ if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) {
 	include( dirname( __FILE__ ) . '/local-config.php' );
 } else {
 	define( 'WP_LOCAL_DEV', false );
-	define( 'DB_NAME', 'devdal1_creatives' );
-	define( 'DB_USER', 'devdal1_crea8iv' );
-	define( 'DB_PASSWORD', '_J,{glf1_)OF' );
-	define( 'DB_HOST', 'localhost' ); // Probably 'localhost'
+	define( 'DB_NAME',		'devdal1_creatives' );
+	define( 'DB_USER',		'devdal1_crea8iv' );
+	define( 'DB_PASSWORD',	'_J,{glf1_)OF' );
+	define( 'DB_HOST',		'localhost' );
 }
 
 // ========================
@@ -81,3 +81,6 @@ define( 'STAGING_DOMAIN', '%%WP_STAGING_DOMAIN%%' ); // Does magic in WP Stack t
 if ( !defined( 'ABSPATH' ) )
 	define( 'ABSPATH', dirname( __FILE__ ) . '/wp/' );
 require_once( ABSPATH . 'wp-settings.php' );
+
+// Disable admin bar on front-end
+add_action( 'show_admin_bar', '__return_false' );

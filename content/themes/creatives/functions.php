@@ -6,6 +6,7 @@ add_action( 'gform_user_registered', 'pi_gravity_registration_autologin', 10, 4 
 
 function create_load_scripts() {
 	wp_enqueue_script( 'jquery' );
+	wp_enqueue_script( 'blur', get_stylesheet_directory_uri() .'/js/blur.min.js', array( 'jquery' ) );
 	wp_enqueue_script( 'app', get_stylesheet_directory_uri() .'/js/app.js', array( 'jquery' ) );
 }
 
@@ -22,4 +23,61 @@ function pi_gravity_registration_autologin( $user_id, $user_config, $entry, $pas
 		'user_password'	=> $user_password,
 		'remember'		=> false
     ) );
+}
+
+function cd_is_valid_user( $user_id ) {
+	$user_data		= get_userdata( $user_id );
+	$email			= $user_data->user_email;
+	
+	$user_meta		= get_user_meta( $user_id );
+	$first_name		= $user_meta['first_name'][0];
+	$last_name		= $user_meta['last_name'][0];
+	$primary_job	= $user_meta['Primary Job'][0];
+	
+	$errors = array();
+	
+	if ( !$email )
+		$errors[] = 'email';
+
+	if ( !$first_name )
+		$errors[] = 'first name';
+
+	if ( !$last_name )
+		$errors[] = 'last name';
+		
+	if ( !$primary_job )
+		$errors[] = 'primary job';
+		
+	if ( !$email || !$first_name || !$last_name || !$primary_job )
+		return false;
+	
+	return true;
+}
+
+function cd_user_errors( $user_id ) {
+	$user_data		= get_userdata( $user_id );
+	$email			= $user_data->user_email;
+	
+	$user_meta		= get_user_meta( $user_id );
+	$first_name		= $user_meta['first_name'][0];
+	$last_name		= $user_meta['last_name'][0];
+	$primary_job	= $user_meta['Primary Job'][0];
+	
+	$errors = array();
+	
+	if ( !$email )
+		$errors[] = 'email';
+
+	if ( !$first_name )
+		$errors[] = 'first name';
+
+	if ( !$last_name )
+		$errors[] = 'last name';
+		
+	if ( !$primary_job )
+		$errors[] = 'primary job';
+	
+	$output = implode( ', ', $errors );
+	
+	return $output;
 }

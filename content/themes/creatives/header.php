@@ -45,7 +45,7 @@
 				<ul class="nav pull-right">
 					<?php if( !is_user_logged_in() ): ?>
 					<li>
-						<form action="<?php echo get_option('home'); ?>/wp/wp-login.php" method="post" class="form-inline">
+						<form action="<?php echo esc_url( home_url( '/' ) ); ?>wp/wp-login.php" method="post" class="form-inline">
 							<input class="input-medium" value="" tabindex="10" id="user_login" name="log" type="text" placeholder="email">
 							<input class="input-medium" value="" tabindex="20" id="user_pass" name="pwd" type="password" placeholder="password">
 							<label class="checkbox">
@@ -56,7 +56,8 @@
 						</form>
 					</li>
 	            	<?php else: ?>
-	            	<li><a href="<?php echo get_option('home'); ?>/profile" class="btn">Edit Profile</a></li>
+	            	<li><a href="#edit-profile" data-toggle="modal">Edit profile</a></li>
+	            	<li><?php wp_loginout(); ?></li>
 	            <?php endif; ?>
 	           </ul>
 			</div>
