@@ -42,9 +42,11 @@ figure {
 	padding: 0;
 }
 
-.thumb {
+.card {
+	background: #61AEB3;
+	border: 3px solid #61AEB3;
 	display: block;
-	width: 300px;
+	width: 600px;
 	height: 300px;
 	position: relative;
 	margin-bottom: 20px;
@@ -52,20 +54,30 @@ figure {
 	float: left;
 }
 
-.thumb-wrapper {
+.card-wrapper {
 	display: block;
 	width: 100%;
 	height: 100%;
 }
 
-.thumb img {
+.card .avatar {
 	width: 100%;
 	height: 100%;
 	position: absolute;
 	display: block;
+	max-width: 50%;
 }
 
-.thumb .thumb-detail {
+.card .card-front .brief {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	display: block;
+	max-width: 45%;
+	right: 0;
+}
+
+.card .card-back {
 	display: block;
 	width: 100%;
 	height: 100%;
@@ -73,7 +85,7 @@ figure {
 	background: #fff;
 }
 
-.thumb .thumb-detail a {
+.card .card-back a {
 	display: block;
 	width: 100%;
 	height: 100%;
@@ -84,11 +96,11 @@ figure {
 /*
  * Without CSS3
  */
-.thumb.scroll {
+.card.scroll {
 	overflow: hidden;
 }
 
-.thumb.scroll .thumb-detail {
+.card.scroll .card-back {
 	bottom: -280px;
 }
 
@@ -96,7 +108,7 @@ figure {
 	/*
 	* CSS3 Flip
 	*/	
-	.thumb.flip {
+	.card.flip {
 		-webkit-perspective:800px;		
 		   -moz-perspective:800px;
 		    -ms-perspective:800px;		   		
@@ -104,7 +116,7 @@ figure {
   		        perspective:800px;
 	}
 	
-		.thumb.flip .thumb-wrapper {
+		.card.flip .card-wrapper {
 			-webkit-transition: -webkit-transform 1s;
 			   -moz-transition: -moz-transform 1s;
 			    -ms-transition: -moz-transform 1s;
@@ -117,7 +129,7 @@ figure {
 					  transform-style: preserve-3d;			
 		}
 		
-		.thumb.flip .thumb-detail {
+		.card.flip .card-back {
 			-webkit-transform: rotateY(-180deg);
 			   -moz-transform: rotateY(-180deg);
 			    -ms-transform: rotateY(-180deg);
@@ -125,8 +137,8 @@ figure {
 			        transform: rotateY(-180deg);			   			
 		}
 		
-		.thumb.flip img,
-		.thumb.flip .thumb-detail {
+		.card.flip img,
+		.card.flip .card-back {
 			-webkit-backface-visibility: hidden;
 			   -moz-backface-visibility: hidden;
 			    -ms-backface-visibility: hidden;
@@ -134,7 +146,7 @@ figure {
 			        backface-visibility: hidden;
 		}
 		
-		.thumb.flip .flipIt {
+		.card.flip .flipIt {
 			-webkit-transform: rotateY(-180deg);
 			   -moz-transform: rotateY(-180deg);			
 			    -ms-transform: rotateY(-180deg);			

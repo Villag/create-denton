@@ -2,21 +2,21 @@ $(function() {
 
 	if ($('html').hasClass('csstransforms3d')) {
 
-		$('.thumb').removeClass('scroll').addClass('flip');
-		$('.thumb.flip').hover(function() {
-			$(this).find('.thumb-wrapper').addClass('flipIt');
+		$('.card').removeClass('scroll').addClass('flip');
+		$('.card.flip').toggle(function() {
+			$(this).find('.card-wrapper').addClass('flipIt');
 		}, function() {
-			$(this).find('.thumb-wrapper').removeClass('flipIt');
+			$(this).find('.card-wrapper').removeClass('flipIt');
 		});
 
 	} else {
 
-		$('.thumb').hover(function() {
-			$(this).find('.thumb-detail').stop().animate({
+		$('.card').hover(function() {
+			$(this).find('.card-back').stop().animate({
 				bottom : 0
 			}, 500, 'easeOutCubic');
 		}, function() {
-			$(this).find('.thumb-detail').stop().animate({
+			$(this).find('.card-back').stop().animate({
 				bottom : ($(this).height() * -1)
 			}, 500, 'easeOutCubic');
 		});
