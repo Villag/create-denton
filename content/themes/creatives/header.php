@@ -45,15 +45,8 @@
 				<ul class="nav pull-right">
 					<?php if( !is_user_logged_in() ): ?>
 					<li>
-						<form action="<?php echo esc_url( home_url( '/' ) ); ?>wp/wp-login.php" method="post" class="form-inline">
-							<input class="input-medium" value="" tabindex="10" id="user_login" name="log" type="text" placeholder="email">
-							<input class="input-medium" value="" tabindex="20" id="user_pass" name="pwd" type="password" placeholder="password">
-							<label class="checkbox">
-								<input type="checkbox" tabindex="90" value="forever" id="rememberme" name="rememberme"> Remember me
-							</label>
-							<button type="submit" class="btn">Login</button>
-							<button href="#sign-up" role="button" class="btn btn-primary" data-toggle="modal">Sign Up for Free</button>
-						</form>
+						<button href="#modal-login" role="button" class="btn" data-toggle="modal">Login</button>
+						<button href="#sign-up" role="button" class="btn btn-primary" data-toggle="modal">Sign Up for Free</button>
 					</li>
 	            	<?php else: ?>
 	            	<li><a href="#edit-profile" data-toggle="modal">Edit profile</a></li>
