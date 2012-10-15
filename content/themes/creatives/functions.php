@@ -5,7 +5,9 @@ add_action( 'wp_enqueue_scripts', 'create_load_scripts' );
 add_action( 'gform_user_registered', 'pi_gravity_registration_autologin', 10, 4 );
 
 function create_load_scripts() {
+	wp_enqueue_script( 'modernizr', get_stylesheet_directory_uri() .'/js/modernizr.2.5.3.min.js' );
 	wp_enqueue_script( 'jquery' );
+	wp_enqueue_script( 'jquery-easing', get_stylesheet_directory_uri() .'/js/jquery.easing.1.3.js', array( 'jquery' ) );
 	wp_enqueue_script( 'blur', get_stylesheet_directory_uri() .'/js/blur.min.js', array( 'jquery' ) );
 	wp_enqueue_script( 'app', get_stylesheet_directory_uri() .'/js/app.js', array( 'jquery' ) );
 }
