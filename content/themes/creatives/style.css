@@ -44,10 +44,9 @@ figure {
 
 .card {
 	background: #61AEB3;
-	border: 3px solid #61AEB3;
 	display: block;
-	width: 600px;
-	height: 300px;
+	width: 300px;
+	height: 150px;
 	position: relative;
 	margin-bottom: 20px;
 	margin-right: 20px;

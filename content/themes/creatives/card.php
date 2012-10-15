@@ -5,13 +5,15 @@ foreach ( $users as $user ) {
 	$user_info = get_userdata( $user->ID );
 	$all_meta_for_user = get_user_meta( $user->ID );
 	$curauth = $wp_query->get_queried_object();
-
-	?>
 	
-	<?php if ( !cd_is_valid_user( $user->ID ) ) continue; ?>
-
-	<div class="card scroll vcard" id="card-<?php echo $user->ID ?>" data-id="<?php echo get_user_meta( $user->ID, 'Primary Job', true ); ?>">
+	$user_type = strtolower( get_user_meta( $user->ID, 'Primary Job', true ) );
+	$user_type = preg_replace("![^a-z0-9]+!i", "-", $user_type );
+	
+	if ( !cd_is_valid_user( $user->ID ) ) continue; ?>
+	
+	<li class="item card scroll vcard" data-id="id-<?php echo $user->ID ?>" data-type="<?php echo $user_type; ?>">
 		<div class="card-wrapper">
+			
 			<div class="card-front">
 				<?php echo get_avatar( $user->ID, '300', 'http://www.adas-lv.com/wp-content/uploads/2012/07/default_avatar.png', $user->display_name ); ?>
 				<header class="n brief" title="Name">
@@ -19,17 +21,16 @@ foreach ( $users as $user ) {
 						<span class="given-name"><?php echo get_user_meta( $user->ID, 'first_name', true ); ?></span>
 						<span class="family-name"><?php echo get_user_meta( $user->ID, 'last_name', true ); ?></span>
 					</span> <!--/ .fn -->
+					<p><?php echo get_user_meta( $user->ID, 'Primary Job', true ); ?></p>
 				</header> <!--/ .n -->
-			</div>
+			</div><!-- .card-front -->
+			
 			<div class="card-back">
 			
-				<figure id="vcard-lastfirst-<?php echo $user->ID ?>"
-				 itemscope="itemscope" itemtype="http://www.data-vocabulary.org/Person/"
+				<figure id="vcard-lastfirst-<?php echo $user->ID ?>" itemscope="itemscope" itemtype="http://www.data-vocabulary.org/Person/"
 
 					<figcaption>
-						<!-- Profile -->
 						<section class="profile">
-							<!-- Name -->
 							<header class="n" title="Name">
 								<span class="fn" itemprop="name">
 									<span class="given-name"><?php echo get_user_meta( $user->ID, 'first_name', true ); ?></span>
@@ -37,7 +38,6 @@ foreach ( $users as $user ) {
 								</span> <!--/ .fn -->
 							</header> <!--/ .n -->
 							<p><?php echo get_user_meta( $user->ID, 'Primary Job', true ); ?></p>
-							<!-- Location -->
 							<address class="adr" itemprop="address" title="Location"
 							 itemscope="itemscope" itemtype="http://data-vocabulary.org/Address/">
 								<!-- Zip --><abbr class="postal-code" itemprop="postal-code" title="<?php echo get_user_meta( $user->ID, 'Zip Code', true ); ?>"><?php echo get_user_meta( $user->ID, 'Zip Code', true ); ?></abbr>
@@ -79,8 +79,10 @@ foreach ( $users as $user ) {
 					
 				</figure>
 					
-			</div>
-		</div>
-	</div>	
+			</div><!-- .card-back -->
+			
+		</div><!-- .card-wrapper -->
+		
+	</li><!-- .card -->
 
 <?php } ?>
