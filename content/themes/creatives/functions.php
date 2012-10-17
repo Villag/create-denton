@@ -93,14 +93,10 @@ function cd_launch_check() {
 	
 	$allowed = array();
 	$allowed = array( '127.0.0.1', '71.123.174.3', '71.97.108.97', '216.178.161.5', '172.17.90.21' );
-	
-	foreach( $allowed as $allow ) {
-		if( $ip == $allow ) {
-			include ( STYLESHEETPATH . '/page-template-home.php' );
-			exit;
-		} else {
-			include ( STYLESHEETPATH . '/page-template-launch.php' );
-			exit;			
-		}
+
+	if ( !in_array( $ip, $allowed) ) {
+	    include ( STYLESHEETPATH . '/page-template-launch.php' );
+		exit;
 	}
+
 }
