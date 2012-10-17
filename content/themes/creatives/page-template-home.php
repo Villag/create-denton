@@ -11,34 +11,7 @@ get_header(); ?>
 
 			<?php while ( have_posts() ) : the_post(); ?>
 				
-			<div class="row-fluid">
-
-				<?php if( !is_user_logged_in() ): ?>
-				<style>
-					body {
-						background: url('http://farm5.staticflickr.com/4109/5054085719_93044fab75_o.jpg');
-					}
-					#interested {
-						width: 310px;
-						margin: 0 auto;
-					}
-					#interested form {
-						margin: 0 0 20px;
-					}
-				</style>
-				
-				<div id="interested" >		
-					<form id="interested" class="form-inline">
-						<h1>Create Denton</h1>
-						<input type="text" class="input-large" placeholder="Email"> <button type="submit" class="btn">Gimme</button>						
-					</form>
-					
-					<p style="text-align:center;">Want to collaborate with other creative professionals in Denton, TX?</p>
-					<p style="text-align:center;">We'll send you an email when we're ready to launch &mdash; which won't too long.</p>
-					
-				</div>
-						
-			<?php else: ?>				
+			<div class="row-fluid">			
 				
 				<div class="span2">
 
@@ -65,8 +38,6 @@ get_header(); ?>
 				</div><!-- .span2 -->
 							
 			</div>
-			
-			<?php endif; ?>
 						
 			<?php endwhile; // end of the loop. ?>
 

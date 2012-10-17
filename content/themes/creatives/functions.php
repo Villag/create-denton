@@ -83,3 +83,25 @@ function cd_user_errors( $user_id ) {
 	
 	return $output;
 }
+add_action( 'template_redirect', 'cd_launch_check' );
+
+/*
+ * Use the launch template if the user is not local (on MAMP)
+ * or if the user is not on given IP addresses.
+ */
+function cd_launch_check() {
+	$ip = $_SERVER['REMOTE_ADDR'];
+	
+	$allowed = array();
+	$allowed = array( '127.0.0.2', '71.123.174.3' );
+	
+	foreach( $allowed as $allow ) {
+		if( $ip == $allow ) {
+			include ( STYLESHEETPATH . '/page-template-home.php' );
+			exit;
+		} else {
+			include ( STYLESHEETPATH . '/page-template-launch.php' );
+			exit;			
+		}
+	}
+}
