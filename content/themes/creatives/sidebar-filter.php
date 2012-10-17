@@ -1,8 +1,14 @@
-<div id="container">
-	<ul id="filterOptions">
-		<li class="active"><a href="#" class="all">All</a></li>
-		<li><a href="#" class="web-designer">Web Designer</a></li>
-		<li><a href="#" class="graphic-designer">Graphic Designer</a></li>
-		<li><a href="#" class="illustrator">Illustrator</a></li>
+<div id="container" class="well sidebar-nav gray-dark">
+	<ul id="filterOptions" class="nav nav-list">
+		<li class="bg-gradient-1 illustrator"><a href="#">Illustrator</a></li>
+        <li class="bg-gradient-2"><a href="#">Photographer</a></li>
+        <li class="bg-gradient-3"><a href="#">Programmer</a></li>
+        <li class="bg-gradient-4"><a href="#">Film/Video</a></li>
+        <li class="bg-gradient-5"><a href="#">Writer</a></li>
+        <li class="bg-gradient-6 web-designer"><a href="#">Web Designer</a></li>
+        <li class="bg-gradient-7 graphic-designer"><a href="#">Graphic Design</a></li>
+        <li class="bg-gradient-8"><a href="#">Fine Art</a></li>
+        <li class="bg-gradient-9"><a href="#">Other</a></li>
+        <li><a href="#">Reset</a></li>
 	</ul>
 </div>
