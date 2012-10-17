@@ -62,7 +62,7 @@
 			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 		</hgroup>
 
-		<nav id="site-navigation" class="navbar navbar-inverse container-fluid" role="navigation">
+		<nav id="site-navigation" class="navbar navbar-inverse row-fluid" role="navigation">
 			<div class="navbar-inner gray-dark">
 				<span class="dog-ear-top"></span>
         		<span class="dog-ear"></span>
