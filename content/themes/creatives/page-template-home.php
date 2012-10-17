@@ -13,13 +13,13 @@ get_header(); ?>
 				
 			<div class="row-fluid">			
 				
-				<div class="span2">
+				<div class="span3">
 
 					<?php get_sidebar( 'filter' ); ?>
 			
 				</div><!-- .span2 -->
 
-				<div class="span10">
+				<div class="span9">
 					
 					<div class="row-fluid">
 						
