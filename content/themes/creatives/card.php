@@ -11,7 +11,8 @@ foreach ( $users as $user ) {
 	
 	if ( !cd_is_valid_user( $user->ID ) ) continue; ?>
 	
-	<li class="item card scroll vcard" data-id="id-<?php echo $user->ID ?>" data-type="<?php echo $user_type; ?>">
+	<li class="item card scroll vcard bg-color-1 border-color-1" data-id="id-<?php echo $user->ID ?>" data-type="<?php echo $user_type; ?>">
+		<span class="dog-ear-cat-1"></span>
 		<a href="#/<?php echo get_author_posts_url( $user->ID ); ?>">
 		<div class="card-wrapper">
 			
@@ -26,7 +27,7 @@ foreach ( $users as $user ) {
 				</header> <!--/ .n -->
 			</div><!-- .card-front -->
 			
-			<div class="card-back">
+			<div class="card-back color-1">
 			
 				<figure id="vcard-lastfirst-<?php echo $user->ID ?>" itemscope="itemscope" itemtype="http://www.data-vocabulary.org/Person/"
 
