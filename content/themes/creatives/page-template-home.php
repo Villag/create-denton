@@ -23,7 +23,7 @@ get_header(); ?>
 					
 					<div class="row-fluid">
 						
-						<?php if ( is_user_logged_in() && !cd_is_valid_user( $current_user->ID ) ) { ?>
+						<?php global $current_user; if ( is_user_logged_in() && !cd_is_valid_user( $current_user->ID ) ) { ?>
 							<div class="alert alert-warning">Your profile is not public because it is missing <strong><?php echo cd_user_errors( $current_user->ID  ); ?></strong>. Please <a href="#edit-profile" data-toggle="modal">edit your profile</a>.</div>
 						<?php } ?>
 												

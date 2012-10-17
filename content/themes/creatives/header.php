@@ -26,6 +26,32 @@
 <script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script>
 <![endif]-->
 <?php wp_head(); ?>
+	<script type="text/javascript">
+	/*<![CDATA[*/
+	$("document").ready(function(){
+ 
+	    function loadURL(url) {
+	    	console.log("loadURL: " + url);
+	    	$("#area").load(url);
+	    }
+ 
+ 
+	    // Event handlers
+	    $.address.init(function(event) {
+	        console.log("init: " + $('[rel=address:' + event.value + ']').attr('href'));
+	    }).change(function(event) {
+	    	$("#area").load($('[rel=address:' + event.value + ']').attr('href'));
+	    	console.log("change");
+	    })
+ 
+	    $('a').click(function(){
+	    	loadURL($(this).attr('href'));
+	    });
+ 
+	    });
+ 
+	/*]]>*/
+	</script>
 </head>
 
 <body <?php body_class(); ?>>

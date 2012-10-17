@@ -12,6 +12,7 @@ foreach ( $users as $user ) {
 	if ( !cd_is_valid_user( $user->ID ) ) continue; ?>
 	
 	<li class="item card scroll vcard" data-id="id-<?php echo $user->ID ?>" data-type="<?php echo $user_type; ?>">
+		<a href="#/<?php echo get_author_posts_url( $user->ID ); ?>">
 		<div class="card-wrapper">
 			
 			<div class="card-front">
@@ -82,6 +83,7 @@ foreach ( $users as $user ) {
 			</div><!-- .card-back -->
 			
 		</div><!-- .card-wrapper -->
+		</a>
 		
 	</li><!-- .card -->
 

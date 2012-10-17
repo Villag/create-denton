@@ -1,15 +1,15 @@
 <?php
 
-add_action( 'wp_enqueue_scripts', 'create_load_scripts' );
-
+add_action( 'template_redirect', 'cd_launch_check' );
+add_action( 'wp_enqueue_scripts', 'cd_load_scripts' );
 add_action( 'gform_user_registered', 'pi_gravity_registration_autologin', 10, 4 );
 
-function create_load_scripts() {
+function cd_load_scripts() {
 	wp_enqueue_script( 'modernizr', get_stylesheet_directory_uri() .'/js/modernizr.2.5.3.min.js' );
 	wp_enqueue_script( 'jquery' );
-	wp_enqueue_script( 'jquery-easing', get_stylesheet_directory_uri() .'/js/jquery.easing.1.3.js', array( 'jquery' ) );
-	wp_enqueue_script( 'quicksand', get_stylesheet_directory_uri() .'/js/jquery.quicksand.js', array( 'jquery' ) );
-	wp_enqueue_script( 'app', get_stylesheet_directory_uri() .'/js/app.js', array( 'jquery' ) );
+	wp_enqueue_script( 'jquery-easing', get_stylesheet_directory_uri() .'/js/jquery.easing.1.3.js', array( 'jquery' ), '1.0', true );
+	wp_enqueue_script( 'quicksand', get_stylesheet_directory_uri() .'/js/jquery.quicksand.js', array( 'jquery' ), '1.0', true );
+	wp_enqueue_script( 'app', get_stylesheet_directory_uri() .'/js/app.js', array( 'jquery' ), '1.0', true );
 }
 
 /**
@@ -38,7 +38,7 @@ function cd_is_valid_user( $user_id ) {
 	
 	$errors = array();
 	
-	if ( !$email )
+	if ( $email == '' )
 		$errors[] = 'email';
 
 	if ( !$first_name )
@@ -67,7 +67,7 @@ function cd_user_errors( $user_id ) {
 	
 	$errors = array();
 	
-	if ( !$email )
+	if ( $email == '' )
 		$errors[] = 'email';
 
 	if ( !$first_name )
@@ -83,7 +83,6 @@ function cd_user_errors( $user_id ) {
 	
 	return $output;
 }
-add_action( 'template_redirect', 'cd_launch_check' );
 
 /*
  * Use the launch template if the user is not local (on MAMP)
@@ -93,7 +92,7 @@ function cd_launch_check() {
 	$ip = $_SERVER['REMOTE_ADDR'];
 	
 	$allowed = array();
-	$allowed = array( '127.0.0.2', '71.123.174.3' );
+	$allowed = array( '127.0.0.1', '71.123.174.3' );
 	
 	foreach( $allowed as $allow ) {
 		if( $ip == $allow ) {
