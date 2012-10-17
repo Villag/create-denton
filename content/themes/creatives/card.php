@@ -13,7 +13,6 @@ foreach ( $users as $user ) {
 	
 	<li class="item card scroll vcard bg-color-1 border-color-1" data-id="id-<?php echo $user->ID ?>" data-type="<?php echo $user_type; ?>">
 		<span class="dog-ear-cat-1"></span>
-		<a href="#/<?php echo get_author_posts_url( $user->ID ); ?>">
 		<div class="card-wrapper">
 			
 			<div class="card-front">
@@ -84,7 +83,6 @@ foreach ( $users as $user ) {
 			</div><!-- .card-back -->
 			
 		</div><!-- .card-wrapper -->
-		</a>
 		
 	</li><!-- .card -->
 
