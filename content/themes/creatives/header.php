@@ -62,8 +62,10 @@
 			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 		</hgroup>
 
-		<nav id="site-navigation" class="navbar navbar-fixed-top" role="navigation">
-			<div class="navbar-inner">
+		<nav id="site-navigation" class="navbar navbar-inverse container-fluid" role="navigation">
+			<div class="navbar-inner gray-dark">
+				<span class="dog-ear-top"></span>
+        		<span class="dog-ear"></span>
 				<h3 class="menu-toggle"><?php _e( 'Menu', 'twentytwelve' ); ?></h3>
 				<div class="skip-link assistive-text"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'twentytwelve' ); ?>"><?php _e( 'Skip to content', 'twentytwelve' ); ?></a></div>
 				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav', ) ); ?>
