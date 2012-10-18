@@ -1,4 +1,11 @@
 $(document).ready(function() {
+
+	$('#the-creatives').masonry({
+		isAnimated: !Modernizr.csstransitions,
+		itemSelector : '.item',
+		columnWidth : 240
+	}); 
+	
 	if ($('html').hasClass('csstransforms3d')) {
 
 		$('.card').removeClass('scroll').addClass('flip');
