@@ -4,10 +4,7 @@ add_action( 'template_redirect', 'cd_launch_check' );
 add_action( 'wp_enqueue_scripts', 'cd_load_scripts' );
 add_action( 'gform_user_registered', 'pi_gravity_registration_autologin', 10, 4 );
 
-function cd_load_scripts() {
-	
-	wp_enqueue_style( 'demo', get_stylesheet_directory_uri() .'/demo.css' );
-	
+function cd_load_scripts() {	
 	wp_enqueue_script( 'modernizr', get_stylesheet_directory_uri() .'/js/modernizr.2.5.3.min.js' );
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'jquery-masonary', get_stylesheet_directory_uri() .'/js/jquery.masonry.min.js', array( 'jquery' ), '1.0', true );

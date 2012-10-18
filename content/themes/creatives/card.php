@@ -15,7 +15,7 @@ foreach ( $users as $user ) {
 		<span class="dog-ear-cat-1"></span>
 		<div class="card-wrapper">
 			
-			<div class="card-front">
+			<a class="card-front" href="#profile-<?php echo $user->ID; ?>" role="button" data-toggle="modal">
 				<?php echo get_avatar( $user->ID, '300', 'http://www.adas-lv.com/wp-content/uploads/2012/07/default_avatar.png', $user->display_name ); ?>
 				<header class="n brief" title="Name">
 					<span class="fn" itemprop="name">
@@ -24,9 +24,9 @@ foreach ( $users as $user ) {
 					</span> <!--/ .fn -->
 					<p><?php echo get_user_meta( $user->ID, 'Primary Job', true ); ?></p>
 				</header> <!--/ .n -->
-			</div><!-- .card-front -->
+			</a><!-- .card-front -->
 			
-			<div class="card-back color-1">
+			<div id="profile-<?php echo $user->ID; ?>" class="<?php echo $user_type; ?> hide modal fade in" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			
 				<figure id="vcard-lastfirst-<?php echo $user->ID ?>" itemscope="itemscope" itemtype="http://www.data-vocabulary.org/Person/"
 
