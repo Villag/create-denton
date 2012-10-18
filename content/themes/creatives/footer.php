@@ -28,53 +28,6 @@
 		<?php echo do_shortcode( '[gravityform id="2" name="Profile" title="false" ajax="true"]' ); ?>
 	</div>
 </div>
-<?php else: ?>
-<div class="modal hide fade in" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true" data-width="760">
-	
-	<form action="<?php echo esc_url( home_url( '/' ) ); ?>wp/wp-login.php" method="post" class="form-horizontal">
-		
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h3 id="modal-login-label">Login</h3>
-		</div>
-		
-		<div class="modal-body">
-			
-			<?php do_action( 'wordpress_social_login' ); ?>
-
-
-			<div class="control-group">
-				<label class="control-label" for="user_login">Email</label>
-				<div class="controls">
-					<input class="input-medium" value="" tabindex="10" id="user_login" name="log" type="text" placeholder="email">
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="user_pass">Password</label>
-				<div class="controls">
-					<input class="input-medium" value="" tabindex="20" id="user_pass" name="pwd" type="password" placeholder="password">
-				</div>
-			</div>
-			<div class="control-group">
-				<div class="controls">
-					<label class="checkbox"> <input type="checkbox" tabindex="90"> Remember me </label>
-				</div>
-			</div>
-
-		</div>
-
-		<div class="modal-footer">
-			<div class="control-group">
-				<div class="controls">
-					<button type="button" class="btn" data-dismiss="modal">Cancel</button>
-					<button type="submit" class="btn btn-primary">Login</button>
-				</div>
-			</div>
-		</div>
-		
-	</form>
-	
-</div>
 <?php endif; ?>
 
 <?php wp_footer(); ?>

@@ -43,18 +43,6 @@
 				<h3 class="menu-toggle"><?php _e( 'Menu', 'twentytwelve' ); ?></h3>
 				<div class="skip-link assistive-text"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'twentytwelve' ); ?>"><?php _e( 'Skip to content', 'twentytwelve' ); ?></a></div>
 				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav', ) ); ?>
-				
-				<ul class="nav pull-right">
-					<?php if( !is_user_logged_in() ): ?>
-					<li>
-						<button href="#modal-login" role="button" class="btn" data-toggle="modal">Login</button>
-						<button href="#sign-up" role="button" class="btn btn-primary" data-toggle="modal">Sign Up for Free</button>
-					</li>
-	            	<?php else: ?>
-	            	<li><a href="#edit-profile" data-toggle="modal">Edit profile</a></li>
-	            	<li><?php wp_loginout(); ?></li>
-	            <?php endif; ?>
-	           </ul>
 			</div>
 		</nav><!-- #site-navigation -->
 
