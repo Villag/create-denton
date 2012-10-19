@@ -186,32 +186,49 @@ figure {
     width: 100%;
 }
 
-.item.illustrator {
-     background-color: rgba(56,146,77,0.8);
+.filters .nav-list a {
+    display: inline-block;
 }
-.item.photographer {
+.filters .legend {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+}
+.item.illustrator,
+.illustrator .legend {
+    background-color: rgba(56,146,77,0.8);
+}
+.item.photographer,
+.photographer .legend {
     background-color: rgba(155,174,59,0.8);
 }
-.item.programmer {
+.item.programmer,
+.programmer .legend {
     background-color: rgba(155,174,59,0.8);
 }
-.item.film-video {
-     background-color: rgba(212,105,54,0.8);
+.item.film-video,
+.film-video .legend {
+    background-color: rgba(212,105,54,0.8);
 }
-.item.writer {
-     background-color: rgba(212,105,54,0.8);
+.item.writer,
+.writer .legend {
+    background-color: rgba(212,105,54,0.8);
 }
-.item.web-designer {
+.item.web-designer,
+.web-designer .legend {
     background-color: rgba(49,111,112,0.8);
 }
-.item.graphic-design {
+.item.graphic-design,
+.graphic-designer .legend {
     background-color: rgba(95,173,179,0.8);
 }
-.item.fine-art {
-     background-color: rgba(46,93,143,0.8);
+.item.fine-art,
+.fine-art .legend {
+    background-color: rgba(46,93,143,0.8);
 }
-.item.other {
-     background-color: rgba(139,108,161,0.8);
+.item.other,
+.other .legend {
+    background-color: rgba(139,108,161,0.8);
 }
 
 .navbar {
