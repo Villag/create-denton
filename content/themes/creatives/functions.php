@@ -92,7 +92,7 @@ function cd_launch_check() {
 	$ip = $_SERVER['REMOTE_ADDR'];
 	
 	$allowed = array();
-	$allowed = array( /*'127.0.0.1', '71.123.174.3',*/ '71.97.108.97', '216.178.161.5', '172.17.90.21', '71.252.194.159' );
+	$allowed = array( '127.0.0.1', '71.123.174.3', '71.97.108.97', '216.178.161.5', '172.17.90.21', '71.252.194.159' );
 
 	if ( !in_array( $ip, $allowed) ) {
 	    include ( STYLESHEETPATH . '/page-template-launch.php' );

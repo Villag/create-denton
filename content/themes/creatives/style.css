@@ -120,33 +120,35 @@ figure {
 	padding: 0;
 }
 
-.card {
-	background: #61AEB3;
-	color: #ffffff;
+.item {
+	background: #eee;
+	color: #fff;
 	display: block;
-	width: 324px;
-	height: 150px;
-	position: relative;
-	margin-bottom: 20px;
-	margin-right: 20px;
 	float: left;
+	margin: 0 10px 10px 0;
+	overflow: hidden;
+	padding: 5px;
+	position: relative;
+	width: 300px;
+}
+.item.person {
+    height: 150px;
+}
+.item.filters {
+    height: auto;
+}
+.item.intro {
+    height: 150px;
 }
 
-.card-wrapper {
-	display: block;
+.item .avatar {
 	width: 100%;
-	height: 100%;
-}
-
-.card .avatar {
-	width: 100%;
-	height: 100%;
-	position: absolute;
+	height: auto;
 	display: block;
 	max-width: 50%;
 }
 
-.card .card-front .brief {
+.item .card .brief {
 	width: 100%;
 	height: 100%;
 	position: absolute;
@@ -155,23 +157,9 @@ figure {
 	right: 0;
 }
 
-.card .card-back {
-	display: block;
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	background: #E8E8E7;
+.item.web-designer {
+    background: red;
 }
-
-.card .card-back a {
-	display: block;
-	width: 100%;
-	height: 100%;
-	text-decoration: none;
-	padding: 10px;
-}
-		
-/* added by Andrew */
 
 .navbar {
 	text-transform: uppercase;

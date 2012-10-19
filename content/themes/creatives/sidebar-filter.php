@@ -1,4 +1,4 @@
-<li id="container" class="item well sidebar-nav gray-dark">
+<li class="item filters">
 	<ul id="filterOptions" class="nav nav-list">
 		<li class="bg-gradient-1 illustrator"><a href="#">Illustrator</a></li>
         <li class="bg-gradient-2"><a href="#">Photographer</a></li>
