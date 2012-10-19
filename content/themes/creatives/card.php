@@ -16,13 +16,13 @@ foreach ( $users as $user ) {
 		<span class="dog-ear-cat-1"></span>
 		
 		<a class="card" href="#profile-<?php echo $user->ID; ?>" role="button" data-toggle="modal">
-			<?php echo get_avatar( $user->ID, '300', 'http://www.adas-lv.com/wp-content/uploads/2012/07/default_avatar.png', $user->display_name ); ?>
+			<?php echo get_avatar( $user->ID, '150', 'http://www.adas-lv.com/wp-content/uploads/2012/07/default_avatar.png', $user->display_name ); ?>
 			<header class="n brief" title="Name">
 				<span class="fn" itemprop="name">
 					<span class="given-name"><?php echo get_user_meta( $user->ID, 'first_name', true ); ?></span>
 					<span class="family-name"><?php echo get_user_meta( $user->ID, 'last_name', true ); ?></span>
 				</span> <!--/ .fn -->
-				<p><?php echo get_user_meta( $user->ID, 'Primary Job', true ); ?></p>
+				<div class="primary-job"><?php echo get_user_meta( $user->ID, 'Primary Job', true ); ?></div>
 			</header> <!--/ .n -->
 		</a><!-- .card -->
 		
