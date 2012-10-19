@@ -7,6 +7,8 @@ $(document).ready(function() {
 
 	$('.modal').on('show', function () {
 		$('.site').blurjs();
+		$(this).detach();
+		$(this).append('body');
 	});
 	$('.modal').on('hide', function () {
 		$.blurjs('reset');
