@@ -2,19 +2,13 @@
 /**
  * Template Name: Home
  */
-
+add_action( 'wp_enqueue_scripts', 'cd_launch_scripts' );
+function cd_launch_scripts() {
+	wp_enqueue_script( 'vegas', get_stylesheet_directory_uri() .'/js/jquery.vegas.js', array( 'jquery' ), '1.0', true );
+	wp_enqueue_script( 'launch', get_stylesheet_directory_uri() .'/js/launch.js', array( 'jquery' ), '1.0', true );
+}
 ?>
-<?php
-/**
- * The Header for our theme.
- *
- * Displays all of the <head> section and everything up till <div id="main">
- *
- * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
- */
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE 7 | IE 8]>
 <html class="ie" <?php language_attributes(); ?>>
 <![endif]-->
@@ -56,19 +50,21 @@
 				
 			<div class="row-fluid">
 
-				<?php if( !is_user_logged_in() ): ?>
 				<style>
 					body {
-						background: url('http://farm5.staticflickr.com/4109/5054085719_93044fab75_o.jpg');
+						background: #000;
+						font-size: 15px;
+						text-shadow: 1px 1px 1px rgba(0,0,0,.5);
 					}
 					#interested {
-						width: 310px;
+						color: #fff;
 					}
 					#interested form {
 						overflow: hidden;
 					}
 					#interested label {
 						display: inline-block;
+						margin-bottom: 5px;
 						width: auto;
 					}
 					#interested .gform_body,
@@ -80,46 +76,123 @@
 					#interested input.medium {
 						width: 140px;
 					}
+					#interested .button {
+						margin: 7px 0 0 5px;
+					}
+					
+					.button {
+					  display: inline-block;
+					  *display: inline;
+					  padding: 4px 14px;
+					  margin-bottom: 0;
+					  *margin-left: .3em;
+					  font-size: 14px;
+					  line-height: 20px;
+					  *line-height: 20px;
+					  color: #333333;
+					  text-align: center;
+					  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+					  vertical-align: middle;
+					  cursor: pointer;
+					  background-color: #f5f5f5;
+					  *background-color: #e6e6e6;
+					  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+					  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+					  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+					  background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+					  background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+					  background-repeat: repeat-x;
+					  border: 1px solid #bbbbbb;
+					  *border: 0;
+					  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+					  border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+					  border-bottom-color: #a2a2a2;
+					  -webkit-border-radius: 4px;
+					     -moz-border-radius: 4px;
+					          border-radius: 4px;
+					  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+					  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+					  *zoom: 1;
+					  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+					     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+					          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+					}
+					
+					.button:hover,
+					.button:active,
+					.button.active,
+					.button.disabled,
+					.button[disabled] {
+					  color: #333333;
+					  background-color: #e6e6e6;
+					  *background-color: #d9d9d9;
+					}
+					
+					.button:active,
+					.button.active {
+					  background-color: #cccccc \9;
+					}
+					
+					.button:first-child {
+					  *margin-left: 0;
+					}
+					
+					.button:hover {
+					  color: #333333;
+					  text-decoration: none;
+					  background-color: #e6e6e6;
+					  *background-color: #d9d9d9;
+					  /* Buttons in IE7 don't get borders, so darken on hover */
+					
+					  background-position: 0 -15px;
+					  -webkit-transition: background-position 0.1s linear;
+					     -moz-transition: background-position 0.1s linear;
+					       -o-transition: background-position 0.1s linear;
+					          transition: background-position 0.1s linear;
+					}
+					
+					.button:focus {
+					  outline: thin dotted #333;
+					  outline: 5px auto -webkit-focus-ring-color;
+					  outline-offset: -2px;
+					}
+					
+					.button.active,
+					.button:active {
+					  background-color: #e6e6e6;
+					  background-color: #d9d9d9 \9;
+					  background-image: none;
+					  outline: 0;
+					  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+					     -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+					          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+					}
+
+					.vegas-overlay {
+						background:transparent url(images/overlays/01.png);
+						opacity:0.5;
+						z-index:-1;
+					}
+					
+					.vegas-background {
+						image-rendering: optimizeQuality;
+						-ms-interpolation-mode: bicubic;
+						z-index:-2;
+					    /* counteracts global img modification by twitter bootstrap library */
+					    max-width: none !important;
+					}
 				</style>
 				
 				<div id="interested" >		
-					<h1>Create Denton</h1>
+					<h1>CREATE<strong>DENTON</strong></h1>
+					
+					<h2>Collaborate with other creatives in Denton, TX.</h2>
+					
 					<?php echo do_shortcode('[gravityform id="3" name="Launch" ajax="true" title="false" description="false"]'); ?>
 					
-					<p style="text-align:center;">Want to collaborate with other creative professionals in Denton, TX?</p>
-					<p style="text-align:center;">We'll send you an email when we're ready to launch &mdash; which won't too long.</p>
+					<p>We'll send you an email when we're ready to launch &mdash; which won't be too long.</p>
 					
 				</div>
-						
-			<?php else: ?>				
-				
-				<div class="span2">
-
-					<?php get_sidebar( 'filter' ); ?>
-			
-				</div><!-- .span2 -->
-
-				<div class="span10">
-					
-					<div class="row-fluid">
-						
-						<?php if ( is_user_logged_in() && !cd_is_valid_user( $current_user->ID ) ) { ?>
-							<div class="alert alert-warning">Your profile is not public because it is missing <strong><?php echo cd_user_errors( $current_user->ID  ); ?></strong>. Please <a href="#edit-profile" data-toggle="modal">edit your profile</a>.</div>
-						<?php } ?>
-												
-						<ul id="the-creatives" class="ourHolder">
-				
-							<?php get_template_part( 'card' ); // Loads card.php ?>
-						
-						</ul>
-					
-					</div><!-- .row-fluid -->
-			
-				</div><!-- .span2 -->
-							
-			</div>
-			
-			<?php endif; ?>
 						
 			<?php endwhile; // end of the loop. ?>
 
@@ -139,5 +212,5 @@
 		</div>
 		
 	<?php endif; ?>	
-	
+
 <?php get_footer(); ?>

@@ -9,7 +9,6 @@ function cd_load_scripts() {
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'jquery-masonary', get_stylesheet_directory_uri() .'/js/jquery.masonry.min.js', array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'jquery-easing', get_stylesheet_directory_uri() .'/js/jquery.easing.1.3.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'quicksand', get_stylesheet_directory_uri() .'/js/jquery.quicksand.js', array( 'jquery' ), '1.0', true );	
 	wp_enqueue_script( 'app', get_stylesheet_directory_uri() .'/js/app.js', array( 'jquery' ), '1.0', true );
 }
 
@@ -93,7 +92,7 @@ function cd_launch_check() {
 	$ip = $_SERVER['REMOTE_ADDR'];
 	
 	$allowed = array();
-	$allowed = array( '127.0.0.1', '71.123.174.3', '71.97.108.97', '216.178.161.5', '172.17.90.21', '71.252.194.159' );
+	$allowed = array( /*'127.0.0.1', '71.123.174.3',*/ '71.97.108.97', '216.178.161.5', '172.17.90.21', '71.252.194.159' );
 
 	if ( !in_array( $ip, $allowed) ) {
 	    include ( STYLESHEETPATH . '/page-template-launch.php' );
