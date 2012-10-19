@@ -41,8 +41,8 @@
 </script>
 </head>
 
-<body <?php body_class(); ?>>
-<div id="page" class="hfeed site container-fluid">
+<body <?php body_class('gray-dark'); ?>>
+	
 	<header id="masthead" class="site-header" role="banner">
 		<hgroup class="assistive-text">
 			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
@@ -51,8 +51,6 @@
 
 		<nav id="site-navigation" class="navbar navbar-inverse row-fluid" role="navigation">
 			<div class="navbar-inner gray-dark">
-				<span class="dog-ear-top"></span>
-        		<span class="dog-ear"></span>
 				<h3 class="menu-toggle"><?php _e( 'Menu', 'twentytwelve' ); ?></h3>
 				<div class="skip-link assistive-text"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'twentytwelve' ); ?>"><?php _e( 'Skip to content', 'twentytwelve' ); ?></a></div>
 				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav', ) ); ?>
@@ -64,5 +62,7 @@
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo esc_url( $header_image ); ?>" class="header-image" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="" /></a>
 		<?php endif; ?>
 	</header><!-- #masthead -->
+	
+<div id="page" class="hfeed site container-fluid">
 
 	<div id="main" class="wrapper">

@@ -273,11 +273,19 @@ a.brand, .navbar .brand {
 	padding-left: 14%;
 }
 
-.nav-list li {
-	margin-bottom: 10px;
+.navbar .nav li a {
+	color: #666;
+	font-size: .8em;
+	text-shadow: none;
+	padding: 5px 15px 5px;
 }
-		
+
+.navbar .nav li a:hover {
+	color: #ccc;
+}
+
 .navbar-inner {
+	min-height: 20px;
 	position: relative;
 	border: none;
 	border-radius: 0 0 0;
@@ -285,13 +293,26 @@ a.brand, .navbar .brand {
 	-webkit-box-shadow: none;
 }
 
-.gray-dark, .navbar-inverse .gray-dark {
-	background-color: #3A3A3A;
+.navbar-inverse .navbar-inner {
+	background-color: #333333;
 	background-image: none;
+}
+
+.gray-dark, .filters {
+	background-color: #3A3A3A;
 }
 
 .navbar-inner, .sidebar-nav, .card {
 	border-radius: 5px;
+}
+
+.nav-list li {
+	margin-bottom: 10px;
+}
+
+.nav-list li a {
+	color: #eeeeee;
+	text-shadow: none;
 }
 
 .ourHolder {
@@ -638,7 +659,7 @@ ul.nav-list li.bg-gradient-1 a:hover {
 /* Minimum width of 480 pixels. */
 @media screen and (min-width: 480px) {
 	body {
-		padding: 20px 0px 40px;
+		padding: 10px 0px 40px;
 	}
 	.menu-toggle {
 		display: none;
