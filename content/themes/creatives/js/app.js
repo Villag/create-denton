@@ -4,7 +4,14 @@ $(document).ready(function() {
 		isAnimated: !Modernizr.csstransitions,
 		itemSelector : '.item'
 	});
-	
+
+	$('.modal').on('show', function () {
+		$('.site').blurjs();
+	});
+	$('.modal').on('hide', function () {
+		$.blurjs('reset');
+	});
+
 	// get the action filter option item on page load
 	var $filterType = $('#filterOptions li.active a').attr('class');
 
