@@ -130,16 +130,16 @@ figure {
 	overflow: hidden;
 	padding: 5px;
 	position: relative;
-	width: 300px;
+	width: 470px;
 }
 .item.person {
-    height: 150px;
+    height: 235px;
 }
 .item.filters {
     height: auto;
 }
 .item.intro {
-    height: 150px;
+    height: 235px;
 }
 .item .card {
     overflow: hidden;
