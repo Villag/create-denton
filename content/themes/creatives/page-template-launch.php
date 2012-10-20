@@ -210,6 +210,26 @@ function cd_launch_scripts() {
 		    /* counteracts global img modification by twitter bootstrap library */
 		    max-width: none !important;
 		}
+/* Minimum width of 480 pixels. */
+@media screen and (max-width: 480px) {
+		#interested h1 {
+			letter-spacing: 20px;
+			font-size: 40px;
+			font-weight: 300;
+			line-height: 40px;
+			word-spacing: -15px;
+		}
+		#interested h1 strong {
+			font-weight: 400;
+		}
+		#interested h2 {
+			font-weight: 300;
+			letter-spacing: 18px;
+		}
+		#interested h2 span {
+			word-spacing: 40px;
+		}
+}
 	</style>
 	
 	<div id="interested" >		
