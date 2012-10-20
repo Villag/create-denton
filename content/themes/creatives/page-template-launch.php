@@ -54,44 +54,89 @@ function cd_launch_scripts() {
 					body {
 						background: #000;
 						font-size: 15px;
-						text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+					}
+					.container-fluid {
+						padding: 0;
 					}
 					#interested {
+						background: rgba(0, 102, 102, .5) url('content/themes/creatives/images/overlays/05.png');
 						color: #fff;
+						padding: 20px 0;
+						text-align: center;
+						text-transform: uppercase;
+					}
+					#interested h1 {
+						letter-spacing: 25px;
+						font-size: 60px;
+						font-weight: 300;
+						line-height: 60px;
+					}
+					#interested h1 strong {
+						font-weight: 400;
+					}
+					#interested h2 {
+						font-weight: 300;
+						letter-spacing: 23px;
+					}
+					#interested h2 span {
+						word-spacing: 60px;
+					}
+					#interested #sign-up {
+						margin: 20px 0 0;
+					}
+					#interested #sign-up .sign-up-label {
+						display: inline-block;
+						letter-spacing: 5px;
+						line-height: 29px;
+						vertical-align: top;
+					}
+					#interested .gform_wrapper {
+						display: inline-block;
+						margin-top: 0;
+						vertical-align: top;
 					}
 					#interested form {
+						margin: 0;
 						overflow: hidden;
 					}
 					#interested label {
-						display: inline-block;
+						display: none;
 						margin-bottom: 5px;
 						width: auto;
+					}
+					.gform_wrapper ul.right_label li, .gform_wrapper form ul.right_label li, .gform_wrapper ul.left_label li, .gform_wrapper form ul.left_label li {
+						margin: 0;
 					}
 					#interested .gform_body,
 					#interested .gform_footer {
 						clear: none;
+						margin: 0;
 						padding: 0;
 						float: left;
 					}
 					#interested input.medium {
+						margin: 0;
+						padding: 2px 5px;
 						width: 140px;
 					}
 					#interested .button {
-						margin: 7px 0 0 5px;
+						margin: 0 0 0 5px;
 					}
 					
 					.button {
 					  display: inline-block;
 					  *display: inline;
-					  padding: 4px 14px;
+					  padding: 3px 14px 2px;
 					  margin-bottom: 0;
 					  *margin-left: .3em;
+					  font-family: "ArvoRegular";
 					  font-size: 14px;
 					  line-height: 20px;
 					  *line-height: 20px;
 					  color: #333333;
 					  text-align: center;
 					  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+					  text-transform: uppercase;
 					  vertical-align: middle;
 					  cursor: pointer;
 					  background-color: #f5f5f5;
@@ -184,14 +229,14 @@ function cd_launch_scripts() {
 				</style>
 				
 				<div id="interested" >		
-					<h1>CREATE<strong>DENTON</strong></h1>
+					<h1>Create<strong>Denton</strong></h1>
 					
-					<h2>Collaborate with other creatives in Denton, TX.</h2>
+					<h2><span>Stop</span> <span>Creating</span> Alone</h2>
 					
-					<?php echo do_shortcode('[gravityform id="3" name="Launch" ajax="true" title="false" description="false"]'); ?>
-					
-					<p>We'll send you an email when we're ready to launch &mdash; which won't be too long.</p>
-					
+					<div id="sign-up">
+						<span class="sign-up-label">Be Notified</span>
+						<?php echo do_shortcode('[gravityform id="3" name="Launch" ajax="true" title="false" description="false"]'); ?>
+					</div>
 				</div>
 						
 			<?php endwhile; // end of the loop. ?>

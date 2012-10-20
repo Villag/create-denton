@@ -18,6 +18,4 @@
 			src : 'content/themes/creatives/images/denton-background-6.jpg',
 			fade : 5000
 		}]
-	})('overlay', {
-		src:'content/themes/creatives/images/overlays/02.png'
 	});
