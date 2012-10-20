@@ -1,5 +1,6 @@
 	$.vegas('slideshow', {
 		delay: 8000,
+		preload: true,
 		backgrounds : [{
 			src : 'content/themes/creatives/images/denton-background-1.jpg',
 			fade : 4000

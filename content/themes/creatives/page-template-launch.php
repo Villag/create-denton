@@ -61,9 +61,11 @@ function cd_launch_scripts() {
 					#interested {
 						background: rgba(0, 102, 102, .5) url('content/themes/creatives/images/overlays/05.png');
 						color: #fff;
+						margin-top: 10%;
 						padding: 20px 0;
 						text-align: center;
 						text-transform: uppercase;
+						width: 100%;
 					}
 					#interested h1 {
 						letter-spacing: 25px;
@@ -107,6 +109,9 @@ function cd_launch_scripts() {
 					}
 					.gform_wrapper ul.right_label li, .gform_wrapper form ul.right_label li, .gform_wrapper ul.left_label li, .gform_wrapper form ul.left_label li {
 						margin: 0;
+					}
+					#gforms_confirmation_message {
+						word-spacing: 5px;
 					}
 					#interested .gform_body,
 					#interested .gform_footer {
