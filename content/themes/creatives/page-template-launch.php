@@ -70,6 +70,7 @@ function cd_launch_scripts() {
 						font-size: 60px;
 						font-weight: 300;
 						line-height: 60px;
+						word-spacing: -20px;
 					}
 					#interested h1 strong {
 						font-weight: 400;
@@ -229,7 +230,7 @@ function cd_launch_scripts() {
 				</style>
 				
 				<div id="interested" >		
-					<h1>Create<strong>Denton</strong></h1>
+					<h1>Create <strong>Denton</strong></h1>
 					
 					<h2><span>Stop</span> <span>Creating</span> Alone</h2>
 					

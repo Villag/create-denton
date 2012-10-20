@@ -4,7 +4,10 @@ add_action( 'template_redirect', 'cd_launch_check' );
 add_action( 'wp_enqueue_scripts', 'cd_load_scripts' );
 add_action( 'gform_user_registered', 'pi_gravity_registration_autologin', 10, 4 );
 
-function cd_load_scripts() {	
+function cd_load_scripts() {
+	
+	wp_dequeue_script( 'twentytwelve-navigation' );
+		
 	wp_enqueue_script( 'modernizr', get_stylesheet_directory_uri() .'/js/modernizr.2.5.3.min.js' );
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'jquery-masonary', get_stylesheet_directory_uri() .'/js/jquery.masonry.min.js', array( 'jquery' ), '1.0', true );
@@ -93,7 +96,7 @@ function cd_launch_check() {
 	$ip = $_SERVER['REMOTE_ADDR'];
 	
 	$allowed = array();
-	$allowed = array( '127.0.0.1', /* '71.123.174.3', '71.97.108.97', '216.178.161.5', '172.17.90.21', '71.252.194.159' */);
+	$allowed = array(/* '127.0.0.1',  '71.123.174.3', '71.97.108.97', '216.178.161.5', '172.17.90.21', '71.252.194.159' */);
 
 	if ( !in_array( $ip, $allowed) ) {
 	    include ( STYLESHEETPATH . '/page-template-launch.php' );
