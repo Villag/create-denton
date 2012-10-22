@@ -1,4 +1,4 @@
-$(document).ready(function() {
+jQuery(document).ready(function($) {
 
 	$('#the-creatives').masonry({
 		isAnimated: !Modernizr.csstransitions,
@@ -13,6 +13,11 @@ $(document).ready(function() {
 	$('.modal').on('hide', function () {
 		$.blurjs('reset');
 	});
+	
+	
+	// We need a function to open a user's profile modal when the url contains
+	// their profile ID "modal-profile-X"
+	// This will use $('#some-dyamic-id').modal('show')
 
 	// get the action filter option item on page load
 	var $filterType = $('#filterOptions li.active a').attr('class');

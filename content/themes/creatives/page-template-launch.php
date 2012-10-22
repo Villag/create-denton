@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Home
+ * Template Name: Launch
  */
 add_action( 'wp_enqueue_scripts', 'cd_launch_scripts' );
 function cd_launch_scripts() {

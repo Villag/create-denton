@@ -1,13 +1,25 @@
 <?php
 
-add_action( 'template_redirect', 'cd_launch_check' );
-add_action( 'wp_enqueue_scripts', 'cd_load_scripts' );
+// Check user for IP and display launch screen if not listed
+add_action( 'template_redirect', 'cd_launch_check', 11 );
+
+// Load our JS and CSS files
+add_action( 'wp_enqueue_scripts', 'cd_load_scripts', 11 );
+
+// After user registration, login user
 add_action( 'gform_user_registered', 'pi_gravity_registration_autologin', 10, 4 );
 
+/**
+ * Queue up all of our JS and CSS for loading in the correct
+ * order and location within templates.
+ */
 function cd_load_scripts() {
 	
+	// Dequeue scripts/styles loaded by the parent theme
 	wp_dequeue_script( 'twentytwelve-navigation' );
-		
+	wp_dequeue_style( 'twentytwelve-fonts' );
+	
+	// Queue JS
 	wp_enqueue_script( 'modernizr', get_stylesheet_directory_uri() .'/js/modernizr.2.5.3.min.js' );
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'jquery-masonary', get_stylesheet_directory_uri() .'/js/jquery.masonry.min.js', array( 'jquery' ), '1.0', true );
@@ -31,6 +43,11 @@ function pi_gravity_registration_autologin( $user_id, $user_config, $entry, $pas
     ) );
 }
 
+/**
+ * Checks if the user is valid and returns boolean.
+ * 
+ * A valid user has a first name, last name, primary job, and email address.
+ */
 function cd_is_valid_user( $user_id ) {
 	$user_data		= get_userdata( $user_id );
 	$email			= $user_data->user_email;
@@ -60,6 +77,10 @@ function cd_is_valid_user( $user_id ) {
 	return true;
 }
 
+/**
+ * Displays the errors a user has
+ * (i.e. missing data required to be a valid user)
+ */
 function cd_user_errors( $user_id ) {
 	$user_data		= get_userdata( $user_id );
 	$email			= $user_data->user_email;
@@ -88,18 +109,18 @@ function cd_user_errors( $user_id ) {
 	return $output;
 }
 
-/*
+/**
  * Use the launch template if the user is not local (on MAMP)
  * or if the user is not on given IP addresses.
  */
 function cd_launch_check() {
 	$ip = $_SERVER['REMOTE_ADDR'];
-	
+
 	$allowed = array();
-	$allowed = array( '127.0.0.1', /* '71.123.174.3', '71.97.108.97', '216.178.161.5', '172.17.90.21', '71.252.194.159', '192.168.1.1' */ );
+	$allowed = array( '127.0.0.1', /*'71.123.174.3', '71.97.108.97', '216.178.161.5', '172.17.90.21', '71.252.194.159' */ );
 
 	if ( !in_array( $ip, $allowed) ) {
-	    include ( STYLESHEETPATH . '/page-template-launch.php' );
+		include ( STYLESHEETPATH . '/page-template-launch.php' );
 		exit;
 	}
 

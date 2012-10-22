@@ -70,6 +70,10 @@
 	outline: none;
 }
 
+html.js {
+    margin-top: 0 !important;
+}
+
 body {
     font-family: "ArvoRegular";
     letter-spacing: -1px;
@@ -104,7 +108,7 @@ strong {
           transition-property: left, right, top;
 }
 
-#site-navigation form {
+#site-navigation {
 	margin: 0;
 	padding: 0;
 }
@@ -137,6 +141,7 @@ figure {
 }
 .item.filters {
     height: auto;
+    width: 235px;
 }
 .item.intro {
     height: 235px;
@@ -659,7 +664,7 @@ ul.nav-list li.bg-gradient-1 a:hover {
 /* Minimum width of 480 pixels. */
 @media screen and (min-width: 480px) {
 	body {
-		padding: 10px 0px 40px;
+		padding: 0 0 40px;
 	}
 	.menu-toggle {
 		display: none;

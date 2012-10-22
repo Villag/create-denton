@@ -19,16 +19,10 @@
 </div><!-- #page -->
 
 <?php if( is_user_logged_in() ): ?>
-<div class="modal hide fade in" id="edit-profile" tabindex="-1" role="dialog" aria-labelledby="edit-profile-label" aria-hidden="true" data-width="760">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id="edit-profile-label">Edit Profile</h3>
-	</div>
-	<div class="modal-body">
-		<?php echo do_shortcode( '[gravityform id="2" name="Profile" title="false" ajax="true"]' ); ?>
-	</div>
-</div>
+
 <?php endif; ?>
+
+<?php get_template_part( 'modals' ); // Load modals.php ?>
 
 <?php wp_footer(); ?>
 </body>
