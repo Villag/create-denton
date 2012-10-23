@@ -114,13 +114,9 @@ function cd_user_errors( $user_id ) {
  * or if the user is not on given IP addresses.
  */
 function cd_launch_check() {
-	$ip = $_SERVER['REMOTE_ADDR'];
 	
-	$allowed = array();
-	$allowed = array( '127.0.0.1', '71.123.174.3', '71.97.108.97', '216.178.161.5', '172.17.90.21', '71.252.194.159' );
-
 	// If this is not local dev, show the launch page
-	if ( defined( 'WP_LOCAL_DEV' ) &! WP_LOCAL_DEV ) {
+	if ( defined( 'WP_LOCAL_DEV' ) && WP_LOCAL_DEV == false ) {
 		include ( STYLESHEETPATH . '/page-template-launch.php' );
 		exit;
 	}
