@@ -14,7 +14,7 @@
 	
 <div class="hide modal fade" role="dialog" aria-hidden="true" tabindex="-1" id="modal-login" >
 
-	<?php wp_login_form(); ?>
+	<?php wp_login_form( array( 'redirect' => get_home_url(), 'label_username' => __( 'Email' ) )); ?>
 	
 </div>
 
