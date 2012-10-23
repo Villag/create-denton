@@ -12,12 +12,15 @@ if( $users ) {
 		
 		$user_type = strtolower( get_user_meta( $user->ID, 'Primary Job', true ) ); // Converts the Primary Job output to lower case
 		$user_type = preg_replace("![^a-z0-9]+!i", "-", $user_type ); // Converts spaces in the primary job to hyphens
-		
+
+		$username = strtolower( $user_info->user_login );
+		$username = preg_replace("![^a-z0-9]+!i", "-", $username );
+			
 		// If the user isn't valid, skip them
 		if ( !cd_is_valid_user( $user->ID ) ) continue; ?>
 		
 		<li>
-			<div id="modal-profile-<?php echo $user->ID; ?>" class="vcard hide modal fade <?php echo $user_type; ?>" role="dialog" aria-labelledby="modal-person-label" aria-hidden="true" data-type="<?php echo $user_type; ?>">
+			<div id="<?php echo $username; ?>" class="vcard hide modal fade <?php echo $user_type; ?>" role="dialog" aria-labelledby="modal-person-label" aria-hidden="true" data-type="<?php echo $user_type; ?>">
 					
 				<figure id="vcard-lastfirst-<?php echo $user->ID ?>" itemscope="itemscope" itemtype="http://www.data-vocabulary.org/Person/">
 			
@@ -63,13 +66,12 @@ if( $users ) {
 								<p><?php echo $user_info->user_description; ?></p>
 								<section>
 									<?php
-									$skills = get_user_meta( $user->ID, 'Skills' );
-									print_r( unserialize($skills));
+									$skills = get_user_meta( $user->ID, 'Skills', false );
 									if( $skills ):
 										echo '<header>Skills</skills>';
 										echo '<ul>';
 										foreach( $skills as $skill ) {
-											echo '<li><a href="#" rel="tag">'. $skill[0] .'</a><li>';
+											echo '<li><a href="#" rel="tag">'. $skill .'</a><li>';
 										}
 										echo '</ul>';
 									endif;

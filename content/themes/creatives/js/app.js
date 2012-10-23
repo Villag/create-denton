@@ -8,12 +8,21 @@ jQuery(document).ready(function($) {
 	$('.modal').on('show', function () {
 		$('.site').blurjs();
 		$(this).detach();
-		$(this).append('body');
+		//$(this).append(body);
 	});
 	$('.modal').on('hide', function () {
-		$.blurjs('reset');
+	    window.location.hash = ''; // for older browsers, leaves a # behind
+	    history.pushState('', document.title, window.location.pathname);
+	    $.blurjs('reset');
+    });
+	$('.card').click( function () {
+		var hash = $(this).attr('href');
+		window.location.hash = hash;
 	});
 	
+	$(window.location.hash).modal('show');
+	
+
 	
 	// We need a function to open a user's profile modal when the url contains
 	// their profile ID "modal-profile-X"

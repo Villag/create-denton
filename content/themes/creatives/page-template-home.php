@@ -27,7 +27,7 @@ get_header(); ?>
 								<div class="navbar-inner">
 									<ul class="nav">
 										<li><a data-toggle="modal" role="button" href="#modal-edit-profile">Edit profile</a></li>
-										<li><?php wp_loginout(); ?></li>
+										<li><?php wp_loginout( get_home_url() ); ?></li>
 									</ul>
 								</div>
 							</div>
