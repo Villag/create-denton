@@ -14,15 +14,44 @@
 	</div>
 	
 	<?php if ( !cd_is_valid_user( $current_user->ID ) ) { ?>
-	<div class="alert alert-warning">Your profile is not public because it's missing <strong><?php echo cd_user_errors( $current_user->ID  ); ?></strong>. Please <a href="#modal-edit-profile" data-toggle="modal">edit your profile</a>.</div>
+	<div class="alert alert-warning">Your profile is not public because it's missing <strong><?php echo cd_user_errors( $current_user->ID  ); ?></strong>. Please <a href="#edit-profile" data-toggle="modal">edit your profile</a>.</div>
 	<?php } ?>
 	
 	<?php else: ?>
-
-	<p><a data-toggle="modal" role="button" href="#login">Login</a></p>
+	<style>
+        .link_wrapper a {
+        	float: right;
+            position: relative;
+            text-transform: uppercase;
+        } 
+        .link_wrapper a.register {
+            display: block;
+            background-image: url(//cdn.mxpnl.com/cache/510793bb3a2c02e2e837f141c2a7319b/images/static/login_signup.png);
+            background-position: -90px -3px;
+            width: 90px;
+            height: 32px;
+            top: 20px;
+        }
+        .link_wrapper a.login {
+            display: block;
+            background-image: url(//cdn.mxpnl.com/cache/510793bb3a2c02e2e837f141c2a7319b/images/static/login_signup.png);
+            background-position: 0 -3px;
+            width: 90px;
+            height: 32px;
+            top: 20px;
+        }
+        .link_wrapper a.register:hover {
+            background-position: -90px -36px;
+        }
+        .link_wrapper a.login:hover {
+            background-position: 0 -36px;
+        }
+	</style>		
+	<div class="link_wrapper">
+		<a class="register" data-toggle="modal" role="button" href="#login"></a>
+		<a class="login" data-toggle="modal" role="button" href="#login"></a>
+	</div>
 		
-	<?php echo do_shortcode('[gravityform id=1 title=false description=false]'); ?>
-	
 	<?php endif; ?>
 	
 	<h3 class="menu-toggle"><?php _e( 'Filter by type', 'create_denton' ); ?></h3>
