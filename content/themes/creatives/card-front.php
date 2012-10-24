@@ -19,7 +19,7 @@ foreach ( $users as $user ) {
 		<span class="dog-ear-cat-1"></span>
 		
 		<a class="card" href="#<?php echo $username; ?>" role="button" data-toggle="modal">
-			<?php echo get_avatar( $user->ID, '150', get_stylesheet_directory_uri(). '/images/default_avatar.png', $user->display_name ); ?>
+			<?php echo get_avatar( $user->ID, '150'); ?>
 			<header class="n brief" title="Name">
 				<span class="fn" itemprop="name">
 					<span class="given-name"><?php echo get_user_meta( $user->ID, 'first_name', true ); ?></span>

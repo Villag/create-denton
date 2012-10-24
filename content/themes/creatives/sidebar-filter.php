@@ -1,9 +1,13 @@
 <li id="filters" class="item filters">
+	
+	<h1>Create Denton</h1>
+
+	<?php if( is_user_logged_in() ): ?>
 
 	<div class="navbar navbar-inverse">
 		<div class="navbar-inner">
 			<ul class="nav">
-				<li><a data-toggle="modal" role="button" href="#modal-edit-profile">Edit profile</a></li>
+				<li><a data-toggle="modal" role="button" href="#edit-profile">Edit profile</a></li>
 				<li><?php wp_loginout( get_home_url() ); ?></li>
 			</ul>
 		</div>
@@ -12,6 +16,14 @@
 	<?php if ( !cd_is_valid_user( $current_user->ID ) ) { ?>
 	<div class="alert alert-warning">Your profile is not public because it's missing <strong><?php echo cd_user_errors( $current_user->ID  ); ?></strong>. Please <a href="#modal-edit-profile" data-toggle="modal">edit your profile</a>.</div>
 	<?php } ?>
+	
+	<?php else: ?>
+
+	<p><a data-toggle="modal" role="button" href="#login">Login</a></p>
+		
+	<?php echo do_shortcode('[gravityform id=1 title=false description=false]'); ?>
+	
+	<?php endif; ?>
 	
 	<h3 class="menu-toggle"><?php _e( 'Filter by type', 'create_denton' ); ?></h3>
 	<p>

@@ -1,21 +1,24 @@
 jQuery(document).ready(function($) {
 
+	// When the modal displays, blur the background
 	$('.modal').on('show', function() {
 		$('.site').blurjs();
-		$(this).detach();
-		//$(this).append(body);
 	});
+	
+	// When the modal hides, remove the hash from the URL and unblur
 	$('.modal').on('hide', function() {
 		window.location.hash = '';
-		// for older browsers, leaves a # behind
 		history.pushState('', document.title, window.location.pathname);
 		$.blurjs('reset');
 	});
+	
+	// When a card is clicked, add it's ID as a hash to the URL
 	$('.card').click(function() {
 		var hash = $(this).attr('href');
 		window.location.hash = hash;
 	});
 
+	// Display a modal if the ID matches the hash in the URL
 	$(window.location.hash).modal('show');
 
 });
