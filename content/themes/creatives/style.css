@@ -158,27 +158,22 @@ figure {
 	padding: 0;
 }
 
-.item {
+#the-creatives {
+    margin: 0;
+    padding: 0;
+}
+.item, .filters {
 	background: #eee;
 	border-radius: 4px;
+	border-top-right-radius: 20px;
 	color: #fff;
-	display: block;
 	float: left;
-	margin: 0 10px 10px 0;
+	height: auto;
+	margin: 5px;
 	overflow: hidden;
-	padding: 5px;
 	position: relative;
-	width: 470px;
-}
-.item.person {
-    height: 235px;
-}
-.item.filters {
-    height: auto;
-    width: 235px;
-}
-.item.intro {
-    height: 235px;
+	min-width: 350px;
+	width: 24%;
 }
 .item .card {
     overflow: hidden;
@@ -192,7 +187,6 @@ figure {
 }
 .item .card .avatar {
     display: inline-block;
-    float: left;
     height: auto;
     max-width: 50%;
     width: 100%;
@@ -274,23 +268,6 @@ figure {
 	text-transform: uppercase;
 	color: #ffffff;
 }
-a.brand, .navbar .brand {
-	color: #ffffff;
-	font-size: 1.7em;
-	padding: 12px 10px;
-}
-
-.navbar h1 {
-	line-height: none;
-	margin: 0;
-	padding: 0;
-}
-
-.h2, .navbar h1.h2 {
-	font-size: 1em;
-	margin: 3px 0px 0px 0px;
-	font-weight: normal;
-}
 
 .h3 {
 	font-size: 14px;
@@ -327,7 +304,7 @@ a.brand, .navbar .brand {
 	min-height: 20px;
 	position: relative;
 	border: none;
-	border-radius: 0 0 0;
+	border-radius: 0;
 	box-shadow: none;
 	-webkit-box-shadow: none;
 }
@@ -337,12 +314,8 @@ a.brand, .navbar .brand {
 	background-image: none;
 }
 
-.gray-dark, .filters {
+.gray-dark {
 	background-color: #3A3A3A;
-}
-
-.navbar-inner, .sidebar-nav, .card {
-	border-radius: 5px;
 }
 
 .nav-list li {
@@ -354,8 +327,8 @@ a.brand, .navbar .brand {
 	text-shadow: none;
 }
 
-.ourHolder {
-	margin: 0px;
+#vcards {
+    display: none;
 }
 
 /* Dog Ears for separate categories for cards.
@@ -707,7 +680,7 @@ ul.nav-list li.bg-gradient-1 a:hover {
 
 /* Minimum width of 600 pixels. */
 @media screen and (min-width: 600px) {
-	
+
 }
 
 /* Maximum width of 767 pixels. */

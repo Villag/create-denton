@@ -1,5 +1,18 @@
 <li id="filters" class="item filters">
 
+	<div class="navbar navbar-inverse">
+		<div class="navbar-inner">
+			<ul class="nav">
+				<li><a data-toggle="modal" role="button" href="#modal-edit-profile">Edit profile</a></li>
+				<li><?php wp_loginout( get_home_url() ); ?></li>
+			</ul>
+		</div>
+	</div>
+	
+	<?php if ( !cd_is_valid_user( $current_user->ID ) ) { ?>
+	<div class="alert alert-warning">Your profile is not public because it's missing <strong><?php echo cd_user_errors( $current_user->ID  ); ?></strong>. Please <a href="#modal-edit-profile" data-toggle="modal">edit your profile</a>.</div>
+	<?php } ?>
+	
 	<h3 class="menu-toggle"><?php _e( 'Filter by type', 'create_denton' ); ?></h3>
 	<p>
 		<a class="btn btn-inverse menu-toggle" data-toggle="collapse" data-target=".nav-collapse">
@@ -24,49 +37,3 @@
 		</ul><!-- #filters.nav.nav-list -->
 	</div><!-- .nav-collapse -->
 </li><!-- .item.filters -->
-
-<script>
-	$(function() {
-		var $container = $('#the-creatives');
-
-		$container.isotope({
-			itemSelector : '.item'
-		});
-
-		var $optionSets = $('#filters .option-set'), $optionLinks = $optionSets.find('a');
-
-		$optionLinks.click(function() {
-			var $this = $(this);
-			// don't proceed if already selected
-			if ($this.hasClass('selected')) {
-				return false;
-			}
-			var $optionSet = $this.parents('.option-set');
-			$optionSet.find('.selected').removeClass('selected');
-			$this.addClass('selected');
-
-			var filters = $(this).data('filter');
-			$container.isotope({
-				filter : filters + ', .filters'
-			});
-		});
-
-		/* Prepare for infinite scroll
-		 $container.infinitescroll({
-		 navSelector  : '#page_nav',    // selector for the paged navigation
-		 nextSelector : '#page_nav a',  // selector for the NEXT link (to page 2)
-		 itemSelector : '.element',     // selector for all items you'll retrieve
-		 loading: {
-		 finishedMsg: 'No more pages to load.',
-		 img: 'http://i.imgur.com/qkKy8.gif'
-		 }
-		 },
-		 // call Isotope as a callback
-		 function( newElements ) {
-		 $container.isotope( 'appended', $( newElements ) );
-		 }
-		 );
-		 */
-	});
-
-</script>
