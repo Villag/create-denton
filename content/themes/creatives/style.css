@@ -70,6 +70,10 @@
 	outline: none;
 }
 
+ul li {
+	list-style-type: none;
+}
+
 html.js {
     margin-top: 0 !important;
 }
@@ -162,6 +166,9 @@ figure {
     margin: 0;
     padding: 0;
 }
+#filters {
+	background: none;
+}
 .item, .filters {
 	background: #eee;
 	border-radius: 4px;
@@ -172,7 +179,7 @@ figure {
 	margin: 5px;
 	overflow: hidden;
 	position: relative;
-	min-width: 350px;
+	min-width: 340px;
 	width: 24%;
 }
 .item .card {
