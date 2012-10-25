@@ -20,13 +20,12 @@ function cd_load_scripts() {
 	wp_dequeue_style( 'twentytwelve-fonts' );
 	
 	// Queue JS
-	wp_enqueue_script( 'modernizr', get_stylesheet_directory_uri() .'/js/modernizr.2.5.3.min.js' );
+	// Load Modernizr into the HEAD, before any other scripts
+	wp_enqueue_script( 'modernizr',			get_stylesheet_directory_uri() .'/js/modernizr.2.5.3.min.js',	'', '1.0', false );
 	wp_enqueue_script( 'jquery' );
-	wp_enqueue_script( 'jquery-masonary', get_stylesheet_directory_uri() .'/js/jquery.masonry.min.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'jquery-easing', get_stylesheet_directory_uri() .'/js/jquery.easing.1.3.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'blur', get_stylesheet_directory_uri() .'/js/blur.min.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'isotope', get_stylesheet_directory_uri() .'/js/jquery.isotope.min.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'app', get_stylesheet_directory_uri() .'/js/app.js', array( 'jquery' ), '1.0', true );
+	wp_enqueue_script( 'isotope',			get_stylesheet_directory_uri() .'/js/jquery.isotope.min.js',	array( 'jquery' ), '1.0', true );
+	wp_enqueue_script( 'blur',				get_stylesheet_directory_uri() .'/js/blur.min.js',				array( 'jquery' ), '1.0', true );
+	wp_enqueue_script( 'app',				get_stylesheet_directory_uri() .'/js/app.js',					array( 'jquery' ), '1.0', true );
 }
 
 /**
@@ -45,37 +44,15 @@ function pi_gravity_registration_autologin( $user_id, $user_config, $entry, $pas
 }
 
 /**
- * Checks if the user is valid and returns boolean.
+ * Checks if the user is valid (has all the right info) and returns boolean.
  * 
- * A valid user has a first name, last name, primary job, and email address.
  */
 function cd_is_valid_user( $user_id ) {
-	$user_data		= get_userdata( $user_id );
-	$email			= $user_data->user_email;
 	
-	$user_meta		= get_user_meta( $user_id );
-	$first_name		= $user_meta['first_name'][0];
-	$last_name		= $user_meta['last_name'][0];
-	$primary_job	= $user_meta['Primary Job'][0];
-	
-	$errors = array();
-	
-	if ( $email == '' )
-		$errors[] = 'email';
-
-	if ( !$first_name )
-		$errors[] = 'first name';
-
-	if ( !$last_name )
-		$errors[] = 'last name';
-		
-	if ( !$primary_job )
-		$errors[] = 'primary job';
-		
-	if ( !$email || !$first_name || !$last_name || !$primary_job )
+	if( cd_user_errors( $user_id ) == null )
+		return true;
+	else
 		return false;
-	
-	return true;
 }
 
 /**
@@ -83,6 +60,7 @@ function cd_is_valid_user( $user_id ) {
  * (i.e. missing data required to be a valid user)
  */
 function cd_user_errors( $user_id ) {
+	
 	$user_data		= get_userdata( $user_id );
 	$email			= $user_data->user_email;
 	
@@ -106,6 +84,16 @@ function cd_user_errors( $user_id ) {
 		$errors[] = 'primary job';
 	
 	$output = implode( ', ', $errors );
+	
+	return $output;
+}
+
+function cd_clean_username( $user_id ) {
+	$user_info = get_userdata( $user_id );
+
+	$username = strtolower( $user_info->user_login );
+	
+	$output = preg_replace("![^a-z0-9]+!i", "-", $username );
 	
 	return $output;
 }

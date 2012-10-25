@@ -9,16 +9,13 @@ foreach ( $users as $user ) {
 	$user_type = strtolower( get_user_meta( $user->ID, 'Primary Job', true ) );
 	$user_type = preg_replace("![^a-z0-9]+!i", "-", $user_type );
 	
-	$username = strtolower( $user_info->user_login );
-	$username = preg_replace("![^a-z0-9]+!i", "-", $username );
-	
 	if ( !cd_is_valid_user( $user->ID ) ) continue; ?>
 	
 	<li class="item vcard person <?php echo $user_type; ?>" data-type="<?php echo $user_type; ?>">
 		
 		<span class="dog-ear-cat-1"></span>
 		
-		<a class="card" href="#<?php echo $username; ?>" role="button" data-toggle="modal">
+		<a class="card" href="#<?php echo cd_clean_username( $user->ID ); ?>" role="button" data-toggle="modal">
 			<?php echo get_avatar( $user->ID, '150'); ?>
 			<header class="n brief" title="Name">
 				<span class="fn" itemprop="name">

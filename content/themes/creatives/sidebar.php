@@ -1,6 +1,6 @@
-<li id="filters" class="item filters">
+<li id="sidebar" class="item sidebar">
 	
-	<h1>Create Denton</h1>
+	<h1 class="brand">Create <strong>Denton</strong></h1>
 
 	<?php if( is_user_logged_in() ): ?>
 
@@ -13,7 +13,7 @@
 		</div>
 	</div>
 	
-	<?php if ( !cd_is_valid_user( $current_user->ID ) ) { ?>
+	<?php global $current_user; if ( !cd_is_valid_user( $current_user->ID ) ) { ?>
 	<div class="alert alert-warning">Your profile is not public because it's missing <strong><?php echo cd_user_errors( $current_user->ID  ); ?></strong>. Please <a href="#edit-profile" data-toggle="modal">edit your profile</a>.</div>
 	<?php } ?>
 	
@@ -63,7 +63,7 @@
 		</a>
 	</p>
 
-	<div class="nav-collapse">
+	<div id="filters" class="nav-collapse">
 		<ul class="option-set clearfix corner-stamp" data-option-key="filter">
 			<li class="illustrator">		<span class="legend"></span><a data-filter=".illustrator" href="#filter">Illustrator</a></li>
 	        <li class="photographer">		<span class="legend"></span><a data-filter=".photographer" href="#filter">Photographer</a></li>
