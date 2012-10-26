@@ -173,6 +173,7 @@ figure {
 }
 .item.person .card .primary-job {
     background: rgba(0, 0, 0, .5 );
+	border-radius: 0px 0px 4px 0px;
     bottom: 0;
     font-size: 12px;
     left: 0;
