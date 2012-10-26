@@ -134,6 +134,9 @@ figure {
     overflow: hidden;
     position: relative;
 }
+.item .card:hover {
+	color: #e1e1e1;
+}
 .item .card .brief {
 	display: block;
 	height: 100%;
