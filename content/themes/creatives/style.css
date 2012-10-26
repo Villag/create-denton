@@ -123,11 +123,12 @@ figure {
 	border-top-right-radius: 20px;
 	color: #fff;
 	float: left;
-    height: 170px;
+    height: 160px;
 	margin: 5px;
 	overflow: hidden;
+	padding: 5px;
 	position: relative;
-    width: 340px;
+    width: 330px;
 }
 .item .card {
     overflow: hidden;
@@ -142,6 +143,7 @@ figure {
 	width: 50%;
 }
 .item .card .avatar {
+	border-radius: 4px 0px 0px 4px;
     display: inline-block;
     float: left;
     height: auto;
