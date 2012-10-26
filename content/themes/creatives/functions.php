@@ -21,11 +21,12 @@ function cd_load_scripts() {
 	
 	// Queue JS
 	// Load Modernizr into the HEAD, before any other scripts
-	wp_enqueue_script( 'modernizr',			get_stylesheet_directory_uri() .'/js/modernizr.2.5.3.min.js',	'', '1.0', false );
+	wp_enqueue_script( 'modernizr',			get_stylesheet_directory_uri() .'/js/modernizr.2.5.3.min.js',		'', '1.0', false );
 	wp_enqueue_script( 'jquery' );
-	wp_enqueue_script( 'isotope',			get_stylesheet_directory_uri() .'/js/jquery.isotope.min.js',	array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'blur',				get_stylesheet_directory_uri() .'/js/blur.min.js',				array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'app',				get_stylesheet_directory_uri() .'/js/app.js',					array( 'jquery' ), '1.0', true );
+	wp_enqueue_script( 'isotope',			get_stylesheet_directory_uri() .'/js/jquery.isotope.min.js',		array( 'jquery' ), '1.0', true );
+	wp_enqueue_script( 'infinite-scroll',	get_stylesheet_directory_uri() .'/js/jquery.infinite-scroll.min.js',array( 'jquery' ), '1.0', true );
+	wp_enqueue_script( 'blur',				get_stylesheet_directory_uri() .'/js/blur.min.js',					array( 'jquery' ), '1.0', true );
+	wp_enqueue_script( 'app',				get_stylesheet_directory_uri() .'/js/app.js',						array( 'jquery' ), '1.0', true );
 }
 
 /**

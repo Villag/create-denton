@@ -48,14 +48,30 @@ jQuery(document).ready(function($) {
 			$container.isotope({
 				filter : filters + ', .sidebar',
 				onLayout : function($elems, instance) {
-					if ( $container.data('isotope').$filteredAtoms.length <= 1 ) {
-						$container.append( $noResults ).isotope( 'appended', $noResults );						
+					if ($container.data('isotope').$filteredAtoms.length <= 1) {
+						$container.append($noResults).isotope('appended', $noResults);
 						return false;
 					}
 				}
 			});
 			event.preventDefault();
 		});
+
+		$container.infinitescroll({
+			navSelector : '#page-nav', // selector for the paged navigation
+			nextSelector : '#page-nav .next', // selector for the NEXT link (to page 2)
+			itemSelector : '.person', // selector for all items you'll retrieve
+			loading : {
+				finishedMsg : 'No more pages to load.',
+				img : 'http://i.imgur.com/qkKy8.gif'
+			},
+			debug: true
+		},
+		// call Isotope as a callback
+		function(newElements) {
+			$container.isotope('appended', $(newElements));
+		});
+
 	});
 
 });
