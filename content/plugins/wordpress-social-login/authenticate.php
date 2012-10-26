@@ -58,7 +58,7 @@ html {
 			require_once( dirname(__FILE__) . "/hybridauth/Hybrid/Auth.php" );
 
 			// load wp-load.php
-			require_once( dirname( dirname( dirname( dirname( __FILE__ )))) . '/wp-load.php' );
+			require_once( dirname( dirname( dirname( dirname( dirname( __FILE__ ))))) . '/wp-load.php' );
 
 			// selected provider name 
 			$provider = @ trim( strip_tags( $_GET["provider"] ) );

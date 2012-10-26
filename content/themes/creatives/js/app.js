@@ -33,7 +33,7 @@ jQuery(document).ready(function($) {
 
 		var $optionSets = $('#filters .option-set'), $optionLinks = $optionSets.find('a');
 
-		$optionLinks.click(function() {
+		$optionLinks.click(function(event) {
 			var $this = $(this);
 			// don't proceed if already selected
 			if ($this.hasClass('selected')) {
@@ -47,6 +47,7 @@ jQuery(document).ready(function($) {
 			$container.isotope({
 				filter : filters + ', .sidebar',
 			});
+			event.preventDefault();
 		});
 	});
 

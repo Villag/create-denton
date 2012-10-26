@@ -53,7 +53,12 @@
 			<div class="navbar-inner">
 				<h3 class="menu-toggle"><?php _e( 'Menu', 'twentytwelve' ); ?></h3>
 				<div class="skip-link assistive-text"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'twentytwelve' ); ?>"><?php _e( 'Skip to content', 'twentytwelve' ); ?></a></div>
-				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav', ) ); ?>
+				<div class="menu-primary-container">
+					<ul id="menu-primary" class="nav">
+						<li class="menu-item"><a href="<?php echo home_url(); ?>">Home</a></li>
+						<li class="menu-item"><a href="#about" data-toggle="modal" role="button">About</a></li>
+					</ul>
+				</div>
 			</div>
 		</nav><!-- #site-navigation -->
 
