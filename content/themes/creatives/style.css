@@ -123,9 +123,11 @@ figure {
 	border-top-right-radius: 20px;
 	color: #fff;
 	float: left;
+    height: 170px;
 	margin: 5px;
 	overflow: hidden;
 	position: relative;
+    width: 340px;
 }
 .item .card {
     overflow: hidden;
@@ -394,10 +396,7 @@ figure {
 }
 
 @media screen and (min-width: 960px) {
-    .item {
-        height: 170px;
-        width: 340px;
-    }
+
 }
 
 @media screen and (max-width: 979px) {

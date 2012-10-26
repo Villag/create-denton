@@ -43,12 +43,19 @@ jQuery(document).ready(function($) {
 			$optionSet.find('.selected').removeClass('selected');
 			$this.parent().addClass('selected');
 
+			var $noResults = $('<li class="item">No creatives in this role yet.</li>');
 			var filters = $(this).parent().data('filter');
 			$container.isotope({
 				filter : filters + ', .sidebar',
+				onLayout : function($elems, instance) {
+					if ( $container.data('isotope').$filteredAtoms.length <= 1 ) {
+						$container.append( $noResults ).isotope( 'appended', $noResults );						
+						return false;
+					}
+				}
 			});
 			event.preventDefault();
 		});
 	});
 
-}); 
+});
