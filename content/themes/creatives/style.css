@@ -211,6 +211,8 @@ figure {
     color: #fff;
 }
 .item.illustrator,
+.modal.illustrator,
+.illustrator .modal-header,
 [data-filter=".illustrator"]:hover,
 [data-filter=".illustrator"].selected {
     background-color: rgba(56,146,77,1);
@@ -220,6 +222,8 @@ figure {
 }
 
 .item.photographer,
+.modal.photographer,
+.photographer .modal-header,
 [data-filter=".photographer"]:hover,
 [data-filter=".photographer"].selected {
     background-color: rgba(155,174,59,1);
@@ -229,6 +233,8 @@ figure {
 }
 
 .item.programmer,
+.modal.programmer,
+.programmer .modal-header,
 [data-filter=".programmer"]:hover,
 [data-filter=".programmer"].selected {
     background-color: rgba(155,174,59,1);
@@ -238,6 +244,8 @@ figure {
 }
 
 .item.film-video,
+.modal.film-video,
+.film-video .modal-header,
 [data-filter=".film-video"]:hover,
 [data-filter=".film-video"].selected {
     background-color: rgba(212,105,54,1);
@@ -247,6 +255,8 @@ figure {
 }
 
 .item.writer,
+.modal.writer,
+.writer .modal-header,
 [data-filter=".writer"]:hover,
 [data-filter=".writer"].selected {
     background-color: rgba(212,105,54,1);
@@ -256,6 +266,8 @@ figure {
 }
 
 .item.web-designer,
+.modal.web-designer,
+.web-designer .modal-header,
 [data-filter=".web-designer"]:hover,
 [data-filter=".web-designer"].selected {
     background-color: rgba(49,111,112,1);
@@ -265,6 +277,8 @@ figure {
 }
 
 .item.graphic-designer,
+.modal.graphic-designer,
+.graphic-designer .modal-header,
 [data-filter=".graphic-designer"]:hover,
 [data-filter=".graphic-designer"].selected {
     background-color: rgba(95,173,179,1);
@@ -274,6 +288,8 @@ figure {
 }
 
 .item.fine-art,
+.modal.fine-art,
+.fine-art .modal-header,
 [data-filter=".fine-art"]:hover,
 [data-filter=".fine-art"].selected {
     background-color: rgba(46,93,143,1);
@@ -283,6 +299,8 @@ figure {
 }
 
 .item.other,
+.modal.other,
+.other .modal-header,
 [data-filter=".other"]:hover,
 [data-filter=".other"].selected {
     background-color: rgba(139,108,161,1);
@@ -323,8 +341,21 @@ figure {
     display: none;
 }
 
+.modal {
+	padding: 5px;
+}
+
 .modal-backdrop {
     background: none;
+}
+
+.modal figure {
+	background: #EEEEEE;
+	border-radius: 4px;
+}
+
+.modal-header {
+	color: #eeeeee;
 }
 /* =Person modal
 -------------------------------------------------------------- */
