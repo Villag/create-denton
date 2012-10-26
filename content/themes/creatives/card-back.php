@@ -91,5 +91,5 @@ if( $users ) {
 	
 	<?php
 	}
-	echo '<ul>';
+	echo '</ul>';
 } ?>

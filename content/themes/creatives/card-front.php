@@ -11,10 +11,8 @@ foreach ( $users as $user ) {
 	
 	if ( !cd_is_valid_user( $user->ID ) ) continue; ?>
 	
-	<li class="item vcard person <?php echo $user_type; ?>" data-type="<?php echo $user_type; ?>">
-		
-		<span class="dog-ear-cat-1"></span>
-		
+	<li class="item vcard person <?php echo $user_type; ?>">
+				
 		<a class="card" href="#<?php echo cd_clean_username( $user->ID ); ?>" role="button" data-toggle="modal">
 			<?php echo get_avatar( $user->ID, '150'); ?>
 			<header class="n brief" title="Name">

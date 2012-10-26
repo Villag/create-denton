@@ -3,6 +3,7 @@ jQuery(document).ready(function($) {
 	// When the modal displays, blur the background
 	$('.modal').on('show', function() {
 		$('.site').blurjs();
+		$('#vcards').show();
 	});
 
 	// When the modal hides, remove the hash from the URL and unblur
@@ -10,6 +11,7 @@ jQuery(document).ready(function($) {
 		window.location.hash = '';
 		history.pushState('', document.title, window.location.pathname);
 		$.blurjs('reset');
+		$('#vcards').hide();
 	});
 
 	// When a card is clicked, add its ID as a hash to the URL
@@ -39,9 +41,9 @@ jQuery(document).ready(function($) {
 			}
 			var $optionSet = $this.parents('.option-set');
 			$optionSet.find('.selected').removeClass('selected');
-			$this.addClass('selected');
+			$this.parent().addClass('selected');
 
-			var filters = $(this).data('filter');
+			var filters = $(this).parent().data('filter');
 			$container.isotope({
 				filter : filters + ', .sidebar',
 			});
