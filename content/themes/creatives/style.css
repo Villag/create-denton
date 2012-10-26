@@ -123,7 +123,7 @@ figure {
 	border-top-right-radius: 20px;
 	color: #fff;
 	float: left;
-    height: 160px;
+    height: 166px;
 	margin: 5px;
 	overflow: hidden;
 	padding: 5px;
@@ -171,6 +171,7 @@ figure {
 .item.person .card .primary-job {
     background: rgba(0, 0, 0, .5 );
     bottom: 0;
+    font-size: 12px;
     left: 0;
     position: absolute;
     width: 100%;
