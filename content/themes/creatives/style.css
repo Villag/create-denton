@@ -85,14 +85,15 @@ strong {
     font-family: "ArvoBold";
 }
 
-.brand {
+.navbar .brand {
     letter-spacing: 0;
     font-weight: 300;
-    margin: 0 0 10px;
+    margin: 0;
+    padding: 0;
     text-transform: uppercase;
-    word-spacing: -3px;
+    word-spacing: -1px;
 }
-.brand strong {
+.navbar .brand strong {
     font-weight: 400;
 }
 
@@ -100,6 +101,9 @@ strong {
 #site-navigation {
 	margin: 0;
 	padding: 0;
+}
+.dropdown-menu {
+    background: rgba(0,0,0,.8);
 }
 .menu-toggle {
 	display: inline-block;

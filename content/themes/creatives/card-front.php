@@ -1,24 +1,24 @@
 <?php
 
-// Count up all the users
-$total_users = count_users();
-$total_users = $total_users['total_users'];
+// Get the gravatar URL
+// source: http://wordpress.stackexchange.com/questions/46904/how-to-get-gravatar-url-alone
+function cd_get_gravatar_url( $email ) {
+    $hash = md5( strtolower( trim ( $email ) ) );
+	$default = urlencode( get_stylesheet_directory_uri() .'/images/default_avatar.png' );
+    return 'http://gravatar.com/avatar/' . $hash .'?size=150&default='. $default;
+}
 
-// How many users to display per page
-$number = 4;
+// Function to display the custom-sized gravatar
+function cd_gravatar_timthumb($email, $width, $height, $class) {
+    $custom = get_stylesheet_directory_uri() . "/timthumb.php?src=". cd_get_gravatar_url( $email ) ."&w=". $width ."&h=". $height ."&zc=1&a=c&f=2";
+    echo "<img src='" . $custom . "' class='". $class ."' alt='avatar' />";
+}
+// Loop through the users and display randomly
+$users = get_users();
+$randomize_users = (array)$users;
+shuffle( $randomize_users );
+foreach( $randomize_users as $user ) {
 
-$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-
-// Offset if the current page isn't 0 and define the max number of users to display
-$args = array(
-	'count_total' => true,
-	'offset' => $paged ? ($paged * $number) : 0,
-	'number' => $number
-);
-
-// Loop through the users
-$users = get_users( $args );
-foreach ( $users as $user ) {
 	global $wp_query;
 	$user_info = get_userdata( $user->ID );
 	$all_meta_for_user = get_user_meta( $user->ID );
@@ -27,12 +27,11 @@ foreach ( $users as $user ) {
 	$user_type = strtolower( get_user_meta( $user->ID, 'Primary Job', true ) );
 	$user_type = preg_replace("![^a-z0-9]+!i", "-", $user_type );
 	
-	if ( !cd_is_valid_user( $user->ID ) ) continue; ?>
+	//if ( !cd_is_valid_user( $user->ID ) ) continue; ?>
 	
 	<li class="item vcard person <?php echo $user_type; ?>">
-				
 		<a class="card" href="#<?php echo cd_clean_username( $user->ID ); ?>" role="button" data-toggle="modal">
-			<?php echo get_avatar( $user->ID, '150'); ?>
+			<?php cd_gravatar_timthumb( $user->user_email, 150, 150, 'avatar' ); ?>				
 			<header class="n brief" title="Name">
 				<span class="fn" itemprop="name">
 					<span class="given-name"><?php echo get_user_meta( $user->ID, 'first_name', true ); ?></span>
@@ -46,22 +45,4 @@ foreach ( $users as $user ) {
 
 <?php
 
-}
-// Get the current page
-$paged = get_query_var('paged');
-// If there are more users than the number displayed, paginate
-if($total_users > $number){
-
-  $pl_args = array(
-     'base'     => add_query_arg('paged','%#%'),
-     'format'   => '',
-     'total'    => floor($total_users / $number),
-     'current'  => max(1, $paged),
-  );
-
-  // for ".../page/n"
-  if($GLOBALS['wp_rewrite']->using_permalinks())
-    $pl_args['base'] = user_trailingslashit(trailingslashit(get_pagenum_link(1)).'page/%#%/', 'paged');
-
-  echo '<nav id="page-nav">'. paginate_links($pl_args) .'</nav>';
 }

@@ -1,7 +1,5 @@
 <li id="sidebar" class="item sidebar">
 	
-	<h1 class="brand">Create <strong>Denton</strong></h1>
-
 	<?php if( is_user_logged_in() ): ?>
 
 	<div class="btn-group">
@@ -22,27 +20,4 @@
 
 	<?php endif; ?>
 	
-	<h3 class="menu-toggle"><?php _e( 'Filter by type', 'create_denton' ); ?></h3>
-	<p>
-		<a class="btn btn-inverse menu-toggle" data-toggle="collapse" data-target=".nav-collapse">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</a>
-	</p>
-
-	<div id="filters" class="nav-collapse animatedgradientbackground">
-		<ul class="option-set" data-option-key="filter">
-			<li data-filter=".illustrator">		<a href="#filter">Illustrator</a></li>
-	        <li data-filter=".photographer">	<a href="#filter">Photographer</a></li>
-	        <li data-filter=".programmer">		<a href="#filter">Programmer</a></li>
-	        <li data-filter=".film-video">		<a href="#filter">Film/Video</a></li>
-	        <li data-filter=".writer">			<a href="#filter">Writer</a></li>
-	        <li data-filter=".web-designer">	<a href="#filter">Web Designer</a></li>
-	        <li data-filter=".graphic-designer"><a href="#filter">Graphic Designer</a></li>
-	        <li data-filter=".fine-art">		<a href="#filter">Fine Art</a></li>
-	        <li data-filter=".other">			<a href="#filter">Other</a></li>
-	        <li data-filter="*" class="selected"><a href="#filter">Reset</a></li>
-		</ul><!-- #filters.nav.nav-list -->
-	</div><!-- .nav-collapse -->
 </li><!-- .item.filters -->

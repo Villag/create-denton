@@ -31,7 +31,7 @@ jQuery(document).ready(function($) {
 			itemSelector : '.item'
 		});
 
-		var $optionSets = $('#filters .option-set'), $optionLinks = $optionSets.find('a');
+		var $optionSets = $('#filter .option-set'), $optionLinks = $optionSets.find('a');
 
 		$optionLinks.click(function(event) {
 			var $this = $(this);
@@ -55,21 +55,6 @@ jQuery(document).ready(function($) {
 				}
 			});
 			event.preventDefault();
-		});
-
-		$container.infinitescroll({
-			navSelector : '#page-nav', // selector for the paged navigation
-			nextSelector : '#page-nav .next', // selector for the NEXT link (to page 2)
-			itemSelector : '.person', // selector for all items you'll retrieve
-			loading : {
-				finishedMsg : 'No more pages to load.',
-				img : 'http://i.imgur.com/qkKy8.gif'
-			},
-			debug: true
-		},
-		// call Isotope as a callback
-		function(newElements) {
-			$container.isotope('appended', $(newElements));
 		});
 
 	});
