@@ -234,10 +234,10 @@ figure {
 .photographer .modal-header,
 [data-filter=".photographer"]:hover,
 [data-filter=".photographer"].selected {
-    background-color: rgba(155,174,59,1);
+    background-color: rgba(166, 179, 89,1);
 }
 [data-filter=".photographer"] {
-    border-left-color: rgba(155,174,59,1);
+    border-left-color: rgba(166, 179, 89,1);
 }
 
 .item.programmer,
@@ -245,10 +245,10 @@ figure {
 .programmer .modal-header,
 [data-filter=".programmer"]:hover,
 [data-filter=".programmer"].selected {
-    background-color: rgba(155,174,59,1);
+    background-color: rgba(220, 172, 79,1);
 }
 [data-filter=".programmer"] {
-    border-left-color: rgba(155,174,59,1);
+    border-left-color: rgba(220, 172, 79,1);
 }
 
 .item.film-video,
@@ -267,10 +267,10 @@ figure {
 .writer .modal-header,
 [data-filter=".writer"]:hover,
 [data-filter=".writer"].selected {
-    background-color: rgba(212,105,54,1);
+    background-color: rgba(208, 61, 54,1);
 }
 [data-filter=".writer"] {
-    border-left-color: rgba(212,105,54,1);
+    border-left-color: rgba(208, 61, 54,1);
 }
 
 .item.web-designer,
@@ -472,7 +472,7 @@ figure {
     height: 100%;
     width: 100%;
     background: #000;
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(0, 0, 0, 0.8);
     z-index: 40;
     display: none;
     top: 0;

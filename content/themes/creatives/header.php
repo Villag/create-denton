@@ -61,7 +61,6 @@
 						        <li data-filter=".writer">			<a href="#filter">Writer</a></li>
 						        <li data-filter=".web-designer">	<a href="#filter">Web Designer</a></li>
 						        <li data-filter=".graphic-designer"><a href="#filter">Graphic Designer</a></li>
-						        <li data-filter=".fine-art">		<a href="#filter">Fine Art</a></li>
 						        <li data-filter=".other">			<a href="#filter">Other</a></li>
 						        <li data-filter="*" class="selected"><a href="#filter">Reset</a></li>
 	                        </ul>
