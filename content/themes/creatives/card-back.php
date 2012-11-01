@@ -15,81 +15,93 @@ if( $users ) {
 
 		$username = strtolower( $user_info->user_login );
 		$username = preg_replace("![^a-z0-9]+!i", "-", $username );
-			
+
+		$user_primary_job		= get_user_meta( $user->ID, 'Primary Job', true );
+		$user_first_name		= get_user_meta( $user->ID, 'first_name', true );
+		$user_last_name			= get_user_meta( $user->ID, 'last_name', true );
+		$user_last_name			= get_user_meta( $user->ID, 'last_name', true );
+		$user_email				= $user->user_email;
+		$user_website			= get_the_author_meta( 'user_url', $user->ID );
+		$user_description		= $user_info->user_description;
+		$user_phone				= get_user_meta( $user->ID, 'Phone', true );
+		$user_zip_code			= get_user_meta( $user->ID, 'Zip Code', true );
+		$user_twitter			= get_user_meta( $user->ID, 'Twitter Username', true );
+		$user_linkedin_url		= get_user_meta( $user->ID, 'LinkedIn URL', true );
+		$user_skills			= get_user_meta( $user->ID, 'Skills', false );
+
 		// If the user isn't valid, skip them
 		if ( !cd_is_valid_user( $user->ID ) ) continue; ?>
-		
+
 		<li>
 
-			<div id="<?php echo $username; ?>" class="reveal-modal <?php echo $user_type; ?>" role="dialog" aria-labelledby="modal-person-label" aria-hidden="true" data-type="<?php echo $user_type; ?>">
-					
+			<div id="<?php echo $user->ID; ?>" class="reveal-modal <?php echo $user_type; ?>" role="dialog" aria-labelledby="modal-person-label" aria-hidden="true" data-type="<?php echo $user_type; ?>">
+
 				<figure id="vcard-lastfirst-<?php echo $user->ID ?>" itemscope="itemscope" itemtype="http://www.data-vocabulary.org/Person/">
-			
+
 					<figcaption>
-			
+
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<?php if( $user_first_name || $user_last_name || $user_primary_job ) { ?>
 							<header class="n" title="Name">
+								<?php if( $user_first_name || $user_last_name ) { ?>
 								<h3 class="fn" itemprop="name">
-									<span class="given-name"><?php echo get_user_meta( $user->ID, 'first_name', true ); ?></span>
-									<span class="family-name"><?php echo get_user_meta( $user->ID, 'last_name', true ); ?></span>
+									<?php if( $user_first_name ) { ?><span class="given-name"><?php echo $user_first_name; ?></span><?php } ?>
+									<?php if( $user_last_name ) { ?><span class="family-name"><?php echo $user_last_name; ?></span><?php } ?>
 								</h3>
-								<div class="primary-job"><?php echo get_user_meta( $user->ID, 'Primary Job', true ); ?></div>
+								<?php } ?>
+								<?php if( $user_primary_job ) { ?><div class="primary-job"><?php echo $user_primary_job; ?></div><?php } ?>
 							</header><!-- .n -->
+							<?php } ?>
 						</div><!-- .modal-header -->
-						
+
 						<div class="modal-body">
-							
+
 							<?php cd_gravatar_timthumb( $user->user_email, 150, 150, 'avatar thumbnail pull-right' ); ?>
-					
-							<section class="profile">
-								
-								<address class="adr" itemprop="address" title="Location" itemscope="itemscope" itemtype="http://data-vocabulary.org/Address/">
-									<abbr class="postal-code" itemprop="postal-code" title="<?php echo get_user_meta( $user->ID, 'Zip Code', true ); ?>"><?php echo get_user_meta( $user->ID, 'Zip Code', true ); ?></abbr>
-								</address>
-			
-								<a href="mailto:<?php echo $user->user_email ?>" class="email"><?php echo $user->user_email ?></a>
-								<ul itemscope="itemscope" itemtype="http://www.data-vocabulary.org/Organization/">
-									<li class="tel"><abbr class="type" title="work">Phone:</abbr> <abbr class="value" itemprop="tel" title="+1<?php echo get_user_meta( $user->ID, 'Phone', true ); ?>"><?php echo get_user_meta( $user->ID, 'Phone', true ); ?></abbr></li>
-								</ul>
-							</section><!-- .profile -->
-			
+
+							<?php if( $user_website || $user_twitter || $user_email || $user_phone ) { ?>
 							<section class="note">
+								<header>Contact</header>
 								<ul>
-									<li><a href="<?php the_author_meta( 'user_url', $user->ID ); ?>" class="url" itemprop="url" rel="me self external"><?php the_author_meta( 'user_url', $user->ID ); ?></a></li>
+									<?php if( $user_website ) { ?><li class="website"><a href="<?php echo $user_website; ?>" class="url" itemprop="url" rel="me self external"><?php echo $user_website; ?></a></li><?php } ?>
+									<?php if( $user_twitter ) { ?><li class="twitter"><a href="http://twitter.com/<?php echo $user_twitter; ?>">@<?php echo $user_twitter; ?></a></li><?php } ?>
+									<?php if( $user_email ) { ?><li class="email"><a href="mailto:<?php echo $user_email ?>" class="email"><?php echo $user_email ?></a></li><?php } ?>
+									<?php if( $user_phone ) { ?><li class="tel"><abbr class="value" itemprop="tel" title="+1<?php echo $user_phone; ?>"><?php echo $user_phone; ?></abbr></li><?php } ?>
+
 								</ul>
 							</section>
-							
+							<?php } ?>
+
 							<section title="Biography">
+								<?php if( $user_description ){ ?>
 								<header>
 									Biography
 								</header>
-								<p><?php echo $user_info->user_description; ?></p>
-								<section>
-									<?php
-									$skills = get_user_meta( $user->ID, 'Skills', false );
-									if( $skills ):
-										echo '<header>Skills</skills>';
-										echo '<ul>';
-										foreach( $skills as $skill ) {
-											echo '<li><a href="#" rel="tag">'. $skill .'</a><li>';
-										}
-										echo '</ul>';
-									endif;
-									?>
-								</section>
+								<p><?php echo $user_description; ?></p>
+								<?php } ?>
+								<?php
+								if( $user_skills ):
+									$user_skills = unserialize( $user_skills[0] );
+									echo '<section><header>Skills</skills>';
+									echo '<ul>';
+									foreach( $user_skills as $skill ) {
+										echo '<li>'. $skill .'</li>';
+									}
+									echo '</ul></section>';
+								endif;
+								?>
 							</section>
-						
+
 						</div><!-- modal-body -->
-						
+
 					</figcaption><!-- .figcaption -->
-					
+
 				</figure>
-				
+
 			</div><!-- .vcard -->
-					
+
 		</li>
-	
+
 	<?php
 	}
 	echo '</ul>';

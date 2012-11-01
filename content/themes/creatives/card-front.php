@@ -16,10 +16,10 @@ foreach( $randomize_users as $user ) {
 	$username = strtolower( $user_info->user_login );
 	$username = preg_replace("![^a-z0-9]+!i", "-", $username );
 		
-	//if ( !cd_is_valid_user( $user->ID ) ) continue; ?>
+	if ( !cd_is_valid_user( $user->ID ) ) continue; ?>
 	
 	<li class="item vcard person <?php echo $user_type; ?>">
-		<a class="card" href="#" data-reveal-id="<?php echo $username; ?>" data-animation="fade" data-animationSpeed="12000">
+		<a class="card" href="#" data-reveal-id="<?php echo $user->ID; ?>" data-animation="fade" data-animationSpeed="12000">
 			<?php cd_gravatar_timthumb( $user->user_email, 150, 150, 'avatar' ); ?>				
 			<header class="n brief" title="Name">
 				<span class="fn" itemprop="name">
