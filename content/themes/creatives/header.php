@@ -81,15 +81,11 @@
 						<?php if( is_user_logged_in() ): ?>
 					
 						<li>
-							<a data-toggle="modal" role="button" href="#edit-profile">Edit profile</a>
+							<a href="#" data-reveal-id="edit-profile" data-animation="fade" data-animationSpeed="12000">Edit profile</a>
 						</li>
 						<li>
 							<a href="<?php echo wp_logout_url( get_home_url() ); ?>" title="Logout">Logout</a>
 						</li>
-						
-						<?php global $current_user; if ( !cd_is_valid_user( $current_user->ID ) ) { ?>
-						<div class="alert alert-warning">Your profile is not public because it's missing <strong><?php echo cd_user_errors( $current_user->ID  ); ?></strong>. Please <a href="#edit-profile" data-toggle="modal">edit your profile</a>.</div>
-						<?php } ?>
 						
 						<?php else: ?>
 					

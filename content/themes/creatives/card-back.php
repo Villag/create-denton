@@ -20,7 +20,8 @@ if( $users ) {
 		if ( !cd_is_valid_user( $user->ID ) ) continue; ?>
 		
 		<li>
-			<div id="<?php echo $username; ?>" class="vcard hide modal fade <?php echo $user_type; ?>" role="dialog" aria-labelledby="modal-person-label" aria-hidden="true" data-type="<?php echo $user_type; ?>">
+
+			<div id="<?php echo $username; ?>" class="reveal-modal <?php echo $user_type; ?>" role="dialog" aria-labelledby="modal-person-label" aria-hidden="true" data-type="<?php echo $user_type; ?>">
 					
 				<figure id="vcard-lastfirst-<?php echo $user->ID ?>" itemscope="itemscope" itemtype="http://www.data-vocabulary.org/Person/">
 			
@@ -29,20 +30,20 @@ if( $users ) {
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 							<header class="n" title="Name">
-								<h3>
-									<span class="fn" itemprop="name">
-										<span class="given-name"><?php echo get_user_meta( $user->ID, 'first_name', true ); ?></span>
-										<span class="family-name"><?php echo get_user_meta( $user->ID, 'last_name', true ); ?></span>
-									</span><!-- .fn -->
+								<h3 class="fn" itemprop="name">
+									<span class="given-name"><?php echo get_user_meta( $user->ID, 'first_name', true ); ?></span>
+									<span class="family-name"><?php echo get_user_meta( $user->ID, 'last_name', true ); ?></span>
 								</h3>
+								<div class="primary-job"><?php echo get_user_meta( $user->ID, 'Primary Job', true ); ?></div>
 							</header><!-- .n -->
 						</div><!-- .modal-header -->
 						
 						<div class="modal-body">
+							
+							<?php cd_gravatar_timthumb( $user->user_email, 150, 150, 'avatar thumbnail pull-right' ); ?>
 					
 							<section class="profile">
 								
-								<p><?php echo get_user_meta( $user->ID, 'Primary Job', true ); ?></p>
 								<address class="adr" itemprop="address" title="Location" itemscope="itemscope" itemtype="http://data-vocabulary.org/Address/">
 									<abbr class="postal-code" itemprop="postal-code" title="<?php echo get_user_meta( $user->ID, 'Zip Code', true ); ?>"><?php echo get_user_meta( $user->ID, 'Zip Code', true ); ?></abbr>
 								</address>

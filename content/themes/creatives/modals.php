@@ -1,6 +1,6 @@
 <?php if( is_user_logged_in() ): ?>
 
-<div class="hide modal fade" role="dialog" aria-hidden="true" tabindex="-1" id="edit-profile" aria-labelledby="edit-profile-label" data-width="760">
+<div class="reveal-modal" role="dialog" aria-hidden="true" tabindex="-1" id="edit-profile" aria-labelledby="edit-profile-label" data-width="760">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 		<h3 id="edit-profile-label">Edit Profile</h3>
@@ -8,11 +8,12 @@
 	<div class="modal-body">
 		<?php echo do_shortcode( '[gravityform id="2" name="Profile" title="false" ajax="true"]' ); ?>
 	</div>
+	<a class="close-reveal-modal">×</a>
 </div>
 
 <?php else: // If user is not logged in ?>
 	
-<div class="hide modal fade" role="dialog" aria-hidden="true" tabindex="-1" id="login" >
+<div class="reveal-modal" role="dialog" aria-hidden="true" tabindex="-1" id="login" >
 
 	<?php //echo stc_get_connect_button('login'); ?>
 	
@@ -30,11 +31,13 @@
 		
 	</div><!-- .row-fluid -->
 	
+	<a class="close-reveal-modal">×</a>
+	
 </div><!-- .modal -->
 
 <?php endif; ?>
 
-<div class="hide modal fade" role="dialog" aria-hidden="true" tabindex="-1" id="about" >
+<div class="reveal-modal" role="dialog" aria-hidden="true" tabindex="-1" id="about" >
 
 	<?php //echo stc_get_connect_button('login'); ?>
 	
@@ -54,6 +57,8 @@ echo apply_filters('the_content', $page_data->post_content); // echo the content
 		</div>
 		
 	</div><!-- .row-fluid -->
+	
+	<a class="close-reveal-modal">×</a>
 	
 </div><!-- .modal -->
 

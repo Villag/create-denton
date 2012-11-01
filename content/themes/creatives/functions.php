@@ -14,7 +14,6 @@ add_action( 'gform_user_registered', 'pi_gravity_registration_autologin', 10, 4 
  * order and location within templates.
  */
 function cd_load_scripts() {
-	
 	// Dequeue scripts/styles loaded by the parent theme
 	wp_dequeue_script( 'twentytwelve-navigation' );
 	wp_dequeue_style( 'twentytwelve-fonts' );
@@ -24,8 +23,9 @@ function cd_load_scripts() {
 	wp_enqueue_script( 'modernizr',			get_stylesheet_directory_uri() .'/js/modernizr.2.5.3.min.js',		'', '1.0', false );
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'isotope',			get_stylesheet_directory_uri() .'/js/jquery.isotope.min.js',		array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'infinite-scroll',	get_stylesheet_directory_uri() .'/js/jquery.infinite-scroll.min.js',array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'blur',				get_stylesheet_directory_uri() .'/js/blur.min.js',					array( 'jquery' ), '1.0', true );
+	wp_enqueue_script( 'foundation',		get_stylesheet_directory_uri() .'/js/foundation.min.js',			array( 'jquery' ), '1.0', true );
+	//wp_enqueue_script( 'infinite-scroll',	get_stylesheet_directory_uri() .'/js/jquery.infinite-scroll.min.js',array( 'jquery' ), '1.0', true );
+	//wp_enqueue_script( 'blur',			get_stylesheet_directory_uri() .'/js/blur.min.js',					array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'app',				get_stylesheet_directory_uri() .'/js/app.js',						array( 'jquery' ), '1.0', true );
 }
 
@@ -111,4 +111,18 @@ function cd_launch_check() {
 		exit;
 	}
 
+}
+
+// Get the gravatar URL
+// source: http://wordpress.stackexchange.com/questions/46904/how-to-get-gravatar-url-alone
+function cd_get_gravatar_url( $email ) {
+    $hash = md5( strtolower( trim ( $email ) ) );
+	$default = urlencode( get_stylesheet_directory_uri() .'/images/default_avatar.png' );
+    return 'http://gravatar.com/avatar/' . $hash .'?size=150&default='. $default;
+}
+
+// Function to display the custom-sized gravatar
+function cd_gravatar_timthumb($email, $width, $height, $class) {
+    $custom = get_stylesheet_directory_uri() . "/timthumb.php?src=". cd_get_gravatar_url( $email ) ."&w=". $width ."&h=". $height ."&zc=1&a=c&f=2";
+    echo "<img src='" . $custom . "' class='". $class ."' alt='avatar' />";
 }

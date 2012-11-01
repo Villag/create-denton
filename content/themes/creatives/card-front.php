@@ -1,18 +1,4 @@
 <?php
-
-// Get the gravatar URL
-// source: http://wordpress.stackexchange.com/questions/46904/how-to-get-gravatar-url-alone
-function cd_get_gravatar_url( $email ) {
-    $hash = md5( strtolower( trim ( $email ) ) );
-	$default = urlencode( get_stylesheet_directory_uri() .'/images/default_avatar.png' );
-    return 'http://gravatar.com/avatar/' . $hash .'?size=150&default='. $default;
-}
-
-// Function to display the custom-sized gravatar
-function cd_gravatar_timthumb($email, $width, $height, $class) {
-    $custom = get_stylesheet_directory_uri() . "/timthumb.php?src=". cd_get_gravatar_url( $email ) ."&w=". $width ."&h=". $height ."&zc=1&a=c&f=2";
-    echo "<img src='" . $custom . "' class='". $class ."' alt='avatar' />";
-}
 // Loop through the users and display randomly
 $users = get_users();
 $randomize_users = (array)$users;
@@ -26,11 +12,14 @@ foreach( $randomize_users as $user ) {
 
 	$user_type = strtolower( get_user_meta( $user->ID, 'Primary Job', true ) );
 	$user_type = preg_replace("![^a-z0-9]+!i", "-", $user_type );
-	
+
+	$username = strtolower( $user_info->user_login );
+	$username = preg_replace("![^a-z0-9]+!i", "-", $username );
+		
 	//if ( !cd_is_valid_user( $user->ID ) ) continue; ?>
 	
 	<li class="item vcard person <?php echo $user_type; ?>">
-		<a class="card" href="#<?php echo cd_clean_username( $user->ID ); ?>" role="button" data-toggle="modal">
+		<a class="card" href="#" data-reveal-id="<?php echo $username; ?>" data-animation="fade" data-animationSpeed="12000">
 			<?php cd_gravatar_timthumb( $user->user_email, 150, 150, 'avatar' ); ?>				
 			<header class="n brief" title="Name">
 				<span class="fn" itemprop="name">
