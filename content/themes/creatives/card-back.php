@@ -41,7 +41,7 @@ if( $users ) {
 					<figcaption>
 
 						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<a class="close-reveal-modal">&#215;</a>
 							<?php if( $user_first_name || $user_last_name || $user_primary_job ) { ?>
 							<header class="n" title="Name">
 								<?php if( $user_first_name || $user_last_name ) { ?>
