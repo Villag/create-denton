@@ -37,28 +37,33 @@
 
 <?php endif; ?>
 
-<div class="reveal-modal" role="dialog" aria-hidden="true" tabindex="-1" id="about" >
+<div class="reveal-modal" id="about" >
 
+	<?php $page_id = 47; $page_data = get_page( $page_id ); ?>
+	
 	<?php //echo stc_get_connect_button('login'); ?>
 	
-	<div class="row-fluid">
+	<div class="modal-header">
 		
-		<div class="span12">
-
-<?php 
-$page_id = 47; // 123 should be replaced with a specific Page's id from your site, which you can find by mousing over the link to edit that Page on the Manage Pages admin page. The id will be embedded in the query string of the URL, e.g. page.php?action=edit&post=123.
-
-$page_data = get_page( $page_id ); // You must pass in a variable to the get_page function. If you pass in a value (e.g. get_page ( 123 ); ), WordPress will generate an error. By default, this will return an object.
-
-echo '<h3>'. $page_data->post_title .'</h3>';// echo the title
-
-echo apply_filters('the_content', $page_data->post_content); // echo the content and retain Wordpress filters such as paragraph tags. Origin from: http://wordpress.org/support/topic/get_pagepost-and-no-paragraphs-problem
-?>
-		</div>
+		<a class="close-reveal-modal">×</a>
 		
-	</div><!-- .row-fluid -->
+		<h3><?php echo $page_data->post_title; ?></h3>
+		
+	</div>
 	
-	<a class="close-reveal-modal">×</a>
+	<div class="modal-body">
+	
+		<div class="row-fluid">
+			
+			<div class="span12">
+	
+			<?php echo apply_filters('the_content', $page_data->post_content); ?>
+				
+			</div>
+			
+		</div><!-- .row-fluid -->
+		
+	</div>
 	
 </div><!-- .modal -->
 

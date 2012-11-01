@@ -207,6 +207,10 @@ figure {
     height: 20px;
     width: 20px;
 }
+.modal-header {
+    background: #fff;
+    color: #eee;
+}
 [data-filter] {
     border-left: 5px solid #333;
     padding: 0 0 0 10px;
@@ -349,9 +353,6 @@ figure {
     background: none;
 }
 
-.modal-header {
-	color: #eee;
-}
 /* =Person modal
 -------------------------------------------------------------- */
 .person .reveal-modal {

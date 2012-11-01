@@ -75,7 +75,7 @@
  
 					<ul class="nav nav-collapse collapse pull-right">
 
-						<li class="menu-item"><a href="#about" data-toggle="modal" role="button">About</a></li>
+						<li class="menu-item"><a href="#" data-reveal-id="about" data-animation="fade" data-animationSpeed="12000">About</a></li>
 
 						<?php if( is_user_logged_in() ): ?>
 					
@@ -89,10 +89,10 @@
 						<?php else: ?>
 					
 							<li>
-								<a class="btn" data-toggle="modal" role="button" href="#login">Login</a>
+								<a href="#" data-reveal-id="#login" data-animation="fade" data-animationSpeed="12000">Login</a>
 							</li>
 							<li>
-								<a class="btn btn-primary" data-toggle="modal" role="button" href="#login">Sign Up</a>
+								<a href="#" data-reveal-id="login" data-animation="fade" data-animationSpeed="12000">Sign Up</a>
 							</li>
 					
 						<?php endif; ?>

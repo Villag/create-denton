@@ -126,3 +126,11 @@ function cd_gravatar_timthumb($email, $width, $height, $class) {
     $custom = get_stylesheet_directory_uri() . "/timthumb.php?src=". cd_get_gravatar_url( $email ) ."&w=". $width ."&h=". $height ."&zc=1&a=c&f=2";
     echo "<img src='" . $custom . "' class='". $class ."' alt='avatar' />";
 }
+
+function cd_first_timer() {
+	if (!isset( $_COOKIE['create_denton_first_timer'] ) ) {
+	    setcookie( 'create_denton_first_timer', 'no' );
+	    get_template_part( 'first-timer' );
+	    exit();
+	}
+}
