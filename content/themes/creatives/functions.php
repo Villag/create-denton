@@ -121,9 +121,15 @@ function cd_get_gravatar_url( $email ) {
     return 'http://gravatar.com/avatar/' . $hash .'?size=150&default='. $default;
 }
 
+function get_avatar_url($get_avatar){
+    preg_match("/src='(.*?)'/i", $get_avatar, $matches);
+    return $matches[1];
+}
+
 // Function to display the custom-sized gravatar
-function cd_gravatar_timthumb($email, $width, $height, $class) {
-    $custom = get_stylesheet_directory_uri() . "/timthumb.php?src=". cd_get_gravatar_url( $email ) ."&w=". $width ."&h=". $height ."&zc=1&a=c&f=2";
+function cd_avatar_timthumb($user_id, $width, $height, $class) {
+	global $current_user;
+    $custom = get_stylesheet_directory_uri() . "/timthumb.php?src=". get_avatar_url(get_avatar( $user_id, 150 )) ."&w=". $width ."&h=". $height ."&zc=1&a=c&f=2";
     echo "<img src='" . $custom . "' class='". $class ."' alt='avatar' />";
 }
 

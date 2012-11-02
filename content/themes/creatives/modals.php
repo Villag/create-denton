@@ -26,7 +26,7 @@
 		<div class="row-fluid">
 			
 			<div class="span12">
-				 <?php the_widget('LoginRadiusWidget'); ?> 
+				 <?php do_action('oa_social_login'); ?>
 			</div>
 		</div>
 	

@@ -20,7 +20,7 @@ foreach( $randomize_users as $user ) {
 	
 	<li class="item vcard person <?php echo $user_type; ?>">
 		<a class="card" href="#" data-reveal-id="<?php echo $user->ID; ?>" data-animation="fade" data-animationSpeed="12000">
-			<?php cd_gravatar_timthumb( $user->user_email, 150, 150, 'avatar' ); ?>				
+			<?php echo get_avatar( $user->ID, 150 ); ?>
 			<header class="n brief" title="Name">
 				<span class="fn" itemprop="name">
 					<span class="given-name"><?php echo get_user_meta( $user->ID, 'first_name', true ); ?></span>

@@ -58,7 +58,7 @@ if( $users ) {
 
 						<div class="modal-body">
 							
-							<?php cd_gravatar_timthumb( $user->user_email, 150, 150, 'avatar thumbnail pull-right' ); ?>
+							<?php echo get_avatar( $user->ID, 150 ); ?>
 
 							<?php if( $user_website || $user_twitter || $user_email || $user_phone ) { ?>
 							<section class="note">
@@ -110,7 +110,7 @@ if( $users ) {
 			
 			<div id="contact-<?php echo $user->ID; ?>" class="reveal-modal <?php echo $user_type; ?>">
 				<div class="modal-header">
-					<?php cd_gravatar_timthumb( $user->user_email, 30, 30, 'avatar pull-left' ); ?>
+					<?php echo get_avatar( $user->ID, 30 ); ?>
 					<h3>Email <?php echo $user_first_name; ?></h3>
 				</div>
 				<div class="modal-body">
