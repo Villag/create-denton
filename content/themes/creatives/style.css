@@ -210,6 +210,10 @@ figure {
 .modal-header {
     background: #fff;
     color: #eee;
+    overflow: hidden;
+}
+.modal-header .avatar {
+    margin-right: 10px;
 }
 [data-filter] {
     border-left: 5px solid #333;
