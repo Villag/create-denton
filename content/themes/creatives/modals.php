@@ -22,6 +22,13 @@
 	</div>
 	
 	<div class="modal-body">
+		
+		<div class="row-fluid">
+			
+			<div class="span12">
+				 <?php the_widget('LoginRadiusWidget'); ?> 
+			</div>
+		</div>
 	
 		<div class="row-fluid">
 			

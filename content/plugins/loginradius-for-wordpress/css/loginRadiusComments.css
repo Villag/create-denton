@@ -1,0 +1,148 @@
+#respond { 
+    background: none repeat scroll 0 0 transparent; 
+    border: medium none; 
+    clear: both; 
+    color: inherit; 
+    float: none; 
+    overflow: hidden; 
+    padding: 15px 0; 
+    font-family: Arial,Helvetica,Tahoma,Verdana,sans-serif; 
+    font-weight: normal; 
+	font-size:12px	 
+}   
+
+
+#respond h3#reply-title { 
+    border: medium none; 
+    font-size: 1.4rem; 
+    font-weight: 600; 
+    letter-spacing: -0.02em; 
+    line-height: 1.5; 
+    margin: 0; 
+    padding: 0 0 0.9em; 
+    text-transform: uppercase; 
+}  
+
+#respond h3 { 
+    display: block; 
+}  
+
+#respond form { 
+    border: medium none; 
+    margin: 0; 
+    padding: 0; 
+    text-align: left; 
+    width: auto !important; 
+}  
+
+#commentform { 
+    position: relative; 
+}  
+
+#respond div.comment-form-field { 
+    border: medium none; 
+    font-size: 12px; 
+    overflow: visible; 
+    padding: 0; 
+}  
+
+#respond .comment-textarea { 
+    position: relative; 
+}  
+
+#respond textarea{ 
+	border:none 
+}  
+
+#respond p { 
+	margin:0 
+}  
+
+#respond input[type=text]{ 
+	width:90% !important 
+}
+
+
+
+#respond input[type=submit]{ 
+	width:26% !important 
+}  #respond #comment-form-comment, #comment-form-share-text-padder { 
+    -moz-transition-duration: 0.3s; 
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.85); 
+    border: 1px solid rgba(0, 0, 0, 0.2); 
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.12) inset; 
+    line-height: 18px !important; 
+    padding: 10px 10px 5px !important; 
+}  
+
+#respond #comment-form-comment textarea { 
+    background: none repeat scroll 0 0 transparent !important; 
+    border: medium none !important; 
+    box-shadow: none; 
+    color: rgba(0, 0, 0, 0.7); 
+    float: none; 
+    font-family: inherit; 
+    font-size: 14px; 
+    height: 125px; 
+    margin: 0; 
+    outline: medium none; 
+    padding: 0; 
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45); 
+    width: 100%; 
+}  
+
+#loginRadiusMainWrapper label{ 
+	margin-left:0px !important 
+}  
+
+div#loginRadiusMainWrapper{ 
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.04); 
+	padding:8px; 
+	min-width:516px 
+}  
+
+div#loginRadiusOr{ 
+	margin-bottom:10px; 
+	 
+}  
+
+div#loginRadiusInterface label{ 
+	font-size:7.5px; 
+    font-family: Arial,Helvetica,Tahoma,Verdana,sans-serif; 
+    font-weight: normal; 
+}  
+
+div#respond textarea#comment{ 
+	height:60px; 
+	width:94%; 
+	border:1px ridge #ccc; 
+}  
+
+div#loginRadiusOrDiv{ 
+	border-right:1px solid #ccc 
+}  
+
+#loginRadiusLoginMessage{ 
+	background-color:#FF9900; 
+	font-size:16px 
+}
+
+
+
+div#respond label{
+
+	margin-left:0
+
+}
+
+form#commentform label[for=comment]{
+	float:left
+}
+
+
+div#loginRadiusOr p{
+
+	clear:none !important
+
+}
+
