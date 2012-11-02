@@ -68,12 +68,12 @@ if( $users ) {
 									<?php if( $user_twitter ) { ?><li class="twitter"><a href="http://twitter.com/<?php echo $user_twitter; ?>">@<?php echo $user_twitter; ?></a></li><?php } ?>
 									<?php if( $user_phone && is_user_logged_in() ) { ?>
 										<li class="tel"><abbr class="value" itemprop="tel" title="+1<?php echo $user_phone; ?>"><?php echo $user_phone; ?></abbr></li>
-									<?php } else { ?>
+									<?php } elseif( !$user_phone && !is_user_logged_in() ) { ?>
 										<li><small><a href="#" data-reveal-id="login" data-animation="fade" data-animationSpeed="12000">Login to get phone number</a></small></li>
 									<?php } ?>
 									<?php if( $user_email && is_user_logged_in() ) { ?>
 										<li class="email"><a href="#" data-reveal-id="contact-<?php echo $user->ID; ?>" data-animation="fade" data-animationSpeed="12000"><i class="icon-envelope"></i> Email</a></li>
-									<?php } else { ?>
+									<?php } elseif( !$user_email && !is_user_logged_in() ) { ?>
 										<li><small><a href="#" data-reveal-id="login" data-animation="fade" data-animationSpeed="12000">Login to email this user</a></small></li>
 									<?php } ?>
 								</ul>
