@@ -29,6 +29,7 @@ if( $users ) {
 		$user_linkedin_url		= get_user_meta( $user->ID, 'LinkedIn URL', true );
 		$user_skills			= get_user_meta( $user->ID, 'Skills', false );
 
+		echo antispambot( $user->user_email );
 		// If the user isn't valid, skip them
 		if ( !cd_is_valid_user( $user->ID ) ) continue; ?>
 
@@ -56,8 +57,9 @@ if( $users ) {
 						</div><!-- .modal-header -->
 
 						<div class="modal-body">
-
+							
 							<?php cd_gravatar_timthumb( $user->user_email, 150, 150, 'avatar thumbnail pull-right' ); ?>
+		<a class="btn" href="#" data-reveal-id="contact-<?php echo $user->ID; ?>" data-animation="fade" data-animationSpeed="12000">Email</a>
 
 							<?php if( $user_website || $user_twitter || $user_email || $user_phone ) { ?>
 							<section class="note">
@@ -65,9 +67,7 @@ if( $users ) {
 								<ul>
 									<?php if( $user_website ) { ?><li class="website"><a href="<?php echo $user_website; ?>" class="url" itemprop="url" rel="me self external"><?php echo $user_website; ?></a></li><?php } ?>
 									<?php if( $user_twitter ) { ?><li class="twitter"><a href="http://twitter.com/<?php echo $user_twitter; ?>">@<?php echo $user_twitter; ?></a></li><?php } ?>
-									<?php if( $user_email ) { ?><li class="email"><a href="mailto:<?php echo $user_email ?>" class="email"><?php echo $user_email ?></a></li><?php } ?>
 									<?php if( $user_phone ) { ?><li class="tel"><abbr class="value" itemprop="tel" title="+1<?php echo $user_phone; ?>"><?php echo $user_phone; ?></abbr></li><?php } ?>
-
 								</ul>
 							</section>
 							<?php } ?>
@@ -99,6 +99,16 @@ if( $users ) {
 				</figure>
 
 			</div><!-- .vcard -->
+			
+			<div id="contact-<?php echo $user->ID; ?>" class="reveal-modal">
+				<div class="modal-header">
+					<h3>Email <?php echo $user_first_name; ?></h3>
+				</div>
+				<div class="modal-body">
+					<?php gravity_form( 4, false, true, false, array('to_email' => antispambot( $user_email ) ), true ); ?>
+				</div>
+			</div>
+
 
 		</li>
 

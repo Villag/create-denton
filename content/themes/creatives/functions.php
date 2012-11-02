@@ -134,3 +134,13 @@ function cd_first_timer() {
 	    exit();
 	}
 }
+
+add_filter('gform_field_value_user_firstname', create_function("", '$value = populate_usermeta(\'first_name\'); return $value;' ));
+add_filter('gform_field_value_user_lastname', create_function("", '$value = populate_usermeta(\'last_name\'); return $value;' ));
+add_filter('gform_field_value_user_email', create_function("", '$value = populate_usermeta(\'user_email\'); return $value;' ));
+
+// this function is called by both filters and returns the requested user meta of the current user
+function populate_usermeta($meta_key){
+    global $current_user;
+    return $current_user->__get($meta_key);
+}
