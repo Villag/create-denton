@@ -89,7 +89,7 @@
 						<?php else: ?>
 					
 							<li>
-								<a href="#" data-reveal-id="#login" data-animation="fade" data-animationSpeed="12000">Login</a>
+								<a href="#" data-reveal-id="login" data-animation="fade" data-animationSpeed="12000">Login</a>
 							</li>
 							<li>
 								<a href="#" data-reveal-id="login" data-animation="fade" data-animationSpeed="12000">Sign Up</a>

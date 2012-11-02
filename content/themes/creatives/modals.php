@@ -15,24 +15,30 @@
 	
 <div class="reveal-modal" role="dialog" aria-hidden="true" tabindex="-1" id="login" >
 
-	<?php //echo stc_get_connect_button('login'); ?>
-	
-	<div class="row-fluid">
+	<div class="modal-header">
 		
-		<div class="span6">
-			<h2>Login</h2>
-			<?php wp_login_form( array( 'redirect' => get_home_url(), 'label_username' => __( 'Email' ) )); ?>		
-		</div>
-		
-		<div class="span6">
-			<h2>Sign Up</h2>
-			<?php echo do_shortcode('[gravityform id=1 title=false description=false]'); ?>			
-		</div>
-		
-	</div><!-- .row-fluid -->
+		<a class="close-reveal-modal">×</a>
+				
+	</div>
 	
-	<a class="close-reveal-modal">×</a>
+	<div class="modal-body">
 	
+		<div class="row-fluid">
+			
+			<div class="span6">
+				<h2>Login</h2>
+				<?php wp_login_form( array( 'redirect' => get_home_url(), 'label_username' => __( 'Email' ) )); ?>		
+			</div>
+			
+			<div class="span6">
+				<h2>Sign Up</h2>
+				<?php echo do_shortcode('[gravityform id=1 title=false description=false]'); ?>			
+			</div>
+			
+		</div><!-- .row-fluid -->
+		
+	</div>
+		
 </div><!-- .modal -->
 
 <?php endif; ?>
