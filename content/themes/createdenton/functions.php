@@ -14,7 +14,21 @@ add_action( 'after_setup_theme', 'cd_theme_setup' );
  * @since 1.0
  */
 function cd_theme_setup() {
+	
+register_sidebar(array(
+'name' => __( 'Profile' ),
+'id' => 'profile',
+'description' => __( 'Widgets in this area will be shown on the right-hand side.' )
+));
 
+	/* Add support for framework features. */
+	add_theme_support( 'hybrid-core-menus', array( 'primary' ) );
+	add_theme_support( 'hybrid-core-sidebars', array( 'profile' ) );
+	add_theme_support( 'hybrid-core-widgets' );
+	add_theme_support( 'hybrid-core-seo' );
+	add_theme_support( 'hybrid-core-template-hierarchy' );
+	add_theme_support( 'hybrid-core-deprecated' );
+	
 	// Check user for IP and display launch screen if not listed
 	add_action( 'template_redirect', 'cd_launch_check', 11 );
 
@@ -25,17 +39,6 @@ function cd_theme_setup() {
 	add_action( 'gform_user_registered', 'pi_gravity_registration_autologin', 10, 4 );
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 /**
  * Queue up all of our JS and CSS for loading in the correct
@@ -158,11 +161,77 @@ function get_avatar_url($get_avatar){
     return $matches[1];
 }
 
+function cd_get_oneall_user( $user_id, $attribute = '' ) {
+
+	//Read settings
+	$settings = get_option ('oa_social_login_settings');
+
+	//API Settings
+	$api_connection_handler = ((!empty ($settings ['api_connection_handler']) AND $settings ['api_connection_handler'] == 'fsockopen') ? 'fsockopen' : 'curl');
+	$api_connection_use_https = ((!isset ($settings ['api_connection_use_https']) OR $settings ['api_connection_use_https'] == '1') ? true : false);
+
+	$site_subdomain = (!empty ($settings ['api_subdomain']) ? $settings ['api_subdomain'] : '');
+	$site_public_key = (!empty ($settings ['api_key']) ? $settings ['api_key'] : '');
+	$site_private_key = (!empty ($settings ['api_secret']) ? $settings ['api_secret'] : '');
+
+	//API Access Domain
+	$site_domain = $site_subdomain . '.api.oneall.com';
+
+	$user_token = get_user_meta($user_id, 'oa_social_login_user_token', true);
+
+	//Connection Resource
+	$resource_uri = 'https://' . $site_domain . '/users/' . $user_token . '.json';
+
+	// Initializing curl
+	$ch = curl_init($resource_uri);
+
+	// Configuring curl options
+	$options = array(CURLOPT_URL => $resource_uri, CURLOPT_HEADER => 0, CURLOPT_USERPWD => $site_public_key . ":" . $site_private_key, CURLOPT_TIMEOUT => 15, CURLOPT_VERBOSE => 0, CURLOPT_RETURNTRANSFER => 1, CURLOPT_SSL_VERIFYPEER => 1, CURLOPT_FAILONERROR => 0);
+
+	// Setting curl options
+	curl_setopt_array($ch, $options);
+
+	// Getting results
+	$result = curl_exec($ch);
+		
+	$data = json_decode($result);
+	
+	$output = '';
+	
+	if( !empty( $data->response->result ) ){
+	
+		if( $attribute == '' ){
+			$output = $data->response->result->data->user->identities;
+		}
+		
+		if( $attribute == 'thumbnail' ) {
+			$output = $data->response->result->data->user->identities->identity[0]->thumbnailUrl;
+		}
+	
+		if( $attribute == 'picture' ) {
+			$output = $data->response->result->data->user->identities->identity[0]->pictureUrl;
+		}	
+		
+	} else {
+		$output = get_avatar_url( get_avatar( $user_id, 150 ) );
+	}
+	
+	$output = cd_timthumbit( $output );
+	
+	return $output;
+	
+}
+
 // Function to display the custom-sized gravatar
 function cd_avatar_timthumb($user_id, $width, $height, $class) {
 	global $current_user;
     $custom = get_stylesheet_directory_uri() . "/timthumb.php?src=". get_avatar_url(get_avatar( $user_id, 150 )) ."&w=". $width ."&h=". $height ."&zc=1&a=c&f=2";
-    echo "<img src='" . $custom . "' class='". $class ."' alt='avatar' />";
+    return $custom;
+}
+
+function cd_timthumbit( $image ) {
+	$output = get_stylesheet_directory_uri() . "/timthumb.php?src=". $image ."&w=". $width ."&h=". $height ."&zc=1&a=c&f=2";
+	return $output;
 }
 
 function cd_first_timer() {
@@ -173,6 +242,21 @@ function cd_first_timer() {
 	}
 }
 
+function cd_choose_avatar( $user_id ) {
+	
+	$user_meta		= get_user_meta( $user_id );
+	$first_name		= $user_meta['first_name'][0];
+	
+	if ( $user_meta['avatar'][0] = 'facebook' ) {
+		cd_get_facebook_avatar_url( $user_id );
+	} elseif ( $user_meta['avatar'][0] = 'twitter' ) {
+		cd_get_twitter_avatar_url( $user_id );
+	} else {
+		cd_get_gravatar_url( $user_id );
+	}
+	
+}
+
 add_filter('gform_field_value_user_firstname', create_function("", '$value = populate_usermeta(\'first_name\'); return $value;' ));
 add_filter('gform_field_value_user_lastname', create_function("", '$value = populate_usermeta(\'last_name\'); return $value;' ));
 add_filter('gform_field_value_user_email', create_function("", '$value = populate_usermeta(\'user_email\'); return $value;' ));
@@ -181,4 +265,21 @@ add_filter('gform_field_value_user_email', create_function("", '$value = populat
 function populate_usermeta($meta_key){
     global $current_user;
     return $current_user->__get($meta_key);
+}
+
+function cd_real_avatar( $user_id ) {
+	$avatar = get_user_meta( $user_id, 'oa_social_login_user_thumbnail', true );
+	if ( strpos( $avatar, 'facebook' ) !== false) {
+		$output = $avatar .'&type=large';
+	} elseif ( strpos( $avatar, 'twitter' ) !== false) {
+		$output = $avatar .'&type=large';
+	} elseif ( strpos( $avatar, 'google' ) !== false) {
+		$output = $avatar .'&type=large';
+	} elseif ( strpos( $avatar, 'linkedin' ) !== false) {
+		$output = $avatar .'&type=large';
+	} else {
+		$output = $avatar;
+	}
+	
+	return $output;
 }

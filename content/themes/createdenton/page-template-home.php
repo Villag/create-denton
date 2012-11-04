@@ -8,7 +8,7 @@ get_header(); ?>
 	<div id="primary" class="site-content">
 				
 		<div id="content" role="main">
-
+			
 			<?php if( is_user_logged_in() ): ?>
 		
 			<?php global $current_user; if ( !cd_is_valid_user( $current_user->ID ) ) { ?>

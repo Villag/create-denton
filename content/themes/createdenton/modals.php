@@ -6,6 +6,9 @@
 		<h3 id="edit-profile-label">Edit Profile</h3>
 	</div>
 	<div class="modal-body">
+		
+		<?php //get_sidebar( 'profile' ); ?>
+
 		<?php echo do_shortcode( '[gravityform id="2" name="Profile" title="false" ajax="true"]' ); ?>
 	</div>
 	<a class="close-reveal-modal">×</a>
@@ -22,19 +25,12 @@
 	</div>
 	
 	<div class="modal-body">
-		
-		<div class="row-fluid">
-			
-			<div class="span12">
-				 <?php do_action('oa_social_login'); ?>
-			</div>
-		</div>
 	
 		<div class="row-fluid">
 			
 			<div class="span6">
 				<h2>Login</h2>
-				<?php wp_login_form( array( 'redirect' => get_home_url(), 'label_username' => __( 'Email' ) )); ?>		
+				<?php do_action('oa_social_login'); ?>
 			</div>
 			
 			<div class="span6">
