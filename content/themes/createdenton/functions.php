@@ -216,7 +216,7 @@ function cd_get_oneall_user( $user_id, $attribute = '' ) {
 		$output = get_avatar_url( get_avatar( $user_id, 150 ) );
 	}
 	
-	$output = cd_timthumbit( $output );
+	$output = cd_timthumbit( $output, 150, 150 );
 	
 	return $output;
 	
@@ -229,7 +229,7 @@ function cd_avatar_timthumb($user_id, $width, $height, $class) {
     return $custom;
 }
 
-function cd_timthumbit( $image ) {
+function cd_timthumbit( $image, $width, $height ) {
 	$output = get_stylesheet_directory_uri() . "/timthumb.php?src=". $image ."&w=". $width ."&h=". $height ."&zc=1&a=c&f=2";
 	return $output;
 }
