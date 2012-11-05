@@ -92,7 +92,7 @@ if ( defined( 'WP_LOCAL_DEV' ) && WP_LOCAL_DEV == false ) { ?>
 								<a href="#" data-reveal-id="login" data-animation="fade" data-animationSpeed="12000">Login</a>
 							</li>
 							<li>
-								<a href="#" data-reveal-id="login" data-animation="fade" data-animationSpeed="12000">Sign Up</a>
+								<a href="#" data-reveal-id="sign-up" data-animation="fade" data-animationSpeed="12000">Sign Up</a>
 							</li>
 					
 						<?php endif; ?>

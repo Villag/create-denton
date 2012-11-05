@@ -21,6 +21,8 @@
 	<div class="modal-header">
 		
 		<a class="close-reveal-modal">×</a>
+		
+		<h3>Login</h3>
 				
 	</div>
 	
@@ -29,12 +31,38 @@
 		<div class="row-fluid">
 			
 			<div class="span6">
-				<h2>Login</h2>
 				<?php do_action('oa_social_login'); ?>
 			</div>
 			
 			<div class="span6">
-				<h2>Sign Up</h2>
+     			<?php wp_login_form( array( 'redirect' => get_home_url(), 'label_username' => __( 'Email' ) )); ?>    
+			</div>
+			
+		</div><!-- .row-fluid -->
+		
+	</div>
+		
+</div><!-- .modal -->
+
+<div class="reveal-modal" role="dialog" aria-hidden="true" tabindex="-1" id="sign-up" >
+
+	<div class="modal-header">
+		
+		<a class="close-reveal-modal">×</a>
+		
+		<h3>Sign Up</h3>
+				
+	</div>
+	
+	<div class="modal-body">
+	
+		<div class="row-fluid">
+			
+			<div class="span6">
+				<?php do_action('oa_social_login'); ?>
+			</div>
+			
+			<div class="span6">
 				<?php echo do_shortcode('[gravityform id=1 title=false description=false]'); ?>			
 			</div>
 			

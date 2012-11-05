@@ -6,10 +6,12 @@ jQuery(document).ready(function($) {
 		history.pushState('', document.title, window.location.pathname);
 	});
 
-	// When a card is clicked, add its ID as a hash to the URL
+	// When an anchor is clicked, add its ID as a hash to the URL
 	$('a').click(function() {
 		var hash = $(this).data('reveal-id');
-		window.location.hash = hash;
+		if( hash != null ) {
+			window.location.hash = hash;
+		}
 	});
 
 	// Display a modal if the ID matches the hash in the URL
