@@ -5,7 +5,7 @@ $randomize_users = (array)$users;
 shuffle( $randomize_users );
 foreach( $randomize_users as $user ) {
 
-	global $wp_query;
+	global $wp_query, $current_user;
 	$user_info = get_userdata( $user->ID );
 	$all_meta_for_user = get_user_meta( $user->ID );
 	$curauth = $wp_query->get_queried_object();
@@ -18,9 +18,11 @@ foreach( $randomize_users as $user ) {
 		
 	if ( !cd_is_valid_user( $user->ID ) ) continue; ?>
 	
-	<li class="item vcard person <?php echo $user_type; ?>">
+	<li class="item vcard person <?php echo $user_type; if( $current_user->ID == $user->ID ) echo ' current-user'; ?>">
 		<a class="card" href="#" data-reveal-id="<?php echo $user->ID; ?>" data-animation="fade" data-animationSpeed="12000">
-			<img src="<?php echo cd_get_oneall_user( $user->ID, 'picture' ); ?>" height="150" width="150" class="avatar">
+			
+			<img src="<?php echo cd_get_avatar( $user->ID ); ?>" class="avatar" height="150" width="150" alt="<?php echo get_user_meta( $user->ID, 'first_name', true ); ?> <?php echo get_user_meta( $user->ID, 'last_name', true ); ?>">
+
 			<header class="n brief" title="Name">
 				<span class="fn" itemprop="name">
 					<span class="given-name"><?php echo get_user_meta( $user->ID, 'first_name', true ); ?></span>

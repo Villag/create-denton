@@ -125,6 +125,7 @@ figure {
 }
 .item {
 	background: #eee;
+	border: 1px solid #eee;
 	border-radius: 4px;
 	border-top-right-radius: 20px;
 	color: #fff;
@@ -132,7 +133,7 @@ figure {
     height: 165px;
 	margin: 0 6px 6px 0;
 	overflow: hidden;
-	padding: 5px;
+	padding: 4px;
 	position: relative;
     width: 330px;
 }
@@ -235,6 +236,7 @@ figure {
 [data-filter=".illustrator"].selected {
     background-color: rgba(56,146,77,1);
 }
+.item.illustrator,
 [data-filter=".illustrator"],
 .reveal-modal.illustrator .modal-body {
     border-color: rgba(56,146,77,1);
@@ -246,6 +248,7 @@ figure {
 [data-filter=".photographer"].selected {
     background-color: rgba(166, 179, 89,1);
 }
+.item.photographer,
 [data-filter=".photographer"],
 .reveal-modal.photographer .modal-body {
     border-color: rgba(166, 179, 89,1);
@@ -257,6 +260,7 @@ figure {
 [data-filter=".programmer"].selected {
     background-color: rgba(220, 172, 79,1);
 }
+.item.programmer,
 [data-filter=".programmer"],
 .reveal-modal.programmer .modal-body {
     border-color: rgba(220, 172, 79,1);
@@ -268,6 +272,7 @@ figure {
 [data-filter=".film-video"].selected {
     background-color: rgba(212,105,54,1);
 }
+.item.film-video,
 [data-filter=".film-video"],
 .reveal-modal.film-video .modal-body {
     border-color: rgba(212,105,54,1);
@@ -279,6 +284,7 @@ figure {
 [data-filter=".writer"].selected {
     background-color: rgba(208, 61, 54,1);
 }
+.item.writer,
 [data-filter=".writer"],
 .reveal-modal.writer .modal-body {
     border-color: rgba(208, 61, 54,1);
@@ -290,6 +296,7 @@ figure {
 [data-filter=".web-designer"].selected {
     background-color: rgba(49,111,112,1);
 }
+.item.web-designer,
 [data-filter=".web-designer"],
 .reveal-modal.web-designer .modal-body {
     border-color: rgba(49,111,112,1);
@@ -301,6 +308,7 @@ figure {
 [data-filter=".graphic-designer"].selected {
     background-color: rgba(95,173,179,1);
 }
+.item.graphic-designer,
 [data-filter=".graphic-designer"],
 .reveal-modal.graphic-designer .modal-body {
     border-color: rgba(95,173,179,1);
@@ -312,6 +320,7 @@ figure {
 [data-filter=".other"].selected {
     background-color: rgba(139,108,161,1);
 }
+.item.other,
 [data-filter=".other"],
 .reveal-modal.other .modal-body {
     border-color: rgba(139,108,161,1);
@@ -323,6 +332,11 @@ figure {
 }
 [data-filter="*"] {
     border-color: #222;
+}
+
+.item.current-user {
+    background: none;
+    border: 1px dashed #444;
 }
 
 .h3 {

@@ -14,14 +14,8 @@ add_action( 'after_setup_theme', 'cd_theme_setup' );
  * @since 1.0
  */
 function cd_theme_setup() {
-	
-register_sidebar(array(
-'name' => __( 'Profile' ),
-'id' => 'profile',
-'description' => __( 'Widgets in this area will be shown on the right-hand side.' )
-));
 
-	/* Add support for framework features. */
+	// Add support for framework features
 	add_theme_support( 'hybrid-core-menus', array( 'primary' ) );
 	add_theme_support( 'hybrid-core-sidebars', array( 'profile' ) );
 	add_theme_support( 'hybrid-core-widgets' );
@@ -37,7 +31,18 @@ register_sidebar(array(
 
 	// After user registration, login user
 	add_action( 'gform_user_registered', 'pi_gravity_registration_autologin', 10, 4 );
+	
+	// Populate forms with user data
+	add_filter( 'gform_field_value_user_firstname',	create_function("", '$value = populate_usermeta(\'first_name\'); return $value;' ));
+	add_filter( 'gform_field_value_user_lastname',	create_function("", '$value = populate_usermeta(\'last_name\'); return $value;' ));
+	add_filter( 'gform_field_value_user_email',		create_function("", '$value = populate_usermeta(\'user_email\'); return $value;' ));
 
+	// Register profile sidebar
+	register_sidebar(array(
+		'name' => __( 'Profile' ),
+		'id' => 'profile',
+		'description' => __( 'Widgets in this area will be shown on the right-hand side.' )
+	));
 }
 
 /**
@@ -79,6 +84,14 @@ function pi_gravity_registration_autologin( $user_id, $user_config, $entry, $pas
     ) );
 }
 
+function cd_first_timer() {
+	if (!isset( $_COOKIE['create_denton_first_timer'] ) ) {
+	    setcookie( 'create_denton_first_timer', 'no' );
+	    get_template_part( 'first-timer' );
+	    exit();
+	}
+}
+
 /**
  * Checks if the user is valid (has all the right info) and returns boolean.
  * 
@@ -104,22 +117,26 @@ function cd_user_errors( $user_id ) {
 	$first_name		= $user_meta['first_name'][0];
 	$last_name		= $user_meta['last_name'][0];
 	$primary_job	= $user_meta['Primary Job'][0];
-	
+	$avatar			= $user_meta['avatar'][0];
+		
 	$errors = array();
 	
 	if ( $email == '' )
-		$errors[] = 'email';
+		$errors[] = ' email';
 
 	if ( !$first_name )
-		$errors[] = 'first name';
+		$errors[] = ' first name';
 
 	if ( !$last_name )
-		$errors[] = 'last name';
+		$errors[] = ' last name';
 		
 	if ( !$primary_job )
-		$errors[] = 'primary job';
-	
-	$output = implode( ', ', $errors );
+		$errors[] = ' primary job';
+
+	if ( !$avatar )
+		$errors[] = ' avatar';
+			
+	$output = implode( ',', $errors );
 	
 	return $output;
 }
@@ -148,18 +165,19 @@ function cd_launch_check() {
 
 }
 
-// Get the gravatar URL
-// source: http://wordpress.stackexchange.com/questions/46904/how-to-get-gravatar-url-alone
-function cd_get_gravatar_url( $email ) {
-    $hash = md5( strtolower( trim ( $email ) ) );
-	$default = urlencode( get_stylesheet_directory_uri() .'/images/default_avatar.png' );
-    return 'http://gravatar.com/avatar/' . $hash .'?size=150&default='. $default;
+// this function is called by both filters and returns the requested user meta of the current user
+function populate_usermeta($meta_key){
+    global $current_user;
+    return $current_user->__get($meta_key);
 }
 
-function get_avatar_url($get_avatar){
-    preg_match("/src='(.*?)'/i", $get_avatar, $matches);
-    return $matches[1];
-}
+
+
+
+
+
+
+
 
 function cd_get_oneall_user( $user_id, $attribute = '' ) {
 
@@ -222,11 +240,9 @@ function cd_get_oneall_user( $user_id, $attribute = '' ) {
 	
 }
 
-// Function to display the custom-sized gravatar
-function cd_avatar_timthumb($user_id, $width, $height, $class) {
-	global $current_user;
-    $custom = get_stylesheet_directory_uri() . "/timthumb.php?src=". get_avatar_url(get_avatar( $user_id, 150 )) ."&w=". $width ."&h=". $height ."&zc=1&a=c&f=2";
-    return $custom;
+function get_avatar_url($get_avatar){
+    preg_match("/src='(.*?)'/i", $get_avatar, $matches);
+    return $matches[1];
 }
 
 function cd_timthumbit( $image, $width, $height ) {
@@ -234,52 +250,102 @@ function cd_timthumbit( $image, $width, $height ) {
 	return $output;
 }
 
-function cd_first_timer() {
-	if (!isset( $_COOKIE['create_denton_first_timer'] ) ) {
-	    setcookie( 'create_denton_first_timer', 'no' );
-	    get_template_part( 'first-timer' );
-	    exit();
-	}
-}
-
 function cd_choose_avatar( $user_id ) {
+
+	// Make sure the user can edit this user
+	if ( !current_user_can( 'edit_user', $user_id ) )
+		return false;
 	
-	$user_meta		= get_user_meta( $user_id );
-	$first_name		= $user_meta['first_name'][0];
-	
-	if ( $user_meta['avatar'][0] = 'facebook' ) {
-		cd_get_facebook_avatar_url( $user_id );
-	} elseif ( $user_meta['avatar'][0] = 'twitter' ) {
-		cd_get_twitter_avatar_url( $user_id );
-	} else {
-		cd_get_gravatar_url( $user_id );
+	$user = get_user_by( 'id', $user_id );
+	$hash = md5( strtolower( trim( $user->user_email ) ) );
+
+	$avatar_local		= get_user_meta( $user_id, 'avatar', true );
+	$avatar_social		= get_user_meta( $user_id, 'oa_social_login_user_thumbnail', true );
+	$avatar_gravatar	= 'http://www.gravatar.com/avatar/'. $hash;
+
+	if( !empty( $avatar_local ) ) {
+		echo '<img id="avatar-local" src="'. cd_timthumbit( $avatar_local, 150, 150 ) .'" class="pull-right" width="50">';
 	}
-	
+	if( !empty( $avatar_social ) ) {
+		echo '<img id="avatar-social" src="'. cd_timthumbit( $avatar_social, 150, 150 ) .'" class="pull-right" width="50">';
+	}
+	if( !empty( $avatar_gravatar ) ) {
+		echo '<img id="avatar-gravatar" src="'. cd_timthumbit( $avatar_gravatar, 150, 150 ) .'" class="pull-right" width="50">';
+	}
 }
 
-add_filter('gform_field_value_user_firstname', create_function("", '$value = populate_usermeta(\'first_name\'); return $value;' ));
-add_filter('gform_field_value_user_lastname', create_function("", '$value = populate_usermeta(\'last_name\'); return $value;' ));
-add_filter('gform_field_value_user_email', create_function("", '$value = populate_usermeta(\'user_email\'); return $value;' ));
 
-// this function is called by both filters and returns the requested user meta of the current user
-function populate_usermeta($meta_key){
-    global $current_user;
-    return $current_user->__get($meta_key);
-}
-
-function cd_real_avatar( $user_id ) {
-	$avatar = get_user_meta( $user_id, 'oa_social_login_user_thumbnail', true );
-	if ( strpos( $avatar, 'facebook' ) !== false) {
-		$output = $avatar .'&type=large';
-	} elseif ( strpos( $avatar, 'twitter' ) !== false) {
-		$output = $avatar .'&type=large';
-	} elseif ( strpos( $avatar, 'google' ) !== false) {
-		$output = $avatar .'&type=large';
-	} elseif ( strpos( $avatar, 'linkedin' ) !== false) {
-		$output = $avatar .'&type=large';
-	} else {
-		$output = $avatar;
+function cd_get_avatar( $user_id ) {
+	$avatar = get_user_meta( $user_id, 'avatar', true );
+	$user = get_user_by( 'id', $user_id );
+	$hash = md5( strtolower( trim( $user->user_email ) ) );
+		
+	if( $avatar == 'avatar_social'){
+		$image = get_user_meta( $user_id, 'oa_social_login_user_thumbnail', true );
 	}
+	if( $avatar == 'avatar_gravatar'){
+		$image = 'http://www.gravatar.com/avatar/'. $hash .'?s=150';
+	}
+	if( $avatar == 'avatar_local'){
+		$image = get_user_meta( $user_id, 'avatar', true );
+	}
+	
+	$output = cd_timthumbit( $image, 150, 150 );
 	
 	return $output;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+add_action( 'plugins_loaded', 'jwsf_gform_filters' );
+function jwsf_gform_filters() {
+	if ( ! is_admin() )
+		add_filter( 'gform_field_content', 'jwsf_form_choices', 1, 5 );
+}
+
+function jwsf_form_choices( $content, $field, $value, $lead_id, $form_id ) {
+	
+	/* Check to make sure we're loading the right form 
+	   Change the "2" to the ID of the form you're modifying */
+	if ( 2 !== (int) $form_id )
+		return $content;
+	
+	/* Check to make sure this is the field we want to filter
+	   Change the "11" to the appropriate field ID */
+	if ( 11 !== (int) $field['id'] )
+		return $content;
+	
+	/* Retrieve a list of the options that were already selected */
+	global $wpdb;
+	$tablename = $wpdb->prefix . 'rg_lead_detail';
+	/* Change the "2" to the ID of your form
+	   Change the "3" to the ID of the field */
+	$values = $wpdb->get_col( $wpdb->prepare( "SELECT value FROM $tablename WHERE form_id=%d AND field_number=%d ORDER BY lead_id", 3, 11 ) );
+	
+	/* Loop through all of the options available in this field
+	   If that choice has already been chosen by someone else, 
+	   add a "readonly" and "disabled" attribute to the input, 
+	   and make the label strikethrough */
+	foreach ( $field['choices'] as $k => $f ) {
+		if ( ! in_array( $f['value'], $values ) )
+			continue;
+		
+		$content = str_replace( array( "value='{$f['value']}'", "for='choice_{$field['id']}_$k'" ), array( "readonly disabled value='{$f['value']}'", "style='text-decoration: line-through' 'choice_{$field['id']}_$k'" ), $content );
+	}
+	
+	/* Return the filtered content of the form field */
+	return $content;
 }

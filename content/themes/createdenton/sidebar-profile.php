@@ -13,8 +13,12 @@
 if ( is_active_sidebar( 'profile' ) ) : ?>
 
 	<div id="sidebar-profile">
+		
+		<ul class="unstyled">
 
 		<?php dynamic_sidebar( 'profile' ); ?>
+		
+		</ul>
 
 	</div><!-- #sidebar-profile -->
 
