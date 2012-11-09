@@ -15,6 +15,8 @@ foreach( $randomize_users as $user ) {
 
 	$username = strtolower( $user_info->user_login );
 	$username = preg_replace("![^a-z0-9]+!i", "-", $username );
+	
+	echo get_user_meta( $user->ID, 'avatar', true );
 		
 	if ( !cd_is_valid_user( $user->ID ) ) continue; ?>
 	

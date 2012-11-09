@@ -258,10 +258,13 @@ function cd_choose_avatar( $user_id ) {
 	
 	$user = get_user_by( 'id', $user_id );
 	$hash = md5( strtolower( trim( $user->user_email ) ) );
+	
+	$default = urlencode('http://createdenton.local/content/themes/createdenton/uploads/avatars/car_sales_blog_21.jpg');
 
 	$avatar_local		= get_user_meta( $user_id, 'avatar', true );
 	$avatar_social		= get_user_meta( $user_id, 'oa_social_login_user_thumbnail', true );
-	$avatar_gravatar	= 'http://www.gravatar.com/avatar/'. $hash;
+	$avatar_gravatar	= 'http://www.gravatar.com/avatar/'. $hash .'?s=200&r=pg&d=404';
+	$check_gravatar		= file_get_contents($avatar_gravatar);
 
 	if( !empty( $avatar_local ) ) {
 		echo '<img id="avatar-local" src="'. cd_timthumbit( $avatar_local, 150, 150 ) .'" class="pull-right" width="50">';
@@ -269,14 +272,14 @@ function cd_choose_avatar( $user_id ) {
 	if( !empty( $avatar_social ) ) {
 		echo '<img id="avatar-social" src="'. cd_timthumbit( $avatar_social, 150, 150 ) .'" class="pull-right" width="50">';
 	}
-	if( !empty( $avatar_gravatar ) ) {
+	if( !empty( $check_gravatar ) ) {
 		echo '<img id="avatar-gravatar" src="'. cd_timthumbit( $avatar_gravatar, 150, 150 ) .'" class="pull-right" width="50">';
 	}
 }
 
 
 function cd_get_avatar( $user_id ) {
-	$avatar = get_user_meta( $user_id, 'avatar', true );
+	$avatar = get_user_meta( $user_id, 'avatar_type', true );
 	$user = get_user_by( 'id', $user_id );
 	$hash = md5( strtolower( trim( $user->user_email ) ) );
 		
@@ -286,7 +289,7 @@ function cd_get_avatar( $user_id ) {
 	if( $avatar == 'avatar_gravatar'){
 		$image = 'http://www.gravatar.com/avatar/'. $hash .'?s=150';
 	}
-	if( $avatar == 'avatar_local'){
+	if( $avatar == 'avatar_local' || 'avatar_upload' ){
 		$image = get_user_meta( $user_id, 'avatar', true );
 	}
 	
@@ -294,3 +297,26 @@ function cd_get_avatar( $user_id ) {
 	
 	return $output;
 }
+
+add_filter("gform_upload_path", "change_upload_path", 10, 2);
+function change_upload_path($path_info, $form_id){
+   $path_info["path"] = get_stylesheet_directory() .'/uploads/avatars/';
+   $path_info["url"] = get_stylesheet_directory_uri() .'/uploads/avatars/';
+   return $path_info;
+}
+
+
+add_filter("gform_post_data", "cd_update_avatar", 10, 3);
+function cd_update_avatar($post_data, $form, $entry){
+	global $current_user;
+	//only change post type on form id 2
+	if($form["id"] != 2)
+		return $post_data;
+	
+	$file = $entry["10"];
+	
+	update_user_meta( $current_user->ID, 'avatar', $file );
+	
+	return $post_data;
+}
+?>

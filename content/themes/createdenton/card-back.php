@@ -58,7 +58,7 @@ if( $users ) {
 
 						<div class="modal-body">
 							
-							<?php echo get_avatar( $user->ID, 150 ); ?>
+							<img src="<?php echo cd_get_avatar( $user->ID ); ?>" class="avatar thumbnail pull-right" height="150" width="150" alt="<?php echo get_user_meta( $user->ID, 'first_name', true ); ?> <?php echo get_user_meta( $user->ID, 'last_name', true ); ?>">
 
 							<?php if( $user_website || $user_twitter || $user_email || $user_phone ) { ?>
 							<section class="note">
@@ -110,7 +110,7 @@ if( $users ) {
 			
 			<div id="contact-<?php echo $user->ID; ?>" class="reveal-modal <?php echo $user_type; ?>">
 				<div class="modal-header">
-					<?php echo get_avatar( $user->ID, 30 ); ?>
+					<img src="<?php echo cd_get_avatar( $user->ID ); ?>" class="avatar pull-left" height="30" width="30" alt="<?php echo get_user_meta( $user->ID, 'first_name', true ); ?> <?php echo get_user_meta( $user->ID, 'last_name', true ); ?>">
 					<h3>Email <?php echo $user_first_name; ?></h3>
 				</div>
 				<div class="modal-body">

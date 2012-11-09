@@ -13,7 +13,7 @@ get_header(); ?>
 
 			<?php global $current_user; if ( !cd_is_valid_user( $current_user->ID ) ) { ?>
 			<div class="row-fluid">
-				<div class="alert alert-warning span12">Your profile is not public because it's missing <strong><?php echo cd_user_errors( $current_user->ID  ); ?></strong>. Please <a href="#edit-profile" data-toggle="modal">edit your profile</a>.</div>
+				<div class="alert alert-warning span12">Your profile is not public because it's missing <strong><?php echo cd_user_errors( $current_user->ID  ); ?></strong>. Please <a href="#" data-reveal-id="edit-profile" data-animation="fade" data-animationSpeed="12000">edit your profile</a>.</div>
 			</div>
 			<?php } ?>
 		
