@@ -75,6 +75,8 @@ if ( defined( 'WP_LOCAL_DEV' ) && WP_LOCAL_DEV == false ) { ?>
  
 					<ul class="nav nav-collapse collapse pull-right">
 
+						<li class="menu-item highlight"><a href="#" data-reveal-id="feedback" data-animation="fade" data-animationSpeed="12000">Feedback</a></li>
+
 						<li class="menu-item"><a href="#" data-reveal-id="about" data-animation="fade" data-animationSpeed="12000">About</a></li>
 
 						<?php if( is_user_logged_in() ): ?>

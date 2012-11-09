@@ -92,6 +92,15 @@ strong {
     font-weight: 400;
 }
 
+.navbar .nav > li.highlight > a {
+    background: #DF6E1E;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 11px;
+    padding: 3px 5px;
+    margin: 7px 0 0;
+    text-transform: uppercase;
+}
 
 #site-navigation {
 	margin: 0;

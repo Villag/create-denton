@@ -183,13 +183,13 @@ global $current_user;
 	
 </div><!-- .modal -->
 
-<div class="reveal-modal" id="contact-user" >
+<div class="reveal-modal" id="feedback" >
 	
 	<div class="modal-header">
 		
 		<a class="close-reveal-modal">×</a>
 		
-		<h3>Contact User</h3>
+		<h3>Feedback</h3>
 		
 	</div>
 	
@@ -199,7 +199,7 @@ global $current_user;
 			
 			<div class="span12">
 	
-			<?php echo do_shortcode('[gravityform id=4 title=false description=false]'); ?>			
+			<?php echo do_shortcode('[gravityform id=5 title=false description=false ajax=true]'); ?>			
 				
 			</div>
 			
