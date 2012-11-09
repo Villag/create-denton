@@ -27,9 +27,9 @@ global $current_user;
 				});
 					
 				if(avatar_local.length > 0) {
-					$('input[value="avatar_local"]').next().prepend(avatar_local);
+					$('input[value="avatar_upload"]').next().prepend(avatar_local);
 				} else {
-					$('input[value="avatar_local"]').parent().hide();
+					$('input[value="avatar_upload"]').parent().hide();
 				}
 						
 				if(avatar_social.length > 0) {

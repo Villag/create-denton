@@ -344,8 +344,7 @@ figure {
 }
 
 .item.current-user {
-    background: none;
-    border: 1px dashed #444;
+    border: 1px dashed #ccc;
 }
 
 .h3 {

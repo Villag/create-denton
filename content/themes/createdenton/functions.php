@@ -272,7 +272,7 @@ function cd_choose_avatar( $user_id ) {
 	if( !empty( $avatar_social ) ) {
 		echo '<img id="avatar-social" src="'. cd_timthumbit( $avatar_social, 150, 150 ) .'" class="pull-right" width="50">';
 	}
-	if( !empty( $check_gravatar ) ) {
+	if( !empty( $avatar_gravatar ) ) {
 		echo '<img id="avatar-gravatar" src="'. cd_timthumbit( $avatar_gravatar, 150, 150 ) .'" class="pull-right" width="50">';
 	}
 }
@@ -289,7 +289,7 @@ function cd_get_avatar( $user_id ) {
 	if( $avatar == 'avatar_gravatar'){
 		$image = 'http://www.gravatar.com/avatar/'. $hash .'?s=150';
 	}
-	if( $avatar == 'avatar_local' || 'avatar_upload' ){
+	if( $avatar == 'avatar_upload' ){
 		$image = get_user_meta( $user_id, 'avatar', true );
 	}
 	
