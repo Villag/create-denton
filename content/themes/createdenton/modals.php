@@ -84,13 +84,11 @@ global $current_user;
 				display: none;
 			}
 		</style>	
-		<!--<img src="<?php echo get_avatar_url( get_avatar( $current_user->ID, 150 ) ); ?>" class="pull-right thumbnail">-->
 		
 		<?php cd_choose_avatar( $current_user->ID ); ?>
 
 		<?php get_sidebar( 'profile' ); ?>
 
-		<?php //echo do_shortcode( '[gravityform id="2" name="Profile" title="false" ajax="true"]' ); ?>
 	</div>
 	<a class="close-reveal-modal">×</a>
 </div>
