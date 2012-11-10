@@ -199,7 +199,7 @@ global $current_user;
 			
 			<div class="span12">
 	
-			<?php echo do_shortcode('[gravityform name="Feedback" title=false description=false ajax=true]'); ?>			
+			<?php echo do_shortcode('[gravityform name="Feedback" title=false description=true ajax=true]'); ?>			
 				
 			</div>
 			
