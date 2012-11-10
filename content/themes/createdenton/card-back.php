@@ -112,7 +112,7 @@ if( $users ) {
 					<h3>Email <?php echo $user_first_name; ?></h3>
 				</div>
 				<div class="modal-body">
-					<?php gravity_form( 4, false, true, false, array('to_email' => antispambot( $user_email ) ), true ); ?>
+					<?php gravity_form( 'Contact User', false, true, false, array('to_email' => antispambot( $user_email ) ), true ); ?>
 				</div>
 			</div>
 

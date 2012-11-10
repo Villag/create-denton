@@ -142,7 +142,7 @@ global $current_user;
 			</div>
 			
 			<div class="span6">
-				<?php echo do_shortcode('[gravityform id=1 title=false description=false]'); ?>			
+				<?php echo do_shortcode('[gravityform name="Sign Up" title=false description=false]'); ?>			
 			</div>
 			
 		</div><!-- .row-fluid -->
@@ -199,7 +199,7 @@ global $current_user;
 			
 			<div class="span12">
 	
-			<?php echo do_shortcode('[gravityform id=5 title=false description=false ajax=true]'); ?>			
+			<?php echo do_shortcode('[gravityform name="Feedback" title=false description=false ajax=true]'); ?>			
 				
 			</div>
 			
