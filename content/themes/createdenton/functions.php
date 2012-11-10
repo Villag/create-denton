@@ -262,6 +262,8 @@ function cd_choose_avatar( $user_id ) {
 	if( isset( $avatar_gravatar ) ) {
 		if( cd_is_404( $avatar_gravatar ) ){
 			$check_gravatar		= file_get_contents($avatar_gravatar);
+		} else {
+			unset( $avatar_gravatar );
 		}
 	}
 
@@ -277,7 +279,7 @@ function cd_choose_avatar( $user_id ) {
 }
 
 function cd_get_avatar( $user_id ) {
-	$avatar = get_user_meta( $user_id, 'user_avatar_type', true );
+	$avatar = get_user_meta( $user_id, 'avatar_type', true );
 	$user = get_user_by( 'id', $user_id );
 	$hash = md5( strtolower( trim( $user->user_email ) ) );
 		
