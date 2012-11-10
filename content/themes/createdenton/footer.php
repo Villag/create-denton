@@ -11,16 +11,7 @@
  */
 ?>
 	</div><!-- #main .wrapper -->
-	<footer id="colophon" role="contentinfo">
-		<div class="site-info">
-			<?php do_action( 'twentytwelve_credits' ); ?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
 </div><!-- #page -->
-
-<?php if( is_user_logged_in() ): ?>
-
-<?php endif; ?>
 
 <?php get_template_part( 'modals' ); // Load modals.php ?>
 
