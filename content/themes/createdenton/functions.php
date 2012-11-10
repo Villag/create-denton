@@ -22,9 +22,6 @@ function cd_theme_setup() {
 	add_theme_support( 'hybrid-core-seo' );
 	add_theme_support( 'hybrid-core-template-hierarchy' );
 	add_theme_support( 'hybrid-core-deprecated' );
-	
-	// Check user for IP and display launch screen if not listed
-	//add_action( 'template_redirect', 'cd_launch_check', 11 );
 
 	// Load our JS and CSS files
 	add_action( 'wp_enqueue_scripts', 'cd_load_scripts', 11 );
@@ -37,12 +34,6 @@ function cd_theme_setup() {
 	
 	// Update avatar in user meta via Gravity Forms
 	add_filter("gform_post_data", "cd_update_avatar", 10, 3);
-	
-	// Populate forms with user data
-	//add_filter( 'gform_field_value_user_firstname',	create_function("", '$value = populate_usermeta(\'first_name\'); return $value;' ));
-	//add_filter( 'gform_field_value_user_lastname',	create_function("", '$value = populate_usermeta(\'last_name\'); return $value;' ));
-	//add_filter( 'gform_field_value_user_email',		create_function("", '$value = populate_usermeta(\'user_email\'); return $value;' ));
-	//add_filter( 'gform_field_value_user_phone',		create_function("", '$value = populate_usermeta(\'user_phone\'); return $value;' ));
 
 	// Register profile sidebar
 	register_sidebar(array(
@@ -160,33 +151,11 @@ function cd_clean_username( $user_id ) {
 	return $output;
 }
 
-/**
- * Use the launch template if the user is not local (on MAMP)
- * or if the user is not on given IP addresses.
- */
-function cd_launch_check() {
-	
-	// If this is not local dev, show the launch page
-	if ( defined( 'WP_LOCAL_DEV' ) && WP_LOCAL_DEV == false ) {
-		include ( STYLESHEETPATH . '/page-template-launch.php' );
-		exit;
-	}
-
-}
-
 // this function is called by both filters and returns the requested user meta of the current user
 function populate_usermeta($meta_key){
     global $current_user;
     return $current_user->__get($meta_key);
 }
-
-
-
-
-
-
-
-
 
 function cd_get_oneall_user( $user_id, $attribute = '' ) {
 
@@ -284,7 +253,6 @@ function cd_choose_avatar( $user_id ) {
 	}
 }
 
-
 function cd_get_avatar( $user_id ) {
 	$avatar = get_user_meta( $user_id, 'user_avatar_type', true );
 	$user = get_user_by( 'id', $user_id );
@@ -305,14 +273,11 @@ function cd_get_avatar( $user_id ) {
 	return $output;
 }
 
-
 function change_upload_path($path_info, $form_id){
    $path_info["path"] = get_stylesheet_directory() .'/uploads/avatars/';
    $path_info["url"] = get_stylesheet_directory_uri() .'/uploads/avatars/';
    return $path_info;
 }
-
-
 
 function cd_update_avatar($post_data, $form, $entry){
 	global $current_user;
@@ -326,4 +291,3 @@ function cd_update_avatar($post_data, $form, $entry){
 	
 	return $post_data;
 }
-?>

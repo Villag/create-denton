@@ -19,7 +19,6 @@ if( $users ) {
 		$user_primary_job		= get_user_meta( $user->ID, 'user_primary_job', true );
 		$user_first_name		= get_user_meta( $user->ID, 'first_name', true );
 		$user_last_name			= get_user_meta( $user->ID, 'last_name', true );
-		$user_last_name			= get_user_meta( $user->ID, 'last_name', true );
 		$user_email				= $user->user_email;
 		$user_website			= get_user_meta( $user->ID, 'user_website', true );
 		$user_description		= $user_info->user_description;
