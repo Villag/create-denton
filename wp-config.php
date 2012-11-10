@@ -11,6 +11,8 @@ if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) {
 	define( 'DB_USER',		'devdal1_crea8iv' );
 	define( 'DB_PASSWORD',	'_J,{glf1_)OF' );
 	define( 'DB_HOST',		'localhost' );
+
+	define( 'DOMAIN_CURRENT_SITE', 'createdenton.com' );
 }
 
 // ========================
@@ -18,6 +20,16 @@ if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) {
 // ========================
 define( 'WP_CONTENT_DIR', dirname( __FILE__ ) . '/content' );
 define( 'WP_CONTENT_URL', 'http://' . $_SERVER['HTTP_HOST'] . '/content' );
+
+// =========
+// Multisite
+// =========
+define( 'WP_ALLOW_MULTISITE', true );
+define( 'MULTISITE', true );
+define( 'SUBDOMAIN_INSTALL', false);
+define( 'PATH_CURRENT_SITE', '/' );
+define( 'SITE_ID_CURRENT_SITE', 1 );
+define( 'BLOG_ID_CURRENT_SITE', 1 );
 
 // ================================================
 // You almost certainly do not want to change these
