@@ -222,29 +222,27 @@ function cd_get_oneall_user( $user_id, $attribute = '' ) {
 	$result = curl_exec($ch);
 		
 	$data = json_decode($result);
-	
+		
 	$output = '';
 	
-	if( !empty( $data->response->result ) ){
+	if( isset( $data->response->result ) ){
 	
 		if( $attribute == '' ){
-			$output = $data->response->result->data->user->identities;
+			$output = isset( $data->response->result->data->user->identities );
 		}
 		
-		if( $attribute == 'thumbnail' ) {
+		if( $attribute == 'thumbnail' && isset( $data->response->result->data->user->identities->identity[0]->thumbnailUrl ) ) {
 			$output = $data->response->result->data->user->identities->identity[0]->thumbnailUrl;
 		}
 	
-		if( $attribute == 'picture' ) {
+		if( $attribute == 'picture' && isset( $data->response->result->data->user->identities->identity[0]->pictureUrl ) ) {
 			$output = $data->response->result->data->user->identities->identity[0]->pictureUrl;
 		}	
 		
 	} else {
 		$output = get_avatar_url( get_avatar( $user_id, 150 ) );
 	}
-	
-	$output = cd_timthumbit( $output, 150, 150 );
-	
+		
 	return $output;
 	
 }
@@ -269,19 +267,20 @@ function cd_choose_avatar( $user_id ) {
 	$hash = md5( strtolower( trim( $user->user_email ) ) );
 	
 	$avatar_local		= get_user_meta( $user_id, 'avatar', true );
-	$avatar_social		= get_user_meta( $user_id, 'oa_social_login_user_thumbnail', true );
+	//$avatar_social		= get_user_meta( $user_id, 'oa_social_login_user_thumbnail', true );
+	$avatar_social		= cd_get_oneall_user( $user_id, 'thumbnail' );
 	$avatar_gravatar	= 'http://www.gravatar.com/avatar/'. $hash .'?s=200&r=pg&d=404';
 	if( isset( $avatar_gravatar ) )
 		$check_gravatar		= file_get_contents($avatar_gravatar);
 
 	if( !empty( $avatar_local ) ) {
-		echo '<img id="avatar-local" src="'. cd_timthumbit( $avatar_local, 150, 150 ) .'" class="pull-right" width="50">';
+		echo '<img id="avatar-local" src="'. cd_timthumbit( $avatar_local, 150, 150 ) .'" class="pull-right" width="100">';
 	}
 	if( !empty( $avatar_social ) ) {
-		echo '<img id="avatar-social" src="'. cd_timthumbit( $avatar_social, 150, 150 ) .'" class="pull-right" width="50">';
+		echo '<img id="avatar-social" src="'. cd_timthumbit( $avatar_social, 150, 150 ) .'" class="pull-right" width="100">';
 	}
 	if( !empty( $avatar_gravatar ) ) {
-		echo '<img id="avatar-gravatar" src="'. cd_timthumbit( $avatar_gravatar, 150, 150 ) .'" class="pull-right" width="50">';
+		echo '<img id="avatar-gravatar" src="'. cd_timthumbit( $avatar_gravatar, 150, 150 ) .'" class="pull-right" width="100">';
 	}
 }
 
@@ -292,7 +291,7 @@ function cd_get_avatar( $user_id ) {
 	$hash = md5( strtolower( trim( $user->user_email ) ) );
 		
 	if( $avatar == 'avatar_social'){
-		$image = get_user_meta( $user_id, 'oa_social_login_user_thumbnail', true );
+		$image = cd_get_oneall_user( $user_id, 'picture' );
 	}
 	if( $avatar == 'avatar_gravatar'){
 		$image = 'http://www.gravatar.com/avatar/'. $hash .'?s=150';

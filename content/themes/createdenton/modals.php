@@ -9,7 +9,7 @@ global $current_user;
 		<h3 id="edit-profile-label">Edit Profile</h3>
 	</div>
 	<div class="modal-body">
-		
+
 		<script type="text/javascript">
 			jQuery(document).ready(function($) {
 				var avatar_local = $('#avatar-local');
@@ -47,12 +47,12 @@ global $current_user;
 			});
 		</script>	
 		<style>
-			.gform_wrapper li.gfield.gf_list_4col ul.gfield_radio li {
+			.gform_wrapper li.gfield.gf_list_3col ul.gfield_radio li {
 				font-size: 12px;
 				line-height: 14px;
 				margin: 0 1% 0 0 !important;
 				padding: 4px !important;
-				width: 22% !important;
+				width: 30% !important;
 			}
 			.gform_wrapper li.gfield.gf_list_4col ul.gfield_radio li label {
 				margin: 0;

@@ -10,7 +10,7 @@ if( $users ) {
 		$all_meta_for_user = get_user_meta( $user->ID ); // TODO: Explain what this gets
 		$curauth = $wp_query->get_queried_object(); // TODO: Explain what this gets
 		
-		$user_type = strtolower( get_user_meta( $user->ID, 'Primary Job', true ) ); // Converts the Primary Job output to lower case
+		$user_type = strtolower( get_user_meta( $user->ID, 'user_primary_job', true ) ); // Converts the Primary Job output to lower case
 		$user_type = preg_replace("![^a-z0-9]+!i", "-", $user_type ); // Converts spaces in the primary job to hyphens
 
 		$username = strtolower( $user_info->user_login );
