@@ -24,7 +24,7 @@ function cd_theme_setup() {
 	add_theme_support( 'hybrid-core-deprecated' );
 	
 	// Check user for IP and display launch screen if not listed
-	add_action( 'template_redirect', 'cd_launch_check', 11 );
+	//add_action( 'template_redirect', 'cd_launch_check', 11 );
 
 	// Load our JS and CSS files
 	add_action( 'wp_enqueue_scripts', 'cd_load_scripts', 11 );

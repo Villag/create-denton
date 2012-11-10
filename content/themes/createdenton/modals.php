@@ -209,5 +209,4 @@ global $current_user;
 	
 </div><!-- .modal -->
 
-
-<?php if( !is_page_template( 'page-template-launch.php' ) ){ get_template_part( 'card-back' ); } // Loads card-back.php ?>
+<?php get_template_part( 'card-back' ); // Loads card-back.php ?>
