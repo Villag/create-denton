@@ -29,19 +29,19 @@ global $current_user;
 				if(avatar_local.length > 0) {
 					$('input[value="avatar_upload"]').next().prepend(avatar_local);
 				} else {
-					$('input[value="avatar_upload"]').parent().hide();
+					// Don't hide the local version, even if one doesn't exist
 				}
 						
 				if(avatar_social.length > 0) {
 					$('input[value="avatar_social"]').next().prepend(avatar_social);
 				} else {
-					$('input[value="avatar_social"]').parent().hide();
+					$('input[value="avatar_social"]').parent('li').hide();
 				}
 				
 				if(avatar_gravatar.length > 0) {
 					$('input[value="avatar_gravatar"]').next().prepend(avatar_gravatar);
 				} else {
-					$('input[value="avatar_gravatar"]').parent().hide();
+					$('input[value="avatar_gravatar"]').parent('li').hide();
 				}
 				
 			});

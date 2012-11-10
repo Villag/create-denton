@@ -16,20 +16,19 @@ if( $users ) {
 		$username = strtolower( $user_info->user_login );
 		$username = preg_replace("![^a-z0-9]+!i", "-", $username );
 
-		$user_primary_job		= get_user_meta( $user->ID, 'Primary Job', true );
+		$user_primary_job		= get_user_meta( $user->ID, 'user_primary_job', true );
 		$user_first_name		= get_user_meta( $user->ID, 'first_name', true );
 		$user_last_name			= get_user_meta( $user->ID, 'last_name', true );
 		$user_last_name			= get_user_meta( $user->ID, 'last_name', true );
 		$user_email				= $user->user_email;
-		$user_website			= get_the_author_meta( 'user_url', $user->ID );
+		$user_website			= get_user_meta( $user->ID, 'user_website', true );
 		$user_description		= $user_info->user_description;
-		$user_phone				= get_user_meta( $user->ID, 'Phone', true );
-		$user_zip_code			= get_user_meta( $user->ID, 'Zip Code', true );
-		$user_twitter			= get_user_meta( $user->ID, 'Twitter Username', true );
-		$user_linkedin_url		= get_user_meta( $user->ID, 'LinkedIn URL', true );
-		$user_skills			= get_user_meta( $user->ID, 'Skills', false );
+		$user_phone				= get_user_meta( $user->ID, 'user_phone', true );
+		$user_zip_code			= get_user_meta( $user->ID, 'user_zip', true );
+		$user_twitter			= get_user_meta( $user->ID, 'user_twitter', true );
+		$user_linkedin_url		= get_user_meta( $user->ID, 'user_linkedin', true );
+		$user_skills			= get_user_meta( $user->ID, 'user_skills', false );
 
-		echo antispambot( $user->user_email );
 		// If the user isn't valid, skip them
 		if ( !cd_is_valid_user( $user->ID ) ) continue; ?>
 

@@ -32,10 +32,17 @@ function cd_theme_setup() {
 	// After user registration, login user
 	add_action( 'gform_user_registered', 'pi_gravity_registration_autologin', 10, 4 );
 	
+	// Change Gravity Forms upload path
+	add_filter("gform_upload_path", "change_upload_path", 10, 2);
+	
+	// Update avatar in user meta via Gravity Forms
+	add_filter("gform_post_data", "cd_update_avatar", 10, 3);
+	
 	// Populate forms with user data
-	add_filter( 'gform_field_value_user_firstname',	create_function("", '$value = populate_usermeta(\'first_name\'); return $value;' ));
-	add_filter( 'gform_field_value_user_lastname',	create_function("", '$value = populate_usermeta(\'last_name\'); return $value;' ));
-	add_filter( 'gform_field_value_user_email',		create_function("", '$value = populate_usermeta(\'user_email\'); return $value;' ));
+	//add_filter( 'gform_field_value_user_firstname',	create_function("", '$value = populate_usermeta(\'first_name\'); return $value;' ));
+	//add_filter( 'gform_field_value_user_lastname',	create_function("", '$value = populate_usermeta(\'last_name\'); return $value;' ));
+	//add_filter( 'gform_field_value_user_email',		create_function("", '$value = populate_usermeta(\'user_email\'); return $value;' ));
+	//add_filter( 'gform_field_value_user_phone',		create_function("", '$value = populate_usermeta(\'user_phone\'); return $value;' ));
 
 	// Register profile sidebar
 	register_sidebar(array(
@@ -64,8 +71,6 @@ function cd_load_scripts() {
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'isotope',			get_stylesheet_directory_uri() .'/js/jquery.isotope.min.js',		array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'foundation',		get_stylesheet_directory_uri() .'/js/foundation.min.js',			array( 'jquery' ), '1.0', true );
-	//wp_enqueue_script( 'infinite-scroll',	get_stylesheet_directory_uri() .'/js/jquery.infinite-scroll.min.js',array( 'jquery' ), '1.0', true );
-	//wp_enqueue_script( 'blur',			get_stylesheet_directory_uri() .'/js/blur.min.js',					array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'app',				get_stylesheet_directory_uri() .'/js/app.js',						array( 'jquery' ), '1.0', true );
 }
 
@@ -114,10 +119,11 @@ function cd_user_errors( $user_id ) {
 	$email			= $user_data->user_email;
 	
 	$user_meta		= get_user_meta( $user_id );
-	$first_name		= $user_meta['first_name'][0];
-	$last_name		= $user_meta['last_name'][0];
-	$primary_job	= $user_meta['Primary Job'][0];
-	$avatar			= $user_meta['avatar'][0];
+	$first_name		= isset( $user_meta['first_name'][0] );
+	$last_name		= isset( $user_meta['last_name'][0] );
+	$zip			= isset( $user_meta['user_zip'][0] );
+	$primary_job	= isset( $user_meta['user_primary_job'][0] );
+	$avatar			= isset( $user_meta['user_avatar_type'][0] );
 		
 	$errors = array();
 	
@@ -129,7 +135,10 @@ function cd_user_errors( $user_id ) {
 
 	if ( !$last_name )
 		$errors[] = ' last name';
-		
+
+	if ( !$zip )
+		$errors[] = ' zip code';
+			
 	if ( !$primary_job )
 		$errors[] = ' primary job';
 
@@ -259,12 +268,11 @@ function cd_choose_avatar( $user_id ) {
 	$user = get_user_by( 'id', $user_id );
 	$hash = md5( strtolower( trim( $user->user_email ) ) );
 	
-	$default = urlencode('http://createdenton.local/content/themes/createdenton/uploads/avatars/car_sales_blog_21.jpg');
-
 	$avatar_local		= get_user_meta( $user_id, 'avatar', true );
 	$avatar_social		= get_user_meta( $user_id, 'oa_social_login_user_thumbnail', true );
 	$avatar_gravatar	= 'http://www.gravatar.com/avatar/'. $hash .'?s=200&r=pg&d=404';
-	$check_gravatar		= file_get_contents($avatar_gravatar);
+	if( isset( $avatar_gravatar ) )
+		$check_gravatar		= file_get_contents($avatar_gravatar);
 
 	if( !empty( $avatar_local ) ) {
 		echo '<img id="avatar-local" src="'. cd_timthumbit( $avatar_local, 150, 150 ) .'" class="pull-right" width="50">';
@@ -279,7 +287,7 @@ function cd_choose_avatar( $user_id ) {
 
 
 function cd_get_avatar( $user_id ) {
-	$avatar = get_user_meta( $user_id, 'avatar_type', true );
+	$avatar = get_user_meta( $user_id, 'user_avatar_type', true );
 	$user = get_user_by( 'id', $user_id );
 	$hash = md5( strtolower( trim( $user->user_email ) ) );
 		
@@ -298,7 +306,7 @@ function cd_get_avatar( $user_id ) {
 	return $output;
 }
 
-add_filter("gform_upload_path", "change_upload_path", 10, 2);
+
 function change_upload_path($path_info, $form_id){
    $path_info["path"] = get_stylesheet_directory() .'/uploads/avatars/';
    $path_info["url"] = get_stylesheet_directory_uri() .'/uploads/avatars/';
@@ -306,10 +314,10 @@ function change_upload_path($path_info, $form_id){
 }
 
 
-add_filter("gform_post_data", "cd_update_avatar", 10, 3);
+
 function cd_update_avatar($post_data, $form, $entry){
 	global $current_user;
-	//only change post type on form id 2
+
 	if($form["id"] != 2)
 		return $post_data;
 	
