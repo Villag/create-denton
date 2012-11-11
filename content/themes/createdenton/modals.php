@@ -155,10 +155,8 @@ global $current_user;
 
 <div class="reveal-modal" id="about" >
 
-	<?php $page_id = 47; $page_data = get_page( $page_id ); ?>
-	
-	<?php //echo stc_get_connect_button('login'); ?>
-	
+	<?php $page_data = get_page_by_path('about'); ?>
+		
 	<div class="modal-header">
 		
 		<a class="close-reveal-modal">×</a>
