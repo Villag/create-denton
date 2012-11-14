@@ -61,7 +61,7 @@ if( $users ) {
 							<?php if( $user_website || $user_twitter || $user_email || $user_phone ) { ?>
 							<section class="note">
 								<header>
-										<h4></h4>Contact</h4>
+										<h4>Contact</h4>
 								</header>
 								<ul>
 									<?php if( $user_website ) { ?><li class="website"><a href="<?php echo $user_website; ?>" class="url" itemprop="url" rel="me self external"><?php echo $user_website; ?></a></li><?php } ?>
