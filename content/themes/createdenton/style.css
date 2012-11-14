@@ -359,7 +359,7 @@ figure {
 	color: inherit;
 }
 
-.reveal-modal .modal-body a:hover {
+.reveal-modal .modal-body section ul li a:hover {
 	text-decoration: none;
 }
 
