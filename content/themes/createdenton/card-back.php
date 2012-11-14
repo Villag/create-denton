@@ -60,7 +60,9 @@ if( $users ) {
 
 							<?php if( $user_website || $user_twitter || $user_email || $user_phone ) { ?>
 							<section class="note">
-								<header>Contact</header>
+								<header>
+										<h4></h4>Contact</h4>
+								</header>
 								<ul>
 									<?php if( $user_website ) { ?><li class="website"><a href="<?php echo $user_website; ?>" class="url" itemprop="url" rel="me self external"><?php echo $user_website; ?></a></li><?php } ?>
 									<?php if( $user_twitter ) { ?><li class="twitter"><a href="http://twitter.com/<?php echo $user_twitter; ?>">@<?php echo $user_twitter; ?></a></li><?php } ?>
@@ -81,14 +83,14 @@ if( $users ) {
 							<section title="Biography">
 								<?php if( $user_description ){ ?>
 								<header>
-									Biography
+									<h4>Biography</h4>
 								</header>
 								<p><?php echo $user_description; ?></p>
 								<?php } ?>
 								<?php
 								if( $user_skills ):
 									$user_skills = unserialize( $user_skills[0] );
-									echo '<section><header>Skills</skills>';
+									echo '<section><header><h4>Skills</h4></section>';
 									echo '<ul>';
 									foreach( $user_skills as $skill ) {
 										echo '<li>'. $skill .'</li>';
