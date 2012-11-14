@@ -273,6 +273,7 @@ figure {
 [data-filter=".programmer"],
 .reveal-modal.programmer .modal-body {
     border-color: rgba(220, 172, 79,1);
+    color: rgba(220, 172, 79,1);
 }
 
 .item.film-video,
@@ -341,6 +342,15 @@ figure {
 }
 [data-filter="*"] {
     border-color: #222;
+}
+
+.reveal-modal .modal-body section header, .reveal-modal .modal-body a:hover {
+	color: #333;
+	text-decoration: none;
+}
+
+.reveal-modal .modal-body a {
+	color: inherit;
 }
 
 .item.current-user {
@@ -554,7 +564,7 @@ body .gform_wrapper .gform_footer {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 .reveal-modal a {
-    color: #000;
+    color: inherit;
 }
 .reveal-modal .fn {
     display: inline-block;
@@ -634,6 +644,15 @@ button.close-reveal-modal {
     border-style: solid;
     border-width: 4px;
     min-height: auto;
+}
+
+.modal-body ul {
+	border-left: 4px solid #666;
+	padding-left: 15px;
+}
+
+.modal-body ul li {
+	list-style-type: none;
 }
 
 @media print {
