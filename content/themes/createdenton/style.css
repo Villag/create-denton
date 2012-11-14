@@ -249,6 +249,7 @@ figure {
 [data-filter=".illustrator"],
 .reveal-modal.illustrator .modal-body {
     border-color: rgba(56,146,77,1);
+    color: rgba(56,146,77,1);
 }
 
 .item.photographer,
@@ -261,6 +262,7 @@ figure {
 [data-filter=".photographer"],
 .reveal-modal.photographer .modal-body {
     border-color: rgba(166, 179, 89,1);
+    color: rgba(166, 179, 89,1);
 }
 
 .item.programmer,
@@ -286,6 +288,7 @@ figure {
 [data-filter=".film-video"],
 .reveal-modal.film-video .modal-body {
     border-color: rgba(212,105,54,1);
+    color: rgba(212,105,54,1);
 }
 
 .item.writer,
@@ -298,6 +301,7 @@ figure {
 [data-filter=".writer"],
 .reveal-modal.writer .modal-body {
     border-color: rgba(208, 61, 54,1);
+    color: rgba(208, 61, 54,1);
 }
 
 .item.web-designer,
@@ -310,6 +314,7 @@ figure {
 [data-filter=".web-designer"],
 .reveal-modal.web-designer .modal-body {
     border-color: rgba(49,111,112,1);
+    color: rgba(49,111,112,1);
 }
 
 .item.graphic-designer,
@@ -322,6 +327,7 @@ figure {
 [data-filter=".graphic-designer"],
 .reveal-modal.graphic-designer .modal-body {
     border-color: rgba(95,173,179,1);
+    color: rgba(95,173,179,1);
 }
 
 .item.other,
@@ -334,6 +340,7 @@ figure {
 [data-filter=".other"],
 .reveal-modal.other .modal-body {
     border-color: rgba(139,108,161,1);
+    color: rgba(139,108,161,1);
 }
 
 [data-filter="*"]:hover,
@@ -344,13 +351,16 @@ figure {
     border-color: #222;
 }
 
-.reveal-modal .modal-body section header, .reveal-modal .modal-body a:hover {
+.reveal-modal .modal-body section header {
 	color: #333;
-	text-decoration: none;
 }
 
 .reveal-modal .modal-body a {
 	color: inherit;
+}
+
+.reveal-modal .modal-body a:hover {
+	text-decoration: none;
 }
 
 .item.current-user {
