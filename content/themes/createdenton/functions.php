@@ -33,7 +33,7 @@ function cd_theme_setup() {
 	add_filter("gform_upload_path", "change_upload_path", 10, 2);
 	
 	// Update avatar in user meta via Gravity Forms
-	add_filter("gform_post_data", "cd_update_avatar", 10, 3);
+	add_action("gform_after_submission", "cd_update_avatar", 10, 2);
 
 	// Register profile sidebar
 	register_sidebar(array(
@@ -255,8 +255,7 @@ function cd_choose_avatar( $user_id ) {
 	$user = get_user_by( 'id', $user_id );
 	$hash = md5( strtolower( trim( $user->user_email ) ) );
 	
-	$avatar_local		= get_user_meta( $user_id, 'avatar', true );
-	//$avatar_social		= get_user_meta( $user_id, 'oa_social_login_user_thumbnail', true );
+	$avatar_local		= get_user_meta( $user_id, 'avatar_local', true );
 	$avatar_social		= cd_get_oneall_user( $user_id, 'thumbnail' );
 	$avatar_gravatar	= 'http://www.gravatar.com/avatar/'. $hash .'?s=200&r=pg&d=404';
 	if( isset( $avatar_gravatar ) ) {
@@ -279,19 +278,7 @@ function cd_choose_avatar( $user_id ) {
 }
 
 function cd_get_avatar( $user_id ) {
-	$avatar = get_user_meta( $user_id, 'avatar_type', true );
-	$user = get_user_by( 'id', $user_id );
-	$hash = md5( strtolower( trim( $user->user_email ) ) );
-		
-	if( $avatar == 'avatar_social'){
-		$image = cd_get_oneall_user( $user_id, 'picture' );
-	}
-	if( $avatar == 'avatar_gravatar'){
-		$image = 'http://www.gravatar.com/avatar/'. $hash .'?s=150';
-	}
-	if( $avatar == 'avatar_upload' ){
-		$image = get_user_meta( $user_id, 'avatar', true );
-	}
+	$image = get_user_meta( $user_id, 'avatar', true );
 	
 	$output = cd_timthumbit( $image, 150, 150 );
 	
@@ -304,15 +291,25 @@ function change_upload_path($path_info, $form_id){
    return $path_info;
 }
 
-function cd_update_avatar($post_data, $form, $entry){
+function cd_update_avatar($entry, $form){
 	global $current_user;
-
-	if($form["id"] != 2)
-		return $post_data;
+	$user = get_user_by( 'id', $current_user->ID );
+	$hash = md5( strtolower( trim( $user->user_email ) ) );
 	
-	$file = $entry["10"];
-	
-	update_user_meta( $current_user->ID, 'avatar', $file );
-	
-	return $post_data;
+	$avatar_type = $entry["11"];
+	update_user_meta( $current_user->ID, 'avatar_type', $entry["10"] );
+	error_log( $entry["11.2"] );
+	if( $avatar_type == 'avatar_social'){
+		update_user_meta( $current_user->ID, 'avatar', cd_get_oneall_user( $current_user->ID, 'picture' ) );
+	}
+	if( $avatar_type == 'avatar_gravatar'){
+		update_user_meta( $current_user->ID, 'avatar', 'http://www.gravatar.com/avatar/'. $hash .'?s=150' );
+	}
+	if( ( $avatar_type == 'avatar_upload' ) &! empty( $entry["10"] ) ){
+		update_user_meta( $current_user->ID, 'avatar', $entry["10"] );
+		update_user_meta( $current_user->ID, 'avatar_local', $entry["10"] );
+	} elseif( $avatar_type == 'avatar_upload' ) {
+		$previous_local = get_user_meta( $current_user->ID, 'avatar_local', true );
+		update_user_meta( $current_user->ID, 'avatar', $previous_local );
+	}
 }
