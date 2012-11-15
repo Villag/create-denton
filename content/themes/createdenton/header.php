@@ -37,6 +37,10 @@ if ( defined( 'WP_LOCAL_DEV' ) && WP_LOCAL_DEV == false ) { ?>
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 
+$(document).ready(function() {
+	$("body").iealert({ support: "ie9" });
+});
+
 </script>
 <?php } ?>
 </head>
