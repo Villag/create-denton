@@ -11,7 +11,7 @@
  */
 ?>
 
-<div id="ie-modal">
+<div id="ie-modal" class="modal">
 	<div class="reveal-modal" role="dialog" aria-hidden="true" tabindex="-1" id="edit-profile" aria-labelledby="edit-profile-label" data-width="760">
 		<div class="modal-header">
 			<a class="close-reveal-modal">×</a>
