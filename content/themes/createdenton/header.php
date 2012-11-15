@@ -38,7 +38,7 @@ if ( defined( 'WP_LOCAL_DEV' ) && WP_LOCAL_DEV == false ) { ?>
   })();
 
 $(document).ready(function() {
-	$("body").iealert({ support: "ie9" ,title: "Your browser is old!" ,text: "BTW, no version of IE is supported in any real functional way. If you are using IE, than maybe this site is not for you! I'm kidding....but no really, IE sucks and we don't support it. Smiley Face." });
+	$("body").iealert({ support: "ie9" ,title: "What? IE!" ,text: "This version of IE is not supported in any real functional way, support for IE9 <strong>MIGHT</strong> be on the way. If you are using IE, than maybe this site is not for you! I'm kidding....but no really, IE sucks and we don't support it. Smiley Face." });
 });
 
 </script>
