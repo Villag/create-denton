@@ -16,13 +16,6 @@
 <!--[if IE 7 ]><html class="ie ie7 no-js" <?php language_attributes(); ?>> <![endif]-->
 <!--[if IE 8 ]><html class="ie ie8 no-js" <?php language_attributes(); ?>> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" <?php language_attributes(); ?>> <!--<![endif]-->
-<!--[if lt IE 10]>
-	<script type="text/javascript">
-    	$(window).load(setTimeout(function(){
-        	$('#ie-modal').modal('show');
-  		},3000));
-    </script>
-<![endif]-->
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width" />
