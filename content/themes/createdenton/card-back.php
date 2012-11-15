@@ -65,7 +65,7 @@ if( $users ) {
 								</header>
 								<ul class="border-left">
 									<?php if( $user_website ) { ?><li class="website"><a href="<?php echo $user_website; ?>" class="url" itemprop="url" rel="me self external"><?php echo $user_website; ?></a></li><?php } ?>
-									<?php if( $user_twitter ) { ?><li class="twitter"><a href="http://twitter.com/<?php echo $user_twitter; ?>">@<?php echo $user_twitter; ?></a></li><?php } ?>
+									<?php if( $user_twitter ) { ?><li class="twitter"><a href="http://twitter.com/<?php echo $user_twitter; ?>"><i class="icon-twitter"></i> <?php echo $user_twitter; ?></a></li><?php } ?>
 									<?php if( $user_phone && is_user_logged_in() ) { ?>
 										<li class="tel"><abbr class="value" itemprop="tel" title="+1<?php echo $user_phone; ?>"><?php echo $user_phone; ?></abbr></li>
 									<?php } elseif( !$user_phone && !is_user_logged_in() ) { ?>
