@@ -298,7 +298,7 @@ function cd_update_avatar($entry, $form){
 	
 	$avatar_type = $entry["11"];
 	update_user_meta( $current_user->ID, 'avatar_type', $entry["10"] );
-	error_log( $entry["11.2"] );
+
 	if( $avatar_type == 'avatar_social'){
 		update_user_meta( $current_user->ID, 'avatar', cd_get_oneall_user( $current_user->ID, 'picture' ) );
 	}
