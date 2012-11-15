@@ -247,7 +247,8 @@ figure {
 }
 .item.illustrator,
 [data-filter=".illustrator"],
-.reveal-modal.illustrator .modal-body {
+.reveal-modal.illustrator .modal-body,
+.reveal-modal.illustrator .modal-body a {
     border-color: rgba(56,146,77,1);
     color: rgba(56,146,77,1);
 }
@@ -260,7 +261,8 @@ figure {
 }
 .item.photographer,
 [data-filter=".photographer"],
-.reveal-modal.photographer .modal-body {
+.reveal-modal.photographer .modal-body,
+.reveal-modal.photographer .modal-body a {
     border-color: rgba(166, 179, 89,1);
     color: rgba(166, 179, 89,1);
 }
@@ -273,7 +275,8 @@ figure {
 }
 .item.programmer,
 [data-filter=".programmer"],
-.reveal-modal.programmer .modal-body {
+.reveal-modal.programmer .modal-body,
+.reveal-modal.programmer .modal-body a {
     border-color: rgba(220, 172, 79,1);
     color: rgba(220, 172, 79,1);
 }
@@ -286,7 +289,8 @@ figure {
 }
 .item.film-video,
 [data-filter=".film-video"],
-.reveal-modal.film-video .modal-body {
+.reveal-modal.film-video .modal-body,
+.reveal-modal.film-video .modal-body a {
     border-color: rgba(212,105,54,1);
     color: rgba(212,105,54,1);
 }
@@ -299,7 +303,8 @@ figure {
 }
 .item.writer,
 [data-filter=".writer"],
-.reveal-modal.writer .modal-body {
+.reveal-modal.writer .modal-body,
+.reveal-modal.writer .modal-body a {
     border-color: rgba(208, 61, 54,1);
     color: rgba(208, 61, 54,1);
 }
@@ -312,7 +317,8 @@ figure {
 }
 .item.web-designer,
 [data-filter=".web-designer"],
-.reveal-modal.web-designer .modal-body {
+.reveal-modal.web-designer .modal-body,
+.reveal-modal.web-designer .modal-body a {
     border-color: rgba(49,111,112,1);
     color: rgba(49,111,112,1);
 }
@@ -325,7 +331,8 @@ figure {
 }
 .item.graphic-designer,
 [data-filter=".graphic-designer"],
-.reveal-modal.graphic-designer .modal-body {
+.reveal-modal.graphic-designer .modal-body,
+.reveal-modal.graphic-designer .modal-body a {
     border-color: rgba(95,173,179,1);
     color: rgba(95,173,179,1);
 }
@@ -338,7 +345,8 @@ figure {
 }
 .item.other,
 [data-filter=".other"],
-.reveal-modal.other .modal-body {
+.reveal-modal.other .modal-body,
+.reveal-modal.other .modal-body a {
     border-color: rgba(139,108,161,1);
     color: rgba(139,108,161,1);
 }
