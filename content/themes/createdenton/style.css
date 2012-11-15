@@ -260,14 +260,14 @@ figure {
 .photographer .modal-header,
 [data-filter=".photographer"]:hover,
 [data-filter=".photographer"].selected {
-    background-color: rgba(166, 179, 89,1);
+    background-color: rgba(95,173,179,1);
 }
 .item.photographer,
 [data-filter=".photographer"],
 .reveal-modal.photographer .modal-body,
 .reveal-modal.photographer .modal-body a {
-    border-color: rgba(166, 179, 89,1);
-    color: rgba(166, 179, 89,1);
+    border-color: rgba(95,173,179,1);
+    color: rgba(95,173,179,1);
 }
 
 .item.programmer,
@@ -330,14 +330,14 @@ figure {
 .graphic-designer .modal-header,
 [data-filter=".graphic-designer"]:hover,
 [data-filter=".graphic-designer"].selected {
-    background-color: rgba(95,173,179,1);
+    background-color: rgba(166, 179, 89,1);
 }
 .item.graphic-designer,
 [data-filter=".graphic-designer"],
 .reveal-modal.graphic-designer .modal-body,
 .reveal-modal.graphic-designer .modal-body a {
-    border-color: rgba(95,173,179,1);
-    color: rgba(95,173,179,1);
+    border-color: rgba(166, 179, 89,1);
+    color: rgba(166, 179, 89,1);
 }
 
 .item.other,
