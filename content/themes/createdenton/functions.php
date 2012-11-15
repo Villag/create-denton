@@ -48,13 +48,10 @@ function cd_theme_setup() {
  * order and location within templates.
  */
 function cd_load_scripts() {
-
-	// Dequeue scripts/styles loaded by the parent theme
-	wp_dequeue_script( 'twentytwelve-navigation' );
-	wp_dequeue_style( 'twentytwelve-fonts' );
 	
 	// Queue CSS
 	wp_enqueue_style( 'style',				get_stylesheet_directory_uri() .'/style.css' );
+	wp_enqueue_style( 'iealertstyle',		get_stylesheet_directory_uri() .'/library/iealert/style.css' );
 	
 	// Queue JS
 	// Load Modernizr into the HEAD, before any other scripts
@@ -62,6 +59,7 @@ function cd_load_scripts() {
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'isotope',			get_stylesheet_directory_uri() .'/js/jquery.isotope.min.js',		array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'foundation',		get_stylesheet_directory_uri() .'/js/foundation.min.js',			array( 'jquery' ), '1.0', true );
+	wp_enqueue_script( 'iealert',			get_stylesheet_directory_uri() .'/js/iealert.min.js',				array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'app',				get_stylesheet_directory_uri() .'/js/app.js',						array( 'jquery' ), '1.0', true );
 }
 
