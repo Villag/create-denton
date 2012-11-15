@@ -363,8 +363,8 @@ figure {
 	color: #333;
 }
 
-.reveal-modal .modal-body a {
-	color: inherit;
+.reveal-modal .modal-body a:hover {
+	opacity: 0.7;
 }
 
 .reveal-modal .modal-body section ul li a:hover {
