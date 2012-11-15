@@ -656,7 +656,7 @@ button.close-reveal-modal {
     min-height: auto;
 }
 
-.modal-body ul {
+.modal-body ul.border-left {
 	border-left: 4px solid #666;
 	padding-left: 15px;
 }
