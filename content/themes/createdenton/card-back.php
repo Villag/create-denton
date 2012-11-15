@@ -91,7 +91,7 @@ if( $users ) {
 								if( $user_skills ):
 									$user_skills = unserialize( $user_skills[0] );
 									echo '<section><header><h4>Skills</h4></section>';
-									echo '<ul>';
+									echo '<ul class="border-left">';
 									foreach( $user_skills as $skill ) {
 										echo '<li>'. $skill .'</li>';
 									}
