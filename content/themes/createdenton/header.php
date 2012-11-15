@@ -54,7 +54,6 @@ if ( defined( 'WP_LOCAL_DEV' ) && WP_LOCAL_DEV == false ) { ?>
 						<li id="filter" class="dropdown">
 	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filter <b class="caret"></b></a>
                         	<ul class="option-set dropdown-menu" data-option-key="filter">
-								<li data-filter=".illustrator">		<a href="#filter">Illustrator</a></li>
 						        <li data-filter=".photographer">	<a href="#filter">Photographer</a></li>
 						        <li data-filter=".programmer">		<a href="#filter">Programmer</a></li>
 						        <li data-filter=".film-video">		<a href="#filter">Film/Video</a></li>

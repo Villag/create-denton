@@ -27,7 +27,7 @@ if( $users ) {
 		$user_twitter			= get_user_meta( $user->ID, 'user_twitter', true );
 		$user_linkedin_url		= get_user_meta( $user->ID, 'user_linkedin', true );
 		$user_skills			= get_user_meta( $user->ID, 'user_skills', false );
-
+		
 		// If the user isn't valid, skip them
 		if ( !cd_is_valid_user( $user->ID ) ) continue; ?>
 
