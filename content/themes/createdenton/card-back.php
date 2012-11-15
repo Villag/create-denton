@@ -63,7 +63,7 @@ if( $users ) {
 								<header>
 										<h4>Contact</h4>
 								</header>
-								<ul>
+								<ul class="border-left">
 									<?php if( $user_website ) { ?><li class="website"><a href="<?php echo $user_website; ?>" class="url" itemprop="url" rel="me self external"><?php echo $user_website; ?></a></li><?php } ?>
 									<?php if( $user_twitter ) { ?><li class="twitter"><a href="http://twitter.com/<?php echo $user_twitter; ?>">@<?php echo $user_twitter; ?></a></li><?php } ?>
 									<?php if( $user_phone && is_user_logged_in() ) { ?>
