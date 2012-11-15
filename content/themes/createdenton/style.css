@@ -198,6 +198,9 @@ figure {
     position: absolute;
     width: 100%;
 }
+.icon-twitter {
+	background: url('images/icon-twitter.png') 0 0;
+}
 
 #sidebar {
     background: none;
