@@ -9,7 +9,7 @@ jQuery(document).ready(function($) {
 	// When an anchor is clicked, add its ID as a hash to the URL
 	$('a').click(function() {
 		var hash = $(this).data('reveal-id');
-		if( hash != null ) {
+		if (hash != null) {
 			window.location.hash = hash;
 		}
 	});
@@ -47,6 +47,22 @@ jQuery(document).ready(function($) {
 				}
 			});
 			event.preventDefault();
+		});
+
+		$container.infinitescroll({
+			debug			: true,
+			navSelector		: '#page_nav',
+			nextSelector	: '#page_nav .next',
+			itemSelector	: '.item',
+			extraScrollPx	: 500,
+			loading: {
+				finishedMsg		: 'No more people.',
+				img				: 'http://s.imgur.com/images/album_loader.gif',
+				msgText			: 'Creating more people.',
+			}
+		},
+		function(newElements) {
+			$container.isotope('appended', $(newElements));
 		});
 
 	});

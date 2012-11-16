@@ -22,13 +22,9 @@ get_header(); ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 				
 			<div class="row-fluid">
-
-				<ul id="the-creatives">
 								
 					<?php get_template_part( 'card-front' ); // Loads card-front.php ?>
-					
-				</ul><!-- #the-creatives -->
-							
+												
 			</div><!-- .row-fluid -->
 						
 			<?php endwhile; // end of the loop. ?>
