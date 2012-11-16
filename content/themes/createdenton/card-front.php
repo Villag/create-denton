@@ -72,7 +72,7 @@
 						<span class="given-name"><?php echo $author_info->first_name; ?></span>
 						<span class="family-name"><?php echo $author_info->last_name; ?></span>
 					</span> <!--/ .fn -->
-					<div class="primary-job"><?php echo $author_info->user_primary_joba; ?></div>
+					<div class="primary-job"><?php echo $author_info->user_primary_job; ?></div>
 				</header> <!--/ .n -->
 			
 			</a><!-- .card -->
