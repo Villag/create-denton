@@ -113,7 +113,7 @@ function cd_user_errors( $user_id ) {
 	$last_name		= isset( $user_meta['last_name'][0] );
 	$zip			= isset( $user_meta['user_zip'][0] );
 	$primary_job	= isset( $user_meta['user_primary_job'][0] );
-	$avatar			= isset( $user_meta['avatar_type'][0] );
+	$avatar			= isset( $user_meta['avatar_type'][0] ) && isset( $user_meta['avatar'][0] );
 		
 	$errors = array();
 	
@@ -132,7 +132,7 @@ function cd_user_errors( $user_id ) {
 	if ( !$primary_job )
 		$errors[] = ' primary job';
 
-	if ( !$avatar )
+	if ( !$avatar || !cd_is_404( $avatar ) )
 		$errors[] = ' avatar';
 			
 	$output = implode( ',', $errors );
