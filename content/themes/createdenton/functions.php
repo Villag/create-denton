@@ -22,6 +22,7 @@ function cd_theme_setup() {
 	add_theme_support( 'hybrid-core-seo' );
 	add_theme_support( 'hybrid-core-template-hierarchy' );
 	add_theme_support( 'hybrid-core-deprecated' );
+	add_theme_support( 'get-the-image' );
 
 	// Load our JS and CSS files
 	add_action( 'wp_enqueue_scripts', 'cd_load_scripts', 11 );

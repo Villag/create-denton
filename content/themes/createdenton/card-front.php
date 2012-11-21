@@ -1,5 +1,11 @@
 <?php
 
+global $post;
+$events = tribe_get_events(array(
+'eventDisplay'=>'all',
+'posts_per_page'=>-1
+));
+//print_r( $events );
 
 	/*
 	 * We start by doing a query to retrieve all users
@@ -47,39 +53,90 @@
 	$wp_user_query = new WP_User_Query($args);
 	
 	// Get the results
-	$contributors = $wp_user_query->get_results();
+	$users = $wp_user_query->get_results();
+	
+	$cards = array_merge( $events, $users );
 	
 	// check to see if we have users
-	if (!empty($contributors)) {
+	if (!empty($cards)) {
 		global $current_user;
-		
+
 	    echo '<ul id="the-creatives">';
 	    // loop trough each author
-	    foreach ($contributors as $author) {
-	    	if ( !cd_is_valid_user( $author->ID ) ) continue;
-	        $author_info = get_userdata($author->ID);
-			$user_type = strtolower( get_user_meta( $author_info->ID, 'user_primary_job', true ) ); // Converts the Primary Job output to lower case
-			$user_type = preg_replace("![^a-z0-9]+!i", "-", $user_type ); // Converts spaces in the primary job to hyphens
-		?>
-	
-		<li class="item vcard person <?php echo $user_type; if( $current_user->ID == $author_info->ID ) echo ' current-user'; ?>">
-			<a class="card" href="#" data-reveal-id="<?php echo $author_info->ID; ?>" data-animation="fade" data-animationSpeed="12000">
+	    foreach ($cards as $card) {
+
+			$object_type = get_class($card);
 			
-				<img src="<?php echo cd_get_avatar($author_info->ID); ?>" class="avatar" height="150" width="150" alt="<?php echo $author_info->first_name; ?> <?php echo $author_info->last_name; ?>">
+			if( $object_type == 'WP_Post' ):
 				
-				<header class="n brief" title="Name">
-					<span class="fn" itemprop="name">
-						<span class="given-name"><?php echo $author_info->first_name; ?></span>
-						<span class="family-name"><?php echo $author_info->last_name; ?></span>
-					</span> <!--/ .fn -->
-					<div class="primary-job"><?php echo $author_info->user_primary_job; ?></div>
-				</header> <!--/ .n -->
-			
-			</a><!-- .card -->
-		
-		</li><!-- .card -->
+				setup_postdata($card);				
+				?>
+				
+				<div class="item hcard event">
+					<a class="card" href="#" data-reveal-id="event-<?php echo $card->ID; ?>" data-animation="fade" data-animationSpeed="12000">
+
+						<?php echo get_the_image( array( 'image_scan' => true) ); ?>
+											
+						<header class="brief">
+							<span class="event-title">
+								<?php echo $card->post_title; ?>
+							</span><!-- .event-title -->
+							<div class="date"><?php echo tribe_get_start_date( $card->ID, true, 'M j, Y' ); ?></div>
+						</header><!-- .brief -->
+					
+					</a><!-- .card -->					
+				</div>
+
+				<div id="event-<?php echo $card->ID; ?>" class="reveal-modal" role="dialog" aria-labelledby="modal-event-label" aria-hidden="true" data-type="event">
 	
-		<?php
+					<div class="modal-header">
+						<a class="close-reveal-modal">&#215;</a>
+						<header class="n" title="Name">
+							<h3 class="fn" itemprop="name">
+								<?php echo $card->post_title; ?>
+							</h3>
+							<div class="date"><?php echo tribe_get_start_date( $card->ID, true, 'M j, Y' ); ?></div>
+						</header><!-- .n -->
+					</div><!-- .modal-header -->
+					
+					<div class="modal-body">
+						
+						<?php the_content(); ?>
+						
+					</div>
+	
+				</div><!-- .vcard -->						
+				<?php
+				
+			elseif( $object_type == 'WP_User' ):
+				
+		    	if ( !cd_is_valid_user( $card->ID ) ) continue;
+		        $author_info = get_userdata($card->ID);
+				$user_type = strtolower( get_user_meta( $author_info->ID, 'user_primary_job', true ) ); // Converts the Primary Job output to lower case
+				$user_type = preg_replace("![^a-z0-9]+!i", "-", $user_type ); // Converts spaces in the primary job to hyphens
+				?>
+		
+				<li class="item vcard person <?php echo $user_type; if( $current_user->ID == $author_info->ID ) echo ' current-user'; ?>">
+					<a class="card" href="#" data-reveal-id="<?php echo $author_info->ID; ?>" data-animation="fade" data-animationSpeed="12000">
+					
+						<img src="<?php echo cd_get_avatar($author_info->ID); ?>" class="avatar" height="150" width="150" alt="<?php echo $author_info->first_name; ?> <?php echo $author_info->last_name; ?>">
+						
+						<header class="n brief" title="Name">
+							<span class="fn" itemprop="name">
+								<span class="given-name"><?php echo $author_info->first_name; ?></span>
+								<span class="family-name"><?php echo $author_info->last_name; ?></span>
+							</span> <!--/ .fn -->
+							<div class="primary-job"><?php echo $author_info->user_primary_job; ?></div>
+						</header> <!--/ .n -->
+					
+					</a><!-- .card -->
+				
+				</li><!-- .card -->
+			
+			<?php
+			
+			endif;
+			
 		}
 		echo '</ul>';
 	} else {
