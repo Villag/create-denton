@@ -27,7 +27,7 @@
 	$page = isset($_GET['page']) ? $_GET['page'] : 1;
 	
 	// how many users to show per page
-	$users_per_page = 40;
+	$users_per_page = 999999;
 	
 	// calculate the total number of pages.
 	$total_pages = 1;
