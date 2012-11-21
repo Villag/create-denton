@@ -73,7 +73,7 @@ $events = tribe_get_events(array(
 				?>
 				
 				<div class="item hcard event">
-					<a class="card" href="#" data-reveal-id="event-<?php echo $card->ID; ?>" data-animation="fade" data-animationSpeed="12000">
+					<a class="card" href="#" data-reveal-id="event-<?php echo $card->post_name; ?>" data-animation="fade" data-animationSpeed="12000">
 
 						<?php echo get_the_image( array( 'image_scan' => true) ); ?>
 											
@@ -87,7 +87,7 @@ $events = tribe_get_events(array(
 					</a><!-- .card -->					
 				</div>
 
-				<div id="event-<?php echo $card->ID; ?>" class="reveal-modal" role="dialog" aria-labelledby="modal-event-label" aria-hidden="true" data-type="event">
+				<div id="event-<?php echo $card->post_name; ?>" class="reveal-modal" role="dialog" aria-labelledby="modal-event-label" aria-hidden="true" data-type="event">
 	
 					<div class="modal-header">
 						<a class="close-reveal-modal">&#215;</a>
@@ -95,7 +95,7 @@ $events = tribe_get_events(array(
 							<h3 class="fn" itemprop="name">
 								<?php echo $card->post_title; ?>
 							</h3>
-							<div class="date"><?php echo tribe_get_start_date( $card->ID, true, 'M j, Y' ); ?></div>
+							<div class="date"><?php echo tribe_get_start_date( $card->ID, true, 'M j, Y' ); ?> - <?php echo tribe_get_end_date( $card->ID, true, 'M j, Y' ); ?></div>
 						</header><!-- .n -->
 					</div><!-- .modal-header -->
 					
