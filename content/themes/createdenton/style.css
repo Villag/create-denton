@@ -166,8 +166,8 @@ figure {
     width: 330px;
 }
 .item.event {
-	background: #000;
-	border-color: #000;
+	background: #222;
+	border-color: #222;
 }
 .item .card {
     overflow: hidden;

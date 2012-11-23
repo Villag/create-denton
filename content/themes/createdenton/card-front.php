@@ -56,6 +56,8 @@ $events = tribe_get_events(array(
 	$users = $wp_user_query->get_results();
 	
 	$cards = array_merge( $events, $users );
+	$cards = (array)$cards;
+	shuffle( $cards );	
 	
 	// check to see if we have users
 	if (!empty($cards)) {
@@ -114,6 +116,7 @@ $events = tribe_get_events(array(
 		        $author_info = get_userdata($card->ID);
 				$user_type = strtolower( get_user_meta( $author_info->ID, 'user_primary_job', true ) ); // Converts the Primary Job output to lower case
 				$user_type = preg_replace("![^a-z0-9]+!i", "-", $user_type ); // Converts spaces in the primary job to hyphens
+
 				?>
 		
 				<li class="item vcard person <?php echo $user_type; if( $current_user->ID == $author_info->ID ) echo ' current-user'; ?>">

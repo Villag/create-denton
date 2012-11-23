@@ -114,8 +114,12 @@ function cd_user_errors( $user_id ) {
 	$last_name		= isset( $user_meta['last_name'][0] );
 	$zip			= isset( $user_meta['user_zip'][0] );
 	$primary_job	= isset( $user_meta['user_primary_job'][0] );
-	$avatar			= isset( $user_meta['avatar_type'][0] ) && isset( $user_meta['avatar'][0] );
-		
+	$avatar_type	= isset( $user_meta['avatar_type'][0] );
+	if( isset( $user_meta['avatar'][0] ) )
+		$avatar		= cd_get_avatar( $user_id );
+	else
+		$avatar		= '';
+			
 	$errors = array();
 	
 	if ( $email == '' )
@@ -133,11 +137,14 @@ function cd_user_errors( $user_id ) {
 	if ( !$primary_job )
 		$errors[] = ' primary job';
 
-	if ( !$avatar || !cd_is_404( $avatar ) )
+	if ( !$avatar_type )
 		$errors[] = ' avatar';
-			
+
+	if ( cd_has_header_error( $avatar ) )
+		$errors[] = ' broken avatar';
+		
 	$output = implode( ',', $errors );
-	
+		
 	return $output;
 }
 
@@ -226,24 +233,14 @@ function cd_timthumbit( $image, $width, $height ) {
 	return $output;
 }
 
-function cd_is_404( $url ) {
-	$handle = curl_init($url);
-	curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
-	
-	/* Get the HTML or whatever is linked in $url. */
-	$response = curl_exec($handle);
-	
-	/* Check for 404 (file not found). */
-	$httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
-	if($httpCode == 404) {
-	    return false;
-	} else {
+function cd_has_header_error( $url = '' ) {
+
+	$file_headers = @get_headers( $url );
+	if ( strpos( $file_headers[0], '200' ) == false )
 		return true;
-	}
-	
-	curl_close($handle);
-	
-	/* Handle $response here. */
+
+	return false;
+
 }
 
 function cd_choose_avatar( $user_id ) {
@@ -259,7 +256,7 @@ function cd_choose_avatar( $user_id ) {
 	$avatar_social		= cd_get_oneall_user( $user_id, 'thumbnail' );
 	$avatar_gravatar	= 'http://www.gravatar.com/avatar/'. $hash .'?s=200&r=pg&d=404';
 	if( isset( $avatar_gravatar ) ) {
-		if( cd_is_404( $avatar_gravatar ) ){
+		if( cd_has_header_error( $avatar_gravatar ) ){
 			$check_gravatar		= file_get_contents($avatar_gravatar);
 		} else {
 			unset( $avatar_gravatar );
