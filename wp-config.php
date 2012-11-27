@@ -26,10 +26,11 @@ define( 'WP_CONTENT_URL', 'http://' . $_SERVER['HTTP_HOST'] . '/content' );
 // =========
 define( 'WP_ALLOW_MULTISITE', true );
 define( 'MULTISITE', true );
-define( 'SUBDOMAIN_INSTALL', false);
+define( 'SUBDOMAIN_INSTALL', false );
 define( 'PATH_CURRENT_SITE', '/' );
 define( 'SITE_ID_CURRENT_SITE', 1 );
 define( 'BLOG_ID_CURRENT_SITE', 1 );
+define( 'SUNRISE', true );
 
 // ================================================
 // You almost certainly do not want to change these
@@ -41,14 +42,14 @@ define( 'DB_COLLATE', '' );
 // Salts, for security
 // Grab these from: https://api.wordpress.org/secret-key/1.1/salt
 // ==============================================================
-define('AUTH_KEY',         'R!u 7&N-Wo/Vw3{E2)*N14I%St)+LjN:[!;dTT=Wmy;,$?7_Giwbn7aEwk4$,%Kc');
-define('SECURE_AUTH_KEY',  'W7?1J:E148+v/R[M3^L+|0|rD2jd!q6O|5#3)D!3KbrIw*UQFM;%<Jf9[Esd- z ');
-define('LOGGED_IN_KEY',    'I*XR-7|]#q*Z<ka`Try/@}Nmf?-ehF.Y5rJYO(re#,EM1KA~Wp[~ruyo ^rD~T2^');
-define('NONCE_KEY',        'H+1sW/}9tnm%4IDD`tWHKpLbb!<WGtC9>Q?.X%U[;|-+vans>[-V/t+y `ikI&~ ');
-define('AUTH_SALT',        'PS;F)Fw#V[+OfI|-~}|G9=2w0#_nPYQoBi:cO8DmPzK0.a+S0NW5eS8i&@SPy@vL');
-define('SECURE_AUTH_SALT', '9{WXeUp-co43UdGf1+TSjH;+W]OqF?~?-U*Lb&B-hIsg+mDpz|G;een2Jes-@x$i');
-define('LOGGED_IN_SALT',   'Lyqx^Iw&$RS4[Y-d q&F~zeXM1oz@u8FE~-}f+;H/G{|s*-TSGPS~+b _di8GZ6B');
-define('NONCE_SALT',       ',OUCM_6mUReC&n~`_>)hjK.6Rc<%!I~bYQ&r,b>T&[>-@t!0Ne}!=]ap1-X||}8U');
+define( 'AUTH_KEY',         'R!u 7&N-Wo/Vw3{E2)*N14I%St)+LjN:[!;dTT=Wmy;,$?7_Giwbn7aEwk4$,%Kc' );
+define( 'SECURE_AUTH_KEY',  'W7?1J:E148+v/R[M3^L+|0|rD2jd!q6O|5#3)D!3KbrIw*UQFM;%<Jf9[Esd- z ' );
+define( 'LOGGED_IN_KEY',    'I*XR-7|]#q*Z<ka`Try/@}Nmf?-ehF.Y5rJYO(re#,EM1KA~Wp[~ruyo ^rD~T2^' );
+define( 'NONCE_KEY',        'H+1sW/}9tnm%4IDD`tWHKpLbb!<WGtC9>Q?.X%U[;|-+vans>[-V/t+y `ikI&~ ' );
+define( 'AUTH_SALT',        'PS;F)Fw#V[+OfI|-~}|G9=2w0#_nPYQoBi:cO8DmPzK0.a+S0NW5eS8i&@SPy@vL' );
+define( 'SECURE_AUTH_SALT', '9{WXeUp-co43UdGf1+TSjH;+W]OqF?~?-U*Lb&B-hIsg+mDpz|G;een2Jes-@x$i' );
+define( 'LOGGED_IN_SALT',   'Lyqx^Iw&$RS4[Y-d q&F~zeXM1oz@u8FE~-}f+;H/G{|s*-TSGPS~+b _di8GZ6B' );
+define( 'NONCE_SALT',       ',OUCM_6mUReC&n~`_>)hjK.6Rc<%!I~bYQ&r,b>T&[>-@t!0Ne}!=]ap1-X||}8U' );
 
 // ==============================================================
 // Table prefix
