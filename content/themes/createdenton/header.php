@@ -49,9 +49,10 @@ $(document).ready(function() {
 	
 	<header id="masthead" class="site-header" role="banner">
 
-		<nav id="site-navigation" class="navbar navbar-inverse row-fluid" role="navigation">
+		<nav id="site-navigation" class="navbar navbar-inverse navbar-fixed-top row-fluid" role="navigation">
 			<div class="navbar-inner">
 				<h1 class="brand"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">Create <strong>Denton</strong></a></h1>
+				<label>beta!</label>
 				<div class="skip-link assistive-text"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'twentytwelve' ); ?>"><?php _e( 'Skip to content', 'twentytwelve' ); ?></a></div>
 				<div class="menu-primary-container">
 					

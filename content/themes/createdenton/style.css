@@ -83,7 +83,7 @@ strong {
 .navbar .brand {
     letter-spacing: 0;
     font-weight: 300;
-    margin: 0 20px 0 0;
+    margin: 0 0px 0 20px;
     padding: 0;
     text-transform: uppercase;
     word-spacing: -1px;
@@ -100,6 +100,14 @@ strong {
     padding: 3px 5px;
     margin: 7px 0 0;
     text-transform: uppercase;
+}
+
+.navbar-inner label {
+    margin: 0px 20px 0 0;
+    padding: 2px;
+    float: left;
+    line-height: 40px;
+    color: rgb(214, 1, 36);
 }
 
 #site-navigation {
@@ -578,6 +586,37 @@ body .gform_wrapper .gform_footer {
 	.menu-toggle {
 		display: none;
 	}
+}
+
+@media screen and (max-width: 480px) {
+    .navbar-inner label {
+        margin: 0px;
+    }
+    .navbar .brand {
+        margin: 0px;
+    }
+	.item {
+		height: 125px;
+		width: 250px;
+	}
+	#filters li {
+		display: inline-block;
+		width: 100%;
+		margin: 0 0 1px 0;
+	}
+	.reveal-modal#about, .reveal-modal.person {
+		width: 90%;
+		left: 5%;
+	}
+	.item.person .card .given-name {
+        font-size: 16px;
+    }
+    .item.person .card .family-name {
+        font-size: 12px;
+    }
+    .item.person .card .primary-job {
+        font-size: 12px;
+    }
 }
 
 @media screen and (min-width: 600px) {
