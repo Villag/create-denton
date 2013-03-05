@@ -51,6 +51,8 @@ function cd_theme_setup() {
 function cd_load_scripts() {
 	
 	// Queue CSS
+	wp_enqueue_style( 'bootstrap',			get_stylesheet_directory_uri() .'/css/bootstrap.min.css' );
+	wp_enqueue_style( 'responsive',			get_stylesheet_directory_uri() .'/css/bootstrap-responsive.min.css' );
 	wp_enqueue_style( 'style',				get_stylesheet_directory_uri() .'/style.css' );
 	wp_enqueue_style( 'iealertstyle',		get_stylesheet_directory_uri() .'/library/iealert/style.css' );
 	
@@ -58,6 +60,7 @@ function cd_load_scripts() {
 	// Load Modernizr into the HEAD, before any other scripts
 	wp_enqueue_script( 'modernizr',			get_stylesheet_directory_uri() .'/js/modernizr.2.5.3.min.js',		'', '1.0', false );
 	wp_enqueue_script( 'jquery' );
+	wp_enqueue_script( 'bootstrap',			get_stylesheet_directory_uri() .'/js/bootstrap.min.js',				array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'isotope',			get_stylesheet_directory_uri() .'/js/jquery.isotope.min.js',		array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'foundation',		get_stylesheet_directory_uri() .'/js/foundation.min.js',			array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'iealert',			get_stylesheet_directory_uri() .'/js/iealert.min.js',				array( 'jquery' ), '1.0', true );
