@@ -77,7 +77,7 @@ $(document).ready(function() {
 								<?php echo $current_user->user_login; ?> <b class="caret"></b></a>
 
 							<ul class="dropdown-menu">
-								<li class="menu-item">			<a href="#" data-animation="fade" data-animationSpeed="12000" data-reveal-id="edit-profile">Edit profile</a></li>
+								<li class="menu-item">			<a href="<?php echo home_url(); ?>/profile">Edit profile</a></li>
 								<li class="menu-item">			<a href="<?php echo wp_logout_url( get_home_url() ); ?>" title="Logout">Logout</a></li>
 								<li class="divider"></li>
 								<li class="menu-item">			<a href="#" data-animation="fade" data-animationSpeed="12000" data-reveal-id="about">About</a></li>
@@ -97,6 +97,7 @@ $(document).ready(function() {
 					</ul>
 					
 					<ul id="menu-primary" class="nav">
+						<?php if( is_front_page() ): ?>
 						<li id="filter">
                         	<ul id="filters" class="option-set" data-option-key="filter">
 						        <li data-filter=".graphic-designer"><a href="#filter">Graphic Designer</a></li>
@@ -109,6 +110,7 @@ $(document).ready(function() {
 						        <li data-filter="*" class="selected"><a href="#filter">Reset</a></li>
 	                        </ul>
 						</li>
+						<?php endif; ?>
 					</ul>
 				</div>
 			</div>

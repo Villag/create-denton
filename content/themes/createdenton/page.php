@@ -17,7 +17,7 @@ get_header(); ?>
 
 		<?php do_atomic( 'open_content' ); // Open content hook ?>
 
-		<div class="hfeed">
+		<div class="hfeed container">
 
 			<?php get_template_part( 'loop-meta' ); ?>
 
@@ -31,18 +31,12 @@ get_header(); ?>
 
 						<?php do_atomic( 'open_entry' ); // Open entry hook ?>
 
-						<?php echo apply_atomic_shortcode( 'entry_utility', '<div class="entry-utility">' . __( '[entry-popup-shortlink]', 'news' ) . '</div>' ); ?>
-
 						<?php echo apply_atomic_shortcode( 'entry_title', '[entry-title]' ); ?>
-
-						<?php echo apply_atomic_shortcode( 'byline', '<div class="byline">' . __( 'By [entry-author] on [entry-published] [entry-terms taxonomy="category" before=" in "] [entry-edit-link before=" | "]', 'news' ) . '</div>' ); ?>
-
+						
 						<div class="entry-content">
 							<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'news' ) ); ?>
 							<?php wp_link_pages( array( 'before' => '<p class="page-links">' . __( 'Pages:', 'news' ), 'after' => '</p>' ) ); ?>
 						</div><!-- .entry-content -->
-
-						<?php echo apply_atomic_shortcode( 'entry_meta', '<div class="entry-meta">' . __( '<span class="share">Share this on:</span> [entry-mixx-link] [entry-delicious-link] [entry-digg-link] [entry-facebook-link] [entry-twitter-link]', 'news' ) . '</div>' ); ?>
 
 						<?php do_atomic( 'close_entry' ); // Close entry hook ?>
 
@@ -55,6 +49,8 @@ get_header(); ?>
 			<?php endif; ?>
 
 		</div><!-- .hfeed -->
+		
+		<div class="hidden"><?php cd_choose_avatar( $current_user->ID ); ?></div>
 
 		<?php do_atomic( 'close_content' ); // Close content hook ?>
 
