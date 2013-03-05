@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Handle the callback
  */
@@ -42,28 +43,17 @@ function oa_social_login_callback ()
 					$user_identity_id = $identity->id;
 					$user_identity_provider = $identity->source->name;
 
+					//Thumbnail
+					$user_thumbnail = (!empty ($identity->thumbnailUrl)? trim ($identity->thumbnailUrl) : '');
+
+					//Picture
+					$user_picture = (!empty ($identity->pictureUrl) ? trim ($identity->pictureUrl): '');
+
 					//Firstname
-					if (!empty ($identity->name->givenName))
-					{
-						$user_first_name = $identity->name->givenName;
-					}
-					else
-					{
-						$user_first_name = '';
-					}
+					$user_first_name = (!empty ($identity->name->givenName) ? $identity->name->givenName : '');
 
 					//Lastname
-					if (!empty ($identity->name->familyName))
-					{
-						$user_last_name = $identity->name->familyName;
-					}
-					else
-					{
-						$user_last_name = '';
-					}
-
-					//Construct a full name from first and last names
-					$user_constructed_name = trim ($user_first_name . ' ' . $user_last_name);
+					$user_last_name = (!empty ($identity->name->familyName) ? $identity->name->familyName : '');
 
 					//Fullname
 					if (!empty ($identity->name->formatted))
@@ -76,28 +66,19 @@ function oa_social_login_callback ()
 					}
 					else
 					{
-						$user_full_name = $user_constructed_name;
+						$user_full_name = trim ($user_first_name . ' ' . $user_last_name);
 					}
 
-					//Email
+					// Email Address.
 					$user_email = '';
 					if (property_exists ($identity, 'emails') AND is_array ($identity->emails))
 					{
-						foreach ($identity->emails AS $email)
+						$user_email_is_verified = false;
+						while ($user_email_is_verified !== true AND (list (,$email) = each ($identity->emails)))
 						{
 							$user_email = $email->value;
 							$user_email_is_verified = ($email->is_verified == '1');
 						}
-					}
-
-					//Thumbnail
-					if (!empty ($identity->thumbnailUrl))
-					{
-						$user_thumbnail = trim ($identity->thumbnailUrl);
-					}
-					else
-					{
-						$user_thumbnail = '';
 					}
 
 					//User Website
@@ -135,7 +116,7 @@ function oa_social_login_callback ()
 					$user_login = sanitize_user ($user_login, true);
 
 					// Get user by token
-					$user_id = oa_social_login_get_user_by_token ($user_token);
+					$user_id = oa_social_login_get_userid_by_token ($user_token);
 
 					//Try to link to existing account
 					if (!is_numeric ($user_id))
@@ -160,7 +141,6 @@ function oa_social_login_callback ()
 
 										delete_metadata ('user', null, 'oa_social_login_user_token', $user_token, true);
 										update_user_meta ($user_id, 'oa_social_login_user_token', $user_token);
-										update_user_meta ($user_id, 'oa_social_login_identity_id', $user_identity_id);
 										update_user_meta ($user_id, 'oa_social_login_identity_provider', $user_identity_provider);
 
 										if (!empty ($user_thumbnail))
@@ -203,7 +183,7 @@ function oa_social_login_callback ()
 						$user_email = apply_filters ('oa_social_login_filter_new_user_email', $user_email);
 						if ($user_email === 'disallowed')
 						{
-							trigger_error (__('This Social Network account may not be used to register', 'oa_social_login'), E_USER_ERROR);
+							trigger_error (__ ('This Social Network account may not be used to register', 'oa_social_login'), E_USER_ERROR);
 						}
 
 						//Email must be unique
@@ -214,6 +194,9 @@ function oa_social_login_callback ()
 							$placeholder_email_used = true;
 						}
 
+						//Generate a new password
+						$user_password = wp_generate_password ();
+
 						//Build user data
 						$user_data = array (
 							'user_login' => $user_login,
@@ -222,7 +205,7 @@ function oa_social_login_callback ()
 							'first_name' => $user_first_name,
 							'last_name' => $user_last_name,
 							'user_url' => $user_website,
-							'user_pass' => wp_generate_password ()
+							'user_pass' => $user_password
 						);
 
 						// Create a new user
@@ -231,7 +214,6 @@ function oa_social_login_callback ()
 						{
 							delete_metadata ('user', null, 'oa_social_login_user_token', $user_token, true);
 							update_user_meta ($user_id, 'oa_social_login_user_token', $user_token);
-							update_user_meta ($user_id, 'oa_social_login_identity_id', $user_identity_id);
 							update_user_meta ($user_id, 'oa_social_login_identity_provider', $user_identity_provider);
 
 							//Store thumbnail
@@ -405,6 +387,16 @@ function oa_social_login_callback ()
 						if (!isset ($redirect_to) OR strlen (trim ($redirect_to)) == 0)
 						{
 							$redirect_to = home_url ();
+						}
+
+						// File redirect urls
+						if ($new_registration === true)
+						{
+							$redirect_to = apply_filters ('oa_social_login_filter_registration_redirect_url', $redirect_to, '', $user_data);
+						}
+						else
+						{
+							$redirect_to = apply_filters ('oa_social_login_filter_login_redirect_url', $redirect_to, '', $user_data);
 						}
 
 						//Use safe redirection

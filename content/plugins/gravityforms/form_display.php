@@ -571,9 +571,8 @@ class GFFormDisplay{
                     "function gformInitSpinner_{$form_id}(){" .
                         "jQuery('#gform_{$form_id}').submit(function(){" .
                             "if(jQuery('#gform_ajax_spinner_{$form_id}').length == 0){".
-                                "jQuery('#gform_submit_button_{$form_id}').attr('disabled', true).after('<' + 'img id=\"gform_ajax_spinner_{$form_id}\"  class=\"gform_ajax_spinner\" src=\"{$spinner_url}\" alt=\"\" />');" .
-                                "jQuery('#gform_wrapper_{$form_id} .gform_previous_button').attr('disabled', true); " .
-                                "jQuery('#gform_wrapper_{$form_id} .gform_next_button, #gform_wrapper_{$form_id} .gform_image_button').attr('disabled', true).after('<' + 'img id=\"gform_ajax_spinner_{$form_id}\"  class=\"gform_ajax_spinner\" src=\"{$spinner_url}\" alt=\"\" />');" .
+                                "jQuery('#gform_submit_button_{$form_id}, #gform_wrapper_{$form_id} .gform_previous_button, #gform_wrapper_{$form_id} .gform_next_button, #gform_wrapper_{$form_id} .gform_image_button').attr('disabled', true); " .
+                                "jQuery('#gform_submit_button_{$form_id}, #gform_wrapper_{$form_id} .gform_next_button, #gform_wrapper_{$form_id} .gform_image_button').after('<' + 'img id=\"gform_ajax_spinner_{$form_id}\"  class=\"gform_ajax_spinner\" src=\"{$spinner_url}\" alt=\"\" />'); " .
                             "}".
                         "} );" .
                     "}" .
@@ -815,6 +814,8 @@ class GFFormDisplay{
 
         }
 
+
+
         if(is_array($field["inputs"]))
         {
             foreach($field["inputs"] as $input){
@@ -886,6 +887,7 @@ class GFFormDisplay{
         //reading entry that was just saved
         $lead = RGFormsModel::get_lead($lead["id"]);
 
+        $lead = GFFormsModel::set_entry_meta($lead, $form);
         do_action('gform_entry_created', $lead, $form);
 
         //if Akismet plugin is installed, run lead through Akismet and mark it as Spam when appropriate
@@ -995,6 +997,8 @@ class GFFormDisplay{
 
     public static function validate(&$form, $field_values, $page_number=0, &$failed_validation_page=0){
 
+		$form = apply_filters('gform_pre_validation', $form);
+
         // validate form schedule
         if(self::validate_form_schedule($form))
             return false;
@@ -1006,10 +1010,14 @@ class GFFormDisplay{
         foreach($form["fields"] as &$field){
 
             //If a page number is specified, only validates fields that are on current page
-	        //always validate when field set to no duplicates
-	        if(($page_number > 0 && $field["pageNumber"] != $page_number) && $field["noDuplicates"] <> "1"){
+            $field_in_other_page = $page_number > 0 && $field["pageNumber"] != $page_number;
+
+            //validate fields with "no duplicate" functionality when they are present on pages before the current page.
+            $validate_duplicate_feature = $field["noDuplicates"] && $page_number > 0 && $field["pageNumber"] <= $page_number;
+
+            if($field_in_other_page && !$validate_duplicate_feature){
                 continue;
-			}
+            }
 
             //ignore validation if field is hidden or admin only
             if(RGFormsModel::is_field_hidden($form, $field, $field_values) || $field["adminOnly"])
@@ -2391,7 +2399,6 @@ class GFFormDisplay{
         }
 
     }
-
 }
 
 ?>

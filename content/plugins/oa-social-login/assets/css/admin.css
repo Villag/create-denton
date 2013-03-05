@@ -231,3 +231,11 @@
 .oa_social_login_provider.oa_social_login_provider_disqus {
   background-position: -964px -1px;
 }
+
+.oa_social_login_provider.oa_social_login_provider_youtube {
+  background-position: -1001px -1px;
+}
+
+.oa_social_login_provider.oa_social_login_provider_odnoklassniki {
+  background-position: -1038px -1px;
+}
