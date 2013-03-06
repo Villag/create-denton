@@ -1,7 +1,7 @@
 <?php
 
 // Get Events
-if( function_exists(tribe_get_events) ) {
+if( function_exists('tribe_get_events') ) {
 	global $post;
 	$events = tribe_get_events(array(
 		'eventDisplay'=>'all',
@@ -55,7 +55,7 @@ $wp_user_query = new WP_User_Query($args);
 $users = $wp_user_query->get_results();
 
 // Combine events and users, if there are events
-if( function_exists(tribe_get_events) ) {
+if( function_exists('tribe_get_events') ) {
 	$cards = array_merge( $events, $users );
 } else {
 	$cards = $users;
