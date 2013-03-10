@@ -1,3 +1,7 @@
+<?php
+global $current_user;
+get_currentuserinfo();
+?>
 			<?php get_sidebar( 'primary' ); // Loads the sidebar-primary.php template. ?>
 
 			<?php get_sidebar( 'secondary' ); // Loads the sidebar-secondary.php template. ?>

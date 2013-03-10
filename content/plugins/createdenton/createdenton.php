@@ -8,14 +8,14 @@
  * Author Email: patrick@developdaly.com
  */
 
-	// After user registration, login user
-	add_action( 'gform_user_registered', 'pi_gravity_registration_autologin', 10, 4 );
-	
-	// Change Gravity Forms upload path
-	add_filter("gform_upload_path", "change_upload_path", 10, 2);
-	
-	// Update avatar in user meta via Gravity Forms
-	add_action("gform_after_submission", "cd_update_avatar", 10, 2);
+// After user registration, login user
+add_action( 'gform_user_registered', 'pi_gravity_registration_autologin', 10, 4 );
+
+// Change Gravity Forms upload path
+add_filter("gform_upload_path", "change_upload_path", 10, 2);
+
+// Update avatar in user meta via Gravity Forms
+add_action("gform_after_submission", "cd_update_avatar", 10, 2);
 	
 /**
  * Auto login after registration.
