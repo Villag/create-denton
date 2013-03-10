@@ -16,6 +16,8 @@ add_filter("gform_upload_path", "change_upload_path", 10, 2);
 
 // Update avatar in user meta via Gravity Forms
 add_action("gform_after_submission", "cd_update_avatar", 10, 2);
+
+add_action( 'wp_footer', 'cd_first_timer' );
 	
 /**
  * Auto login after registration.

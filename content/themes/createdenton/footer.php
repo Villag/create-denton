@@ -19,7 +19,6 @@ get_currentuserinfo();
 	<div class="hidden"><?php cd_choose_avatar( $current_user->ID ); ?></div>
 	
 	<?php wp_footer(); ?>
-	<?php cd_first_timer(); ?>
 	
 	<script type="text/javascript">
 	  var uvOptions = {};
