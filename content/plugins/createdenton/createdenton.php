@@ -35,7 +35,8 @@ function pi_gravity_registration_autologin( $user_id, $user_config, $entry, $pas
 }
 
 function cd_first_timer() {
-	if (!isset( $_COOKIE['create_denton_first_timer'] ) ) {
+	$first_timer = $_COOKIE['create_denton_first_timer'];
+	if ( empty( $first_timer ) ) {
 	    setcookie( 'create_denton_first_timer', 'no' );
 	    get_template_part( 'first-timer' );
 	    exit();
