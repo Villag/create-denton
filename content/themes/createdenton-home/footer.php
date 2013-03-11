@@ -16,6 +16,5 @@
 <?php get_template_part( 'modals' ); // Load modals.php ?>
 
 <?php wp_footer(); ?>
-<?php cd_first_timer(); ?>
 </body>
 </html>
