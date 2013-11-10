@@ -128,7 +128,7 @@ if (!empty($cards)) {
 			<li class="item vcard person <?php echo $user_type; if( $current_user->ID == $author_info->ID ) echo ' current-user'; ?>">
 				<a class="card" href="#person-<?php echo $card->ID ?>" data-toggle="modal" >
 
-					<img src="<?php echo cd_get_avatar($author_info->ID); ?>" class="avatar" height="150" width="150" alt="<?php echo $author_info->first_name; ?> <?php echo $author_info->last_name; ?>">
+					<?php echo get_avatar( $author_info->ID, 150 ); ?>
 
 					<header class="n brief" title="Name">
 						<span class="fn" itemprop="name">

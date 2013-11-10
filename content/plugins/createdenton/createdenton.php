@@ -72,10 +72,11 @@ function cd_user_errors( $user_id ) {
 	$zip			= isset( $user_meta['user_zip'][0] );
 	$primary_job	= isset( $user_meta['user_primary_job'][0] );
 	$avatar_type	= isset( $user_meta['avatar_type'][0] );
-	if( isset( $user_meta['avatar'][0] ) )
-		$avatar		= cd_get_avatar( $user_id );
-	else
-		$avatar		= '';
+
+	//if( isset( $user_meta['avatar'][0] ) )
+	//	$avatar		= cd_get_avatar( $user_id );
+	//else
+	//	$avatar		= '';
 
 	$errors = array();
 
@@ -94,11 +95,11 @@ function cd_user_errors( $user_id ) {
 	if ( !$primary_job )
 		$errors[] = ' primary job';
 
-	if ( !$avatar_type )
-		$errors[] = ' avatar';
+	//if ( !$avatar_type )
+	//	$errors[] = ' avatar';
 
-	if ( cd_has_header_error( $avatar ) )
-		$errors[] = ' broken avatar';
+	//if ( cd_has_header_error( $avatar ) )
+	//	$errors[] = ' broken avatar';
 
 	$output = implode( ',', $errors );
 
@@ -185,11 +186,6 @@ function get_avatar_url($get_avatar){
     return $matches[1];
 }
 
-function cd_timthumbit( $image, $width, $height ) {
-	$output = get_stylesheet_directory_uri() . "/timthumb.php?src=". $image ."&w=". $width ."&h=". $height ."&zc=1&a=c&f=2";
-	return $output;
-}
-
 function cd_has_header_error( $url = '' ) {
 
 	$file_headers = @get_headers( $url );
@@ -198,72 +194,4 @@ function cd_has_header_error( $url = '' ) {
 
 	return false;
 
-}
-
-function cd_choose_avatar( $user_id ) {
-
-	// Make sure the user can edit this user
-	if ( !current_user_can( 'edit_user', $user_id ) )
-		return false;
-
-	$user = get_user_by( 'id', $user_id );
-	$hash = md5( strtolower( trim( $user->user_email ) ) );
-
-	$avatar_local		= get_user_meta( $user_id, 'avatar_local', true );
-	$avatar_social		= cd_get_oneall_user( $user_id, 'thumbnail' );
-	$avatar_gravatar	= 'http://www.gravatar.com/avatar/'. $hash .'?s=200&r=pg&d=404';
-	if( isset( $avatar_gravatar ) ) {
-		if( cd_has_header_error( $avatar_gravatar ) ){
-			$check_gravatar		= file_get_contents($avatar_gravatar);
-		} else {
-			unset( $avatar_gravatar );
-		}
-	}
-
-	if( !empty( $avatar_local ) ) {
-		echo '<img id="avatar-local" src="'. cd_timthumbit( $avatar_local, 150, 150 ) .'" class="pull-right" width="100">';
-	}
-	if( !empty( $avatar_social ) ) {
-		echo '<img id="avatar-social" src="'. cd_timthumbit( $avatar_social, 150, 150 ) .'" class="pull-right" width="100">';
-	}
-	if( !empty( $avatar_gravatar ) ) {
-		echo '<img id="avatar-gravatar" src="'. cd_timthumbit( $avatar_gravatar, 150, 150 ) .'" class="pull-right" width="100">';
-	}
-}
-
-function cd_get_avatar( $user_id ) {
-	$output = get_user_meta( $user_id, 'avatar', true );
-
-	//$output = cd_timthumbit( $image, 150, 150 );
-
-	return $output;
-}
-
-function change_upload_path($path_info, $form_id){
-   $path_info["path"] = get_stylesheet_directory() .'/uploads/avatars/';
-   $path_info["url"] = get_stylesheet_directory_uri() .'/uploads/avatars/';
-   return $path_info;
-}
-
-function cd_update_avatar($entry, $form){
-	global $current_user;
-	$user = get_user_by( 'id', $current_user->ID );
-	$hash = md5( strtolower( trim( $user->user_email ) ) );
-
-	$avatar_type = $entry["11"];
-	update_user_meta( $current_user->ID, 'avatar_type', $entry["10"] );
-
-	if( $avatar_type == 'avatar_social'){
-		update_user_meta( $current_user->ID, 'avatar', cd_get_oneall_user( $current_user->ID, 'picture' ) );
-	}
-	if( $avatar_type == 'avatar_gravatar'){
-		update_user_meta( $current_user->ID, 'avatar', 'http://www.gravatar.com/avatar/'. $hash .'?s=150' );
-	}
-	if( ( $avatar_type == 'avatar_upload' ) &! empty( $entry["10"] ) ){
-		update_user_meta( $current_user->ID, 'avatar', $entry["10"] );
-		update_user_meta( $current_user->ID, 'avatar_local', $entry["10"] );
-	} elseif( $avatar_type == 'avatar_upload' ) {
-		$previous_local = get_user_meta( $current_user->ID, 'avatar_local', true );
-		update_user_meta( $current_user->ID, 'avatar', $previous_local );
-	}
 }

@@ -40,7 +40,7 @@
 							?>
 
 							<a href="#" class="menu-item dropdown-toggle" data-toggle="dropdown">
-								<img src="<?php echo cd_get_avatar( $current_user->ID ); ?>" class="avatar pull-left" height="25" width="25" alt="<?php echo get_user_meta( $current_user->ID, 'first_name', true ); ?> <?php echo get_user_meta( $current_user->ID, 'last_name', true ); ?>">
+								<?php echo get_avatar( $current_user->ID, 25 ); ?>
 								<?php echo $current_user->user_login; ?> <b class="caret"></b></a>
 
 							<ul class="dropdown-menu">
