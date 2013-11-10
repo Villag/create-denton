@@ -34,7 +34,7 @@ Advanced topics on how to use the plugin API are [available on the Github projec
 The sole requirement is to use WordPress API and LESS convention: the `.less` extension.
 
 **Minimal Requirements**: PHP 5.2.4 and WordPress 3.2.
-**Relies on**: [LESSPHP 0.3.8](http://leafo.net/lessphp/), [plugin-toolkit](http://wordpress.org/extend/plugins/plugin-toolkit/).
+**Relies on**: [LESSPHP 0.4.0](http://leafo.net/lessphp/), [plugin-toolkit](http://wordpress.org/extend/plugins/plugin-toolkit/).
 
 *Notice*: in case you'd like to drop the usage of this plugin, it's safe to do it. You will just need to convert back your stylesheets to CSS.
 
@@ -50,13 +50,45 @@ The sole requirement is to use WordPress API and LESS convention: the `.less` ex
  1. Unzip it in your plugin folder (by default, `wp-content/plugins`)
  1. Activate it through your WordPress plugins administration page
 
+== Upgrade Notice ==
+
+= 1.6.0 =
+
+Warning: this release has some breaking changes. If you the old selector expression syntax (eg. Bootstrap 2.3) then it’s recommended to use 0.3.9.
+
+ * Add support for ; as argument delimiter
+ * Add support for passing arguments by name to mixin
+ * Remove old selector expression syntax ("hello")
+ * Remove ability to skip arguments by repeating delimiter
+ * Add built in functions: sin, cos, tan, asin, acos, atan, pow, pi, mod, sqrt, extract
+ * Fix bug where @arguments was not getting values from ...
+ * Selector interpolation works inside of brackets in selector
+ * Fix bug when resolving mixin that has same name as enclosing class
+ * Duplicate properties are now removed from output
+
 == Changelog ==
+
+= Version 1.6.0 =
+
+Read the UPGRADE NOTICE carefully as this release contains BC change. Hence the version bump to `1.6.0`.
+
+ * lessphp: updated to v0.4.0
+
+= Version 1.5.4 =
+
+ * bug: fixed stylesheet URL computation ([#38](https://github.com/oncletom/wp-less/issue/38))
+ * bug: fixed cache-hit miss after stylesheet garbage collection ([#40](https://github.com/oncletom/wp-less/issue/40))
+ * added a CONTRIBUTORS file
+
+= Version 1.5.3 =
+
+ * lessphp: updated to v0.3.9
 
 = Version 1.5.2 =
 
- * bug: fixed garbage collector bug (([#28](https://github.com/oncletom/wp-less/issue/28))
- * bug: fixed cachebusting URI generation in deep mode (([#29](https://github.com/oncletom/wp-less/issue/29))
- * bug: fixed access to Plugin instance, matching the documentation (([#20](https://github.com/oncletom/wp-less/issue/20))
+ * bug: fixed garbage collector bug ([#28](https://github.com/oncletom/wp-less/issue/28))
+ * bug: fixed cachebusting URI generation in deep mode ([#29](https://github.com/oncletom/wp-less/issue/29))
+ * bug: fixed access to Plugin instance, matching the documentation ([#20](https://github.com/oncletom/wp-less/issue/20))
 
 = Version 1.5.1 =
 

@@ -10,7 +10,7 @@ function oa_social_login_init ()
 	{
 		load_plugin_textdomain ('oa_social_login', false, OA_SOCIAL_LOGIN_BASE_PATH . '/languages/');
 	}
-	
+
 	//Callback Handler
 	oa_social_login_callback ();
 }
@@ -25,7 +25,7 @@ function oa_social_login_add_site_css ()
 	{
 		wp_register_style ('oa_social_login_site_css', OA_SOCIAL_LOGIN_PLUGIN_URL . "/assets/css/site.css");
 	}
-	
+
 	if (did_action ('wp_print_styles'))
 	{
 		wp_print_styles ('oa_social_login_site_css');
@@ -49,7 +49,7 @@ function oa_social_login_https_on ()
 			return true;
 		}
 	}
-	
+
 	if (!empty ($_SERVER ['HTTP_X_FORWARDED_PROTO']))
 	{
 		if (strtolower (trim ($_SERVER ['HTTP_X_FORWARDED_PROTO'])) == 'https')
@@ -57,7 +57,7 @@ function oa_social_login_https_on ()
 			return true;
 		}
 	}
-	
+
 	if (!empty ($_SERVER ['HTTPS']))
 	{
 		if (strtolower (trim ($_SERVER ['HTTPS'])) == 'on' OR trim ($_SERVER ['HTTPS']) == '1')
@@ -65,7 +65,7 @@ function oa_social_login_https_on ()
 			return true;
 		}
 	}
-	
+
 	return false;
 }
 
@@ -78,15 +78,15 @@ function oa_social_login_user_notification ($user_id, $user_identity_provider)
 	//Get the user details
 	$user = new WP_User ($user_id);
 	$user_login = stripslashes ($user->user_login);
-	
+
 	//The blogname option is escaped with esc_html on the way into the database
 	$blogname = wp_specialchars_decode (get_option ('blogname'), ENT_QUOTES);
-	
+
 	//Setup Message
 	$message = sprintf (__ ('New user registration on your site %s:', 'oa_social_login'), $blogname) . "\r\n\r\n";
 	$message .= sprintf (__ ('Username: %s', 'oa_social_login'), $user_login) . "\r\n\r\n";
 	$message .= sprintf (__ ('Social Network: %s', 'oa_social_login'), $user_identity_provider) . "\r\n";
-	
+
 	//Send Message
 	@wp_mail (get_option ('admin_email'), '[Social Login] ' . sprintf (__ ('[%s] New User Registration', 'oa_social_login'), $blogname), $message);
 }
@@ -102,24 +102,24 @@ function oa_social_login_get_current_url ()
 	$request_port = ((!empty ($_SERVER ['SERVER_PORT']) AND $_SERVER ['SERVER_PORT'] <> '80') ? (":" . $_SERVER ['SERVER_PORT']) : '');
 	$request_protocol = (oa_social_login_https_on () ? 'https' : 'http') . "://";
 	$redirect_to = $request_protocol . $_SERVER ['SERVER_NAME'] . $request_port . $request_uri;
-	
+
 	//Remove the oa_social_login_source argument
 	if (strpos ($redirect_to, 'oa_social_login_source') !== false)
 	{
 		//Break up url
 		list($url_part, $query_part) = array_pad (explode ('?', $redirect_to), 2, '');
 		parse_str ($query_part, $query_vars);
-		
+
 		//Remove oa_social_login_source argument
 		if (is_array ($query_vars) AND isset ($query_vars ['oa_social_login_source']))
 		{
 			unset ($query_vars ['oa_social_login_source']);
 		}
-		
+
 		//Build new url
 		$redirect_to = $url_part . ((is_array ($query_vars) AND count ($query_vars) > 0) ? ('?' . http_build_query ($query_vars)) : '');
 	}
-	
+
 	return $redirect_to;
 }
 
@@ -149,6 +149,17 @@ function oa_social_login_esc_attr ($string)
 function oa_social_login_get_userid_by_token ($token)
 {
 	global $wpdb;
+
+	// Sanitize token.
+	$token = trim (strval ($token));
+
+	// The token is required.
+	if (strlen ($token) == 0)
+	{
+		return false;
+	}
+
+	// Read user for this token.
 	$sql = "SELECT u.ID FROM " . $wpdb->usermeta . " AS um	INNER JOIN " . $wpdb->users . " AS u ON (um.user_id=u.ID)	WHERE um.meta_key = 'oa_social_login_user_token' AND um.meta_value=%s";
 	return $wpdb->get_var ($wpdb->prepare ($sql, $token));
 }

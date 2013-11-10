@@ -3,7 +3,7 @@
 Plugin Name: Social Login
 Plugin URI: http://www.oneall.com/
 Description: Allow your visitors to <strong>comment, login and register with 20+ social networks</strong> like Twitter, Facebook, LinkedIn, Hyves, Вконтакте, Google or Yahoo.
-Version: 4.0
+Version: 4.4
 Author: Claude Schlesser
 Author URI: http://www.oneall.com/
 License: GPL2
@@ -11,7 +11,7 @@ License: GPL2
 
 define ('OA_SOCIAL_LOGIN_PLUGIN_URL', plugins_url () . '/' . basename (dirname (__FILE__)));
 define ('OA_SOCIAL_LOGIN_BASE_PATH', dirname (plugin_basename (__FILE__)));
-define ('OA_SOCIAL_LOGIN_VERSION', '4.0');
+define ('OA_SOCIAL_LOGIN_VERSION', '4.4');
 
 /**
  * Check technical requirements before activating the plugin (Wordpress 3.0 or newer required)
@@ -30,9 +30,9 @@ register_activation_hook (__FILE__, 'oa_social_login_activate');
 
 
 /**
- * Add Settings Link
+ * Add Setup Link
  **/
-function oa_social_login_add_settings_link ($links, $file)
+function oa_social_login_add_setup_link ($links, $file)
 {
 	static $oa_social_login_plugin = null;
 
@@ -43,12 +43,12 @@ function oa_social_login_add_settings_link ($links, $file)
 
 	if ($file == $oa_social_login_plugin)
 	{
-		$settings_link = '<a href="admin.php?page=oa_social_login_setup">' . __ ('Settings') . '</a>';
+		$settings_link = '<a href="admin.php?page=oa_social_login_setup">' . __ ('Setup') . '</a>';
 		array_unshift ($links, $settings_link);
 	}
 	return $links;
 }
-add_filter ('plugin_action_links', 'oa_social_login_add_settings_link', 10, 2);
+add_filter ('plugin_action_links', 'oa_social_login_add_setup_link', 10, 2);
 
 
 /**

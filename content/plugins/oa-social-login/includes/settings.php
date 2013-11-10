@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Providers that are currently enabled
+ * Available Providers
  */
 $oa_social_login_providers = array (
 	'facebook' => array (
@@ -15,6 +15,9 @@ $oa_social_login_providers = array (
 	),
 	'linkedin' => array (
 		'name' => 'LinkedIn'
+	),
+	'xing' => array (
+		'name' => 'Xing'
 	),
 	'yahoo' => array (
 		'name' => 'Yahoo'

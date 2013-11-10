@@ -1,16 +1,16 @@
 === Social Login ===
 Contributors: ClaudeSchlesser
-Tags: social login, social connect, facebook login, linkedin, livejournal, google, yahoo, twitter login, openid, paypal, vkontakte, hyves, widget, plugin, social network login, comments
+Tags: social login, social connect, facebook, linkedin, livejournal, google, yahoo, twitter, openid, paypal, google, hyves, widget, plugin, social network login, comments
 Requires at least: 3.0
-Tested up to: 3.5.1
-Stable tag: 4.0
+Tested up to: 3.7
+Stable tag: 4.4
 
 Allow your visitors to comment and login with social networks like Twitter, Facebook, Paypal, LinkedIn, LiveJournal, OpenID, VKontakte, Google, Yahoo
 
 == Description ==
 
-The Social Login Plugin is a professional though free Wordpress (BuddyPress compatible) Plugin in English/German that allows your visitors to comment, 
-login and register with social networks like Twitter, Facebook, LinkedIn, Paypal, LiveJournal, Hyves, Вконтакте, Google or Yahoo. 
+Social Login is a professionally developed and free Wordpress (BuddyPress compatible) plugin that allows your visitors to comment, 
+login and register with 20+ Social Networks like for example Facebook, Twitter, Google, LinkedIn, PayPal, LiveJournal, Hyves, Вконтакте and Yahoo.<br /><br />
 <strong>Make your blog social!</strong><br />
 
 <strong>Choose where to add the Social Login Plugin:</strong>
@@ -19,6 +19,7 @@ login and register with social networks like Twitter, Facebook, LinkedIn, Paypal
  <li>On the login page</li>
  <li>On the registration page</li>
  <li>In your sidebar</li>
+ <li>With a shortcode</li>
 </ul>
 
 <strong>Optionally add the Social Login widget:</strong>
@@ -32,7 +33,7 @@ login and register with social networks like Twitter, Facebook, LinkedIn, Paypal
  <li>Twitter</li>
  <li>Google</li>
  <li>LinkedIn</li>
- <li>Paypal</li>
+ <li>PayPal</li>
  <li>Yahoo</li>
  <li>Github.com</li>
  <li>Foursquare</li>
@@ -62,9 +63,19 @@ Google, Yahoo!, LinkedIn, Paypal, Hyves amongst others.
 
 == Installation ==
 
+= Plugin Installation =
 1. Upload the plugin folder to the "/wp-content/plugins/" directory of your WordPress site,
 2. Activate the plugin through the 'Plugins' menu in WordPress,
 3. Visit the "Settings\Social Login" administration page to setup the plugin. 
+
+= API Connection =
+The social network APIs are constantly changing and being updated. We monitor these changes and automatically 
+update our APIs, so that you can be sure that Social Login will always run smoothly and with the most up-to-date 
+API calls. 
+
+In order to enable the plugin your therefore have to connect with the OneAll API and you need to create a free 
+account at https://app.oneall.com
+
 
 == Frequently Asked Questions ==
 
@@ -120,6 +131,18 @@ http://docs.oneall.com/plugins/guide/social-login-wordpress/
 
 == Changelog ==
 
+= 4.4 =
+* Social Network "Xing" added
+
+= 4.3 =
+* Social Network Avatars improved
+* Social Link shortcode/hook/action added
+* Administration: Tabs for Social Login added
+* Administration: Column Registration in the user list fixed
+* Redirection filters added
+* Settings security improved
+* Button to cancel email confirmation added
+
 = 4.0 =
 * Social Link Service added
 * Optimized for WordPress 3.5
@@ -127,6 +150,7 @@ http://docs.oneall.com/plugins/guide/social-login-wordpress/
 * German translations improved
 * Social Network "YouTube" added
 * Social Network "Odnoklassniki.ru" added
+* Hook "after_signup_form" added
 
 = 3.7 =
 * Hook for BuddyPress Registration added
@@ -252,6 +276,9 @@ http://docs.oneall.com/plugins/guide/social-login-wordpress/
 
 <strong>Used by thousands of users around the world!</strong>
 
+<em>Loving the service, seen a massive increase in painless signups to my blog. Thanks!</em>
+<strong>Richard B.</strong>
+
 <em>You have no idea how it THRILLED me to integrate oneall. It was SO amazingly easy, your team has simplified the whole process of signing up for 
 authorization on multiple social media sites. I HAD NO QUESTIONS/STEPS THAT YOU HADN'T ALREADY ANTICIPATED. It saved me HOURS of work!</em>
 <strong>Kelly C.</strong>
@@ -317,3 +344,6 @@ for putting together such a great product that so many users can implement with 
 
 <em>The site and the plugin are working magnificently. Thank you one million times for making your products/services available in the manner that you have.</em>
 <strong>Herman G.</strong>
+
+<em>Very user friendly, there are guides and screenshot on how to set things up. Thank you so much for this awesome plugin!</em>
+<strong>Cebututs</strong> 

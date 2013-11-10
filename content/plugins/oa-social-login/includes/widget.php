@@ -14,7 +14,7 @@ class oa_social_login_widget extends WP_Widget
 			'description' => __ ('Allow your visitors to login and register with social networks like Twitter, Facebook, LinkedIn, Hyves, Google and Yahoo.', 'oa_social_login')
 		));
 	}
-	
+
 	/**
 	 *  Display the widget
 	 */
@@ -25,33 +25,33 @@ class oa_social_login_widget extends WP_Widget
 		{
 			//Before Widget
 			echo $args ['before_widget'];
-			
+
 			//Title
 			if (!empty ($instance ['widget_title']))
 			{
 				echo $args ['before_title'] . apply_filters ('widget_title', $instance ['widget_title']) . $args ['after_title'];
 			}
-			
+
 			//Before Content
 			if (!empty ($instance ['widget_content_before']))
 			{
 				echo $instance ['widget_content_before'];
 			}
-			
+
 			//Content
 			echo oa_social_login_render_login_form ('widget', $instance);
-			
+
 			//After Content
 			if (!empty ($instance ['widget_content_after']))
 			{
 				echo $instance ['widget_content_after'];
 			}
-			
+
 			//After Widget
 			echo $args ['after_widget'];
 		}
 	}
-	
+
 	/**
 	 * Show Widget Settings
 	 */
@@ -65,14 +65,14 @@ class oa_social_login_widget extends WP_Widget
 			'widget_use_small_buttons' => '0',
 			'widget_hide_for_logged_in_users' => '1'
 		);
-		
+
 		foreach ($instance as $key => $value)
 		{
 			$instance [$key] = oa_social_login_esc_attr ($value);
 		}
-		
+
 		$instance = wp_parse_args ((array) $instance, $default_settings);
-?>
+		?>
 			<p>
 				<label for="<?php echo $this->get_field_id ('widget_title'); ?>"><?php _e ('Title', 'oa_social_login'); ?>:</label>
 				<input class="widefat" id="<?php echo $this->get_field_id ('widget_title'); ?>" name="<?php echo $this->get_field_name ('widget_title'); ?>" type="text" value="<?php echo $instance ['widget_title']; ?>" />
@@ -94,22 +94,22 @@ class oa_social_login_widget extends WP_Widget
 				<label for="<?php echo $this->get_field_id ('widget_use_small_buttons'); ?>"><?php _e ('Tick to use small buttons', 'oa_social_login'); ?></label>
 			</p>
 		<?php
-			}
-			
-			
-			/**
-			 * Update Widget Settings
-			 */
-			public function update ($new_instance, $old_instance)
-			{
-				$instance = $old_instance;
-				$instance ['widget_title'] = trim (strip_tags ($new_instance ['widget_title']));
-				$instance ['widget_content_before'] = trim ($new_instance ['widget_content_before']);
-				$instance ['widget_content_after'] = trim ($new_instance ['widget_content_after']);
-				$instance ['widget_hide_for_logged_in_users'] = (empty ($new_instance ['widget_hide_for_logged_in_users']) ? 0 : 1);
-				$instance ['widget_use_small_buttons'] = (empty ($new_instance ['widget_use_small_buttons']) ? 0 : 1);
-				return $instance;
-			}
-		}
-		
-		add_action ('widgets_init', create_function ('', 'return register_widget( "oa_social_login_widget" );'));
+	}
+
+
+	/**
+	 * Update Widget Settings
+	 */
+	public function update ($new_instance, $old_instance)
+	{
+		$instance = $old_instance;
+		$instance ['widget_title'] = trim (strip_tags ($new_instance ['widget_title']));
+		$instance ['widget_content_before'] = trim ($new_instance ['widget_content_before']);
+		$instance ['widget_content_after'] = trim ($new_instance ['widget_content_after']);
+		$instance ['widget_hide_for_logged_in_users'] = (empty ($new_instance ['widget_hide_for_logged_in_users']) ? 0 : 1);
+		$instance ['widget_use_small_buttons'] = (empty ($new_instance ['widget_use_small_buttons']) ? 0 : 1);
+		return $instance;
+	}
+}
+
+add_action ('widgets_init', create_function ('', 'return register_widget( "oa_social_login_widget" );'));

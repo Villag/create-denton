@@ -8,6 +8,8 @@
  * Author Email: patrick@developdaly.com
  */
 
+require_once(WP_PLUGIN_DIR . "/" . basename(dirname(__FILE__)) . "/user-taxonomies.php");
+
 // After user registration, login user
 add_action( 'gform_user_registered', 'pi_gravity_registration_autologin', 10, 4 );
 
@@ -18,7 +20,7 @@ add_filter("gform_upload_path", "change_upload_path", 10, 2);
 add_action("gform_after_submission", "cd_update_avatar", 10, 2);
 
 add_action( 'wp_footer', 'cd_first_timer' );
-	
+
 /**
  * Auto login after registration.
  */
@@ -45,10 +47,10 @@ function cd_first_timer() {
 
 /**
  * Checks if the user is valid (has all the right info) and returns boolean.
- * 
+ *
  */
 function cd_is_valid_user( $user_id ) {
-	
+
 	if( cd_user_errors( $user_id ) == null )
 		return true;
 	else
@@ -60,10 +62,10 @@ function cd_is_valid_user( $user_id ) {
  * (i.e. missing data required to be a valid user)
  */
 function cd_user_errors( $user_id ) {
-	
+
 	$user_data		= get_userdata( $user_id );
 	$email			= $user_data->user_email;
-	
+
 	$user_meta		= get_user_meta( $user_id );
 	$first_name		= isset( $user_meta['first_name'][0] );
 	$last_name		= isset( $user_meta['last_name'][0] );
@@ -74,9 +76,9 @@ function cd_user_errors( $user_id ) {
 		$avatar		= cd_get_avatar( $user_id );
 	else
 		$avatar		= '';
-			
+
 	$errors = array();
-	
+
 	if ( $email == '' )
 		$errors[] = ' email';
 
@@ -88,7 +90,7 @@ function cd_user_errors( $user_id ) {
 
 	if ( !$zip )
 		$errors[] = ' zip code';
-			
+
 	if ( !$primary_job )
 		$errors[] = ' primary job';
 
@@ -97,9 +99,9 @@ function cd_user_errors( $user_id ) {
 
 	if ( cd_has_header_error( $avatar ) )
 		$errors[] = ' broken avatar';
-		
+
 	$output = implode( ',', $errors );
-		
+
 	return $output;
 }
 
@@ -107,9 +109,9 @@ function cd_clean_username( $user_id ) {
 	$user_info = get_userdata( $user_id );
 
 	$username = strtolower( $user_info->user_login );
-	
+
 	$output = preg_replace("![^a-z0-9]+!i", "-", $username );
-	
+
 	return $output;
 }
 
@@ -151,31 +153,31 @@ function cd_get_oneall_user( $user_id, $attribute = '' ) {
 
 	// Getting results
 	$result = curl_exec($ch);
-		
+
 	$data = json_decode($result);
-		
+
 	$output = '';
-	
+
 	if( isset( $data->response->result ) ){
-	
+
 		if( $attribute == '' ){
 			$output = isset( $data->response->result->data->user->identities );
 		}
-		
+
 		if( $attribute == 'thumbnail' && isset( $data->response->result->data->user->identities->identity[0]->thumbnailUrl ) ) {
 			$output = $data->response->result->data->user->identities->identity[0]->thumbnailUrl;
 		}
-	
+
 		if( $attribute == 'picture' && isset( $data->response->result->data->user->identities->identity[0]->pictureUrl ) ) {
 			$output = $data->response->result->data->user->identities->identity[0]->pictureUrl;
-		}	
-		
+		}
+
 	} else {
 		$output = get_avatar_url( get_avatar( $user_id, 150 ) );
 	}
-		
+
 	return $output;
-	
+
 }
 
 function get_avatar_url($get_avatar){
@@ -203,10 +205,10 @@ function cd_choose_avatar( $user_id ) {
 	// Make sure the user can edit this user
 	if ( !current_user_can( 'edit_user', $user_id ) )
 		return false;
-	
+
 	$user = get_user_by( 'id', $user_id );
 	$hash = md5( strtolower( trim( $user->user_email ) ) );
-	
+
 	$avatar_local		= get_user_meta( $user_id, 'avatar_local', true );
 	$avatar_social		= cd_get_oneall_user( $user_id, 'thumbnail' );
 	$avatar_gravatar	= 'http://www.gravatar.com/avatar/'. $hash .'?s=200&r=pg&d=404';
@@ -230,10 +232,10 @@ function cd_choose_avatar( $user_id ) {
 }
 
 function cd_get_avatar( $user_id ) {
-	$image = get_user_meta( $user_id, 'avatar', true );
-	
-	$output = cd_timthumbit( $image, 150, 150 );
-	
+	$output = get_user_meta( $user_id, 'avatar', true );
+
+	//$output = cd_timthumbit( $image, 150, 150 );
+
 	return $output;
 }
 
@@ -247,7 +249,7 @@ function cd_update_avatar($entry, $form){
 	global $current_user;
 	$user = get_user_by( 'id', $current_user->ID );
 	$hash = md5( strtolower( trim( $user->user_email ) ) );
-	
+
 	$avatar_type = $entry["11"];
 	update_user_meta( $current_user->ID, 'avatar_type', $entry["10"] );
 

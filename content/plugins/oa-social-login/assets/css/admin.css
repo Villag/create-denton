@@ -31,6 +31,11 @@
   margin-bottom: 35px;
 }
 
+#oa_social_login_box_help ul {
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
 #oa_social_login_box_help .oa_social_login_box_title {
   border-color: #E6DB55;
 }
@@ -132,8 +137,13 @@
   line-height: 35px;
 }
 
-.oa_social_login_table tr.row_provider td .oa_social_login_provider {
-  margin: 0 10px 0 0;
+.oa_social_login_table tr.row_provider td.cell_provider_icon {
+  width: 50px;
+  text-align: center !important;
+}
+
+.oa_social_login_table tr.row_provider td.cell_provider_label {
+  text-align: left !important;
 }
 
 .oa_social_login_provider {
@@ -144,98 +154,102 @@
   display: inline-block;
 }
 
-.oa_social_login_provider.oa_social_login_provider_aol {
+.oa_social_login_provider_aol {
   background-position: -2px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_blogger {
+.oa_social_login_provider_blogger {
   background-position: -39px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_facebook {
+.oa_social_login_provider_facebook {
   background-position: -76px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_foursquare {
+.oa_social_login_provider_foursquare {
   background-position: -113px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_google {
+.oa_social_login_provider_google {
   background-position: -150px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_hyves {
+.oa_social_login_provider_hyves {
   background-position: -187px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_linkedin {
+.oa_social_login_provider_linkedin {
   background-position: -224px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_windowslive {
+.oa_social_login_provider_windowslive {
   background-position: -261px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_livejournal {
+.oa_social_login_provider_livejournal {
   background-position: -298px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_myspace {
+.oa_social_login_provider_myspace {
   background-position: -372px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_openid {
+.oa_social_login_provider_openid {
   background-position: -409px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_twitter {
+.oa_social_login_provider_twitter {
   background-position: -520px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_vkontakte {
+.oa_social_login_provider_vkontakte {
   background-position: -631px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_wordpress {
+.oa_social_login_provider_wordpress {
   background-position: -668px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_yahoo {
+.oa_social_login_provider_yahoo {
   background-position: -705px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_paypal {
+.oa_social_login_provider_paypal {
   background-position: -742px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_stackexchange {
+.oa_social_login_provider_stackexchange {
   background-position: -779px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_steam {
+.oa_social_login_provider_steam {
   background-position: -816px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_mailru {
+.oa_social_login_provider_mailru {
   background-position: -853px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_skyrock {
+.oa_social_login_provider_skyrock {
   background-position: -890px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_github {
+.oa_social_login_provider_github {
   background-position: -927px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_disqus {
+.oa_social_login_provider_disqus {
   background-position: -964px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_youtube {
+.oa_social_login_provider_youtube {
   background-position: -1001px -1px;
 }
 
-.oa_social_login_provider.oa_social_login_provider_odnoklassniki {
+.oa_social_login_provider_odnoklassniki {
   background-position: -1038px -1px;
+}
+
+.oa_social_login_provider_xing {
+  background-position: -1075px -1px;
 }
