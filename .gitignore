@@ -1,0 +1,10 @@
+/shared
+/local-config.php
+/sql-dump-*.sql
+/db-sync
+/content/upgrade/
+/content/themes/cache
+/content/themes/createdenton/cache
+.DS_Store
+.project
+*.log
