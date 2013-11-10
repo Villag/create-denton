@@ -17,19 +17,18 @@
 	<div id="container">
 
 		<nav id="site-navigation" class="navbar navbar-inverse navbar-fixed-top row-fluid" role="navigation">
-			
+
 			<div class="navbar-inner">
 				<h1 class="brand"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">Create <strong>Denton</strong></a></h1>
-				<label>beta!</label>
 				<div class="skip-link assistive-text"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'twentytwelve' ); ?>"><?php _e( 'Skip to content', 'twentytwelve' ); ?></a></div>
 				<div class="menu-primary-container">
-					
+
 					<a class="btn btn-navbar" data-toggle="collapse" data-target="#menu-secondary">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</a>
-					
+
 					<ul id="menu-secondary" class="nav nav-collapse collapse pull-right">
 
 						<li class="dropdown">
@@ -63,26 +62,15 @@
 						</li>
 
 					</ul>
-					
+
 					<ul id="menu-primary" class="nav">
 						<?php if( is_front_page() ): ?>
-						<li id="filter">
-                        	<ul id="filters" class="option-set" data-option-key="filter">
-						        <li data-filter=".graphic-designer"><a href="#filter">Graphic Designer</a></li>
-						        <li data-filter=".web-designer">	<a href="#filter">Web Designer</a></li>
-						        <li data-filter=".photographer">	<a href="#filter">Photographer</a></li>
-						        <li data-filter=".programmer">		<a href="#filter">Programmer</a></li>
-						        <li data-filter=".film-video">		<a href="#filter">Film/Video</a></li>
-						        <li data-filter=".writer">			<a href="#filter">Writer</a></li>
-						        <li data-filter=".other">			<a href="#filter">Other</a></li>
-						        <li data-filter="*" class="selected"><a href="#filter">Reset</a></li>
-	                        </ul>
-						</li>
+							<?php wp_tag_cloud( array( 'taxonomy' => 'skill' ) ); ?>
 						<?php endif; ?>
 					</ul>
 				</div>
 			</div>
-			
+
 		</nav><!-- #site-navigation -->
 
 		<div id="main">

@@ -14,12 +14,12 @@ get_currentuserinfo();
 
 	</div><!-- #container -->
 
-	<?php if( is_page_template( 'page-template-home.php' ) ) get_template_part( 'modals' ); // Load modals.php ?>
-	
+	<?php //if( is_page_template( 'page-template-home.php' ) ) get_template_part( 'modals' ); // Load modals.php ?>
+
 	<div class="hidden"><?php cd_choose_avatar( $current_user->ID ); ?></div>
-	
+
 	<?php wp_footer(); ?>
-	
+
 	<script type="text/javascript">
 	  var uvOptions = {};
 	  (function() {

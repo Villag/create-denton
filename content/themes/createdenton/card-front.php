@@ -19,9 +19,9 @@ $user_count = array();
 $user_count = $user_count_query->get_results();
 $valid_users = 0;
 foreach ($user_count as $user) {
-	
+
 	if ( !cd_is_valid_user( $user->ID ) ) continue;
-	
+
 	$valid_users += 1;
 }
 
@@ -45,7 +45,7 @@ $args  = array(
 	'order'		=> 'DESC',
     'fields'	=> 'all_with_meta',
     'number'	=> $users_per_page,
-    'offset'	=> $offset // skip the number of users that we have per page  
+    'offset'	=> $offset // skip the number of users that we have per page
 );
 
 // Create the WP_User_Query object
@@ -63,7 +63,7 @@ if( function_exists('tribe_get_events') ) {
 
 // Randomize cards
 $cards = (array)$cards;
-shuffle( $cards );	
+shuffle( $cards );
 
 // CDisplay cards if we have any
 if (!empty($cards)) {
@@ -74,25 +74,25 @@ if (!empty($cards)) {
     foreach ($cards as $card) {
 
 		$object_type = get_class($card);
-		
+
 		if( $object_type == 'WP_Post' ):
-			
-			setup_postdata($card);				
+
+			setup_postdata($card);
 			?>
-			
+
 			<div class="item hcard event">
-				<a class="card" href="#" data-reveal-id="event-<?php echo $card->post_name; ?>" data-animation="fade" data-animationSpeed="12000">
+				<a class="card" href="#event-<?php echo $card->post_name; ?>" data-toggle="modal" >
 
 					<?php echo get_the_image( array( 'image_scan' => true) ); ?>
-										
+
 					<header class="brief">
 						<span class="event-title">
 							<?php echo $card->post_title; ?>
 						</span><!-- .event-title -->
 						<div class="date"><?php echo tribe_get_start_date( $card->ID, true, 'M j, Y' ); ?></div>
 					</header><!-- .brief -->
-				
-				</a><!-- .card -->					
+
+				</a><!-- .card -->
 			</div>
 
 			<div id="event-<?php echo $card->post_name; ?>" class="reveal-modal" role="dialog" aria-labelledby="modal-event-label" aria-hidden="true" data-type="event">
@@ -106,30 +106,30 @@ if (!empty($cards)) {
 						<div class="date"><?php echo tribe_get_start_date( $card->ID, true, 'M j, Y' ); ?> - <?php echo tribe_get_end_date( $card->ID, true, 'M j, Y' ); ?></div>
 					</header><!-- .n -->
 				</div><!-- .modal-header -->
-				
+
 				<div class="modal-body">
-					
+
 					<?php the_content(); ?>
-					
+
 				</div>
 
-			</div><!-- .vcard -->						
+			</div><!-- .vcard -->
 			<?php
-			
+
 		elseif( $object_type == 'WP_User' ):
-			
+
 	    	if ( !cd_is_valid_user( $card->ID ) ) continue;
 	        $author_info = get_userdata($card->ID);
 			$user_type = strtolower( get_user_meta( $author_info->ID, 'user_primary_job', true ) ); // Converts the Primary Job output to lower case
 			$user_type = preg_replace("![^a-z0-9]+!i", "-", $user_type ); // Converts spaces in the primary job to hyphens
 
 			?>
-	
+
 			<li class="item vcard person <?php echo $user_type; if( $current_user->ID == $author_info->ID ) echo ' current-user'; ?>">
-				<a class="card" href="#" data-reveal-id="<?php echo $author_info->ID; ?>" data-animation="fade" data-animationSpeed="12000">
-				
+				<a class="card" href="#person-<?php echo $card->ID ?>" data-toggle="modal" >
+
 					<img src="<?php echo cd_get_avatar($author_info->ID); ?>" class="avatar" height="150" width="150" alt="<?php echo $author_info->first_name; ?> <?php echo $author_info->last_name; ?>">
-					
+
 					<header class="n brief" title="Name">
 						<span class="fn" itemprop="name">
 							<span class="given-name"><?php echo $author_info->first_name; ?></span>
@@ -137,15 +137,15 @@ if (!empty($cards)) {
 						</span> <!--/ .fn -->
 						<div class="primary-job"><?php echo $author_info->user_primary_job; ?></div>
 					</header> <!--/ .n -->
-				
+
 				</a><!-- .card -->
-			
+
 			</li><!-- .card -->
-		
+
 		<?php
-		
+
 		endif;
-		
+
 	}
 	echo '</ul>';
 } else {
@@ -154,7 +154,7 @@ if (!empty($cards)) {
 
 // grab the current query parameters
 $query_string = $_SERVER['QUERY_STRING'];
-	
+
 // The $base variable stores the complete URL to our page, including the current page arg
 $base = get_permalink( get_the_ID() ) . '?' . remove_query_arg('page', $query_string) . '%_%';
 echo '<div id="page_nav">';

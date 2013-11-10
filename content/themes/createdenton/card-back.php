@@ -9,7 +9,7 @@ if( $users ) {
 		$user_info = get_userdata( $user->ID ); // TODO: Explain what this gets
 		$all_meta_for_user = get_user_meta( $user->ID ); // TODO: Explain what this gets
 		$curauth = $wp_query->get_queried_object(); // TODO: Explain what this gets
-		
+
 		$user_type = strtolower( get_user_meta( $user->ID, 'user_primary_job', true ) ); // Converts the Primary Job output to lower case
 		$user_type = preg_replace("![^a-z0-9]+!i", "-", $user_type ); // Converts spaces in the primary job to hyphens
 
@@ -27,13 +27,13 @@ if( $users ) {
 		$user_twitter			= get_user_meta( $user->ID, 'user_twitter', true );
 		$user_linkedin_url		= get_user_meta( $user->ID, 'user_linkedin', true );
 		$user_skills			= get_user_meta( $user->ID, 'user_skills', false );
-		
+
 		// If the user isn't valid, skip them
 		if ( !cd_is_valid_user( $user->ID ) ) continue; ?>
 
 		<li>
 
-			<div id="<?php echo $user->ID; ?>" class="reveal-modal person <?php echo $user_type; ?>" role="dialog" aria-labelledby="modal-person-label" aria-hidden="true" data-type="<?php echo $user_type; ?>">
+			<div id="person-<?php echo $user->ID; ?>" class="modal person <?php echo $user_type; ?> fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="reveal-modal person <?php echo $user_type; ?>" role="dialog" aria-labelledby="modal-person-label" aria-hidden="true" data-type="<?php echo $user_type; ?>">
 
 				<figure id="vcard-lastfirst-<?php echo $user->ID ?>" itemscope="itemscope" itemtype="http://www.data-vocabulary.org/Person/">
 
@@ -55,7 +55,7 @@ if( $users ) {
 						</div><!-- .modal-header -->
 
 						<div class="modal-body">
-							
+
 							<img src="<?php echo cd_get_avatar( $user->ID ); ?>" class="avatar thumbnail pull-right" height="150" width="150" alt="<?php echo get_user_meta( $user->ID, 'first_name', true ); ?> <?php echo get_user_meta( $user->ID, 'last_name', true ); ?>">
 
 							<?php if( $user_website || $user_twitter || $user_email || $user_phone ) { ?>
@@ -107,7 +107,7 @@ if( $users ) {
 				</figure>
 
 			</div><!-- .vcard -->
-			
+
 			<div id="contact-<?php echo $user->ID; ?>" class="reveal-modal <?php echo $user_type; ?>">
 				<div class="modal-header">
 					<img src="<?php echo cd_get_avatar( $user->ID ); ?>" class="avatar pull-left" height="30" width="30" alt="<?php echo get_user_meta( $user->ID, 'first_name', true ); ?> <?php echo get_user_meta( $user->ID, 'last_name', true ); ?>">
