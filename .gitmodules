@@ -1,0 +1,6 @@
+[submodule "wp"]
+	path = wp
+	url = git://github.com/WordPress/WordPress.git
+[submodule "content/themes/createdenton/core"]
+	path = content/themes/createdenton/core
+	url = https://github.com/justintadlock/hybrid-core.git
