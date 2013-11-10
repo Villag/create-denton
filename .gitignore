@@ -3,6 +3,7 @@
 /sql-dump-*.sql
 /db-sync
 /content/upgrade/
+/content/uploads
 /content/themes/cache
 /content/themes/createdenton/cache
 .DS_Store
