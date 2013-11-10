@@ -96,4 +96,4 @@ if ( !defined( 'ABSPATH' ) )
 require_once( ABSPATH . 'wp-settings.php' );
 
 // Disable admin bar on front-end
-add_action( 'show_admin_bar', '__return_false' );
+//add_action( 'show_admin_bar', '__return_false' );
