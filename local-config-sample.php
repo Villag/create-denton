@@ -1,9 +1,9 @@
 <?php
 
-define( 'DB_NAME',			'devdal1_creatives' );
-define( 'DB_USER',			'devdal1_crea8iv' );
-define( 'DB_PASSWORD',		'_J,{glf1_)OF' );
-define( 'DB_HOST',			'184.173.232.56' );
+define( 'DB_NAME',			'local_db_name' );
+define( 'DB_USER',			'local_db_user' );
+define( 'DB_PASSWORD',	'local_db_pass' );
+define( 'DB_HOST',			'localhost' );
 
 /**
  * Forces new hostsnames
@@ -16,11 +16,11 @@ define( 'DB_HOST',			'184.173.232.56' );
  * @see wp-config.php
  * @link http://codex.wordpress.org/Editing_wp-config.php
  */
-define( 'ENV_DOMAIN',			'local.createdenton.com' );
-define( 'PRODUCTION_DOMAIN',	'createdenton.com' );
+define( 'ENV_DOMAIN',			      'local.createdenton.com' );
+define( 'PRODUCTION_DOMAIN',	  'createdenton.com' );
 define( 'DOMAIN_CURRENT_SITE',	ENV_DOMAIN );
-define( 'WP_HOME',				'http://'. ENV_DOMAIN );
-define( 'WP_SITEURL',			'http://'. ENV_DOMAIN .'/wp' );
+define( 'WP_HOME',				      'http://'. ENV_DOMAIN );
+define( 'WP_SITEURL',			      'http://'. ENV_DOMAIN .'/wp' );
 
 /**
  * Enabled WP_DEBUG mode
