@@ -4,3 +4,9 @@
 [submodule "content/themes/createdenton/core"]
 	path = content/themes/createdenton/core
 	url = https://github.com/justintadlock/hybrid-core.git
+[submodule "content/themes/create"]
+	path = content/themes/create
+	url = https://github.com/Villag/create-theme.git
+[submodule "content/plugins/create"]
+	path = content/plugins/create
+	url = https://github.com/Villag/create-plugin.git
