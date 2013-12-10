@@ -4,13 +4,23 @@ The goal of CreateDenton is to forge real connections among Denton, Texas' creat
 
 ## How to Contribute
 
-CreateDenton.com was created by Patrick Daly, Darren Smitherman, and Andrew Lewis. We've open-sourced the project in order to allow the creative community of Denton, TX to build upon this framework and enhcnace collaboration.
+CreateDenton.com was created by [Patrick Daly](http://developdaly.com), Darren Smitherman, and Andrew Lewis. We've open-sourced the project in order to allow the creative community of Denton, TX to build upon this framework and enhance collaboration.
 
 As a Villag project, CreateDenton is just one of other open-source tools to improve communities. When citizens of Denton participate in Villag projects they prove the value of the creative class in our city.
 
 This is an open-source project which means the code is available for viewing and reusing. Darren and Patrick will continue to lead CreateDenton by casting its vision, approving enhancements, and managing the database.
 
 We'd love your participation in any way you'd like to help! Be it code contributions, new ideas, road mapping, integrations, or any other way you think up we want to hear from you.
+
+**This repository is specific to createdenton.com, but the "Create" framework can be put together by combining the WordPress theme and plugins from each of their respective repositories.**
+
+### The "Create" Theme
+
+The theme that powers this WordPress site can be found in its own repository over at https://github.com/Villag/create-theme
+
+### The "Create" Plugin
+
+The plugin that adds specific functionality can be found at https://github.com/Villag/create-plugin
 
 ## How this WordPress installation is setup
 
@@ -22,7 +32,7 @@ We'd love your participation in any way you'd like to help! Be it code contribut
 ## Questions & Answers
 
 **Q:** Will you accept pull requests?  
-**A:** Yes! This is a community project and everyone is Denton is encouraged to participate.
+**A:** Yes! This is a community project and everyone is is encouraged to participate.
 
 **Q:** Why the `/shared/` symlink stuff for uploads?  
 **A:** For local development, create `/shared/` (it is ignored by Git), and have the files live there. This gives a separation between Git-managed code and uploaded files.
