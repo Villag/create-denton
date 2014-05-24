@@ -1,8 +1,8 @@
 [submodule "wp"]
 	path = wp
 	url = https://github.com/WordPress/WordPress.git
-[submodule "content/themes/createdenton/core"]
-	path = content/themes/createdenton/core
+[submodule "content/themes/create/core"]
+	path = content/themes/create/core
 	url = https://github.com/justintadlock/hybrid-core.git
 [submodule "content/themes/create"]
 	path = content/themes/create
